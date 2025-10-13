@@ -6,33 +6,33 @@ function themeConfig($form)
         'title',
         null,
         null,
-        _t('站点名称')
+        '站点名称'
     );
     $description = new \Typecho\Widget\Helper\Form\Element\Text(
         'description',
         null,
         null,
-        _t('站点描述')
+        '站点描述'
     );
     $faviconUrl = new \Typecho\Widget\Helper\Form\Element\Text(
         'faviconUrl',
         null,
         null,
-        _t('favicon.ico图标路径')
+        'favicon.ico图标路径'
     );
     $footerText = new \Typecho\Widget\Helper\Form\Element\Textarea(
         'footerText',
         null,
         null,
-        _t('版权信息')
+        '版权信息'
     );
     $analyticsCode = new \Typecho\Widget\Helper\Form\Element\Textarea(
         'analyticsCode',
         null,
         null,
-        _t('网站统计代码')
+        '网站统计代码'
     );
-
+    
     $menuBlock = new \Typecho\Widget\Helper\Form\Element\Checkbox(
         'menuBlock',
         [
@@ -40,9 +40,9 @@ function themeConfig($form)
             'ShowPage'      => '独立页面'
         ],
         ['ShowCategory', 'ShowPage'],
-        _t('顶部菜单显示内容')
+        '顶部菜单显示内容'
     );
-
+    
     $sidebarBlock = new \Typecho\Widget\Helper\Form\Element\Checkbox(
         'sidebarBlock',
         [
@@ -55,18 +55,40 @@ function themeConfig($form)
             'ShowStatistics'        => '数据统计'
         ],
         ['ShowRecentTags', 'ShowRandPosts', 'ShowRecentPosts', 'ShowRecentComments', 'ShowStatistics'],
-        _t('侧边栏显示内容')
+        '侧边栏显示内容'
     );
-
+    
     $weservStatus = new Typecho_Widget_Helper_Form_Element_Radio(
-        'weservStatus', 
+        'weservStatus',
         [
-            'yes'   => '是',  
+            'yes'   => '是',
             'no'    => '否'
         ],
         'yes',
-        _t('是否启用images.weserv.nl服务'));
-
+        '是否启用images.weserv.nl服务'
+    );
+    
+    $themeChangeStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'themeChangeStatus',
+        [
+            'yes'   => '是',
+            'no'    => '否'
+        ],
+        'yes',
+        '是否启用主题切换'
+    );
+    
+    $defaultTheme = new Typecho_Widget_Helper_Form_Element_Radio(
+        'defaultTheme',
+        [
+            'auto'      => '跟随系统',
+            'light'     => '亮色模式',
+            'dark'      => '深色模式',
+        ],
+        'auto',
+        '默认主题'
+    );
+    
     $form->addInput($title);
     $form->addInput($description);
     $form->addInput($faviconUrl);
@@ -75,6 +97,8 @@ function themeConfig($form)
     $form->addInput($menuBlock);
     $form->addInput($sidebarBlock);
     $form->addInput($weservStatus);
+    $form->addInput($themeChangeStatus);
+    $form->addInput($defaultTheme);
 }
 
 function postView($archive) {
@@ -86,8 +110,8 @@ function postView($archive) {
     }
     if ($archive->is('single')) {
         $db->query($db->update('table.contents')
-                ->rows(array('views' => (int)$exist+1))
-                ->where('cid = ?', $cid));
+            ->rows(array('views' => (int)$exist+1))
+            ->where('cid = ?', $cid));
         $exist = (int) $exist + 1;
     }
     

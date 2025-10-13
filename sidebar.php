@@ -1,5 +1,5 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
-<div class="col-sm-12 col-md-4 d-none d-md-block" id="secondary">
+<div class="col-sm-12 col-md-4" id="secondary">
     <?php if (!empty($this->options->sidebarBlock) && in_array('ShowRecentTags', $this->options->sidebarBlock)): ?>
         <?php $this->widget('Widget_Metas_Tag_Cloud', 'sort=mid&ignoreZeroCount=0&desc=1&limit=10')->to($tags); ?>
         <section class="widget">

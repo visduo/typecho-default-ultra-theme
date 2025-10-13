@@ -2,30 +2,49 @@
 
 @import url("//chinese-fonts-cdn.netlify.app/packages/syst/dist/SourceHanSerifCN/result.css");
 
+:root {
+    --bg-color: #FFFFFF;
+    --text-color: #333333;
+    --primary-color: #3354AA;
+    --secondary-color: #999999;
+    --secondary-light-color: #EEEEEE;
+    --secondary-lighter-color: #F5F5F5;
+}
+
+[theme="dark"] {
+    --bg-color: #1E1E1E;
+    --text-color: #D0D0D0;
+    --primary-color: #6B92C7;
+    --secondary-color: #999999;
+    --secondary-light-color: #383838;
+    --secondary-lighter-color: #2D2D2D;
+}
+
 body {
-    background-color: #FFF;
-    color: #333;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     font-family: "Source Han Serif CN VF","Helvetica Neue",Helvetica,Arial,sans-serif
 }
 
 a {
-    color: #3354AA;
+    color: var(--primary-color);
     text-decoration: none
 }
 
 a:hover,a:active {
-    color: #444
+    color: var(--text-color)
 }
 
 pre,code {
-    background: #F3F3F3;
     font-family: "Maple Mono CN","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: .92857em;
     tab-size: 4
 }
 
 code {
-    padding: 2px 6px
+    padding: 2px 6px;
+    color: #C7254E;
+    background-color: #F9F2F4;
 }
 
 pre {
@@ -35,7 +54,8 @@ pre {
 
 pre code {
     padding: 3px;
-    color: #444
+    background-color: transparent;
+    color: var(--text-color)
 }
 
 code.language-plaintext {
@@ -46,7 +66,7 @@ code.language-plaintext {
 blockquote {
     margin: 1em 0;
     padding-left: 1em;
-    border-left: 4px solid #eee;
+    border-left: 4px solid var(--secondary-light-color);
     color: #666
 }
 
@@ -60,17 +80,19 @@ table {
 
 table th,table td {
     padding: 5px 10px;
-    border: 1px solid #eee;
+    border: 1px solid var(--secondary-light-color);
     white-space: nowrap
 }
 
 table th {
-    background: #f3f3f3
+    background-color: var(--secondary-lighter-color)
 }
 
 input[type="text"],input[type="email"],input[type="url"],input[type="password"],textarea {
     padding: 5px;
-    border: 1px solid #E9E9E9;
+    border: 1px solid var(--secondary-light-color);
+    color: var(--text-color);
+    background-color: var(--bg-color);
     width: 100%;
     border-radius: 2px;
     box-sizing: border-box
@@ -83,27 +105,28 @@ textarea {
 button {
     padding: 9px 11px 9px 11px;
     border: none;
-    background-color: #f3f3f3;
+    color: var(--text-color);
+    background-color: var(--secondary-light-color);
     cursor: pointer
 }
 
 button:hover {
-    background-color: #d8d8d8
+    background-color: var(--secondary-light-color);
 }
 
 #header {
     padding-top: 2em;
-    border-bottom: 1px solid #EEE
+    border-bottom: 1px solid var(--secondary-light-color)
 }
 
 #logo {
-    color: #333;
+    color: var(--text-color);
     font-size: 2.5em
 }
 
 .description {
     margin: 1em 0 0;
-    color: #999
+    color: var(--secondary-color)
 }
 
 #nav-menu {
@@ -117,25 +140,38 @@ button:hover {
     display: block;
     margin-right: -1px;
     padding: 0 20px;
-    border: 1px solid #EEE;
+    border: 1px solid var(--secondary-light-color);
     border-bottom: none;
     height: 32px;
     line-height: 32px;
-    color: #444;
+    color: var(--text-color);
     float: left
 }
 
-#nav-menu a:hover,#nav-menu .current {
-    background: #F6F6F6
-}
-
 #search {
+    display: inline-block;
+    height: 28px;
     position: relative;
     margin-top: 15px
 }
 
 #search input {
-    padding-right: 30px
+    padding-right: 30px;
+    height: 28px;
+    border: 1px solid var(--secondary-light-color);
+    background-color: var(--bg-color);
+    color: var(--text-color)
+}
+
+#theme-selector {
+    display: inline-block
+}
+
+#theme-selector #themeMode {
+    height: 28px;
+    border: 1px solid var(--secondary-light-color);
+    background-color: var(--bg-color);
+    color: var(--text-color)
 }
 
 #search button {
@@ -163,7 +199,7 @@ button:hover {
 
 .post {
     padding: 1.5em 0 2em;
-    border-bottom: 1px solid #EEE
+    border-bottom: 1px solid var(--secondary-light-color)
 }
 
 .post-title {
@@ -175,7 +211,7 @@ button:hover {
 
 .post-meta {
     padding: 0;
-    color: #999;
+    color: var(--secondary-color);
     font-size: .92857em
 }
 
@@ -183,7 +219,7 @@ button:hover {
     display: inline-block;
     margin: 2px 5px 2px 0;
     padding-left: 12px;
-    border-left: 1px solid #EEE
+    border-left: 1px solid var(--secondary-light-color)
 }
 
 .post-meta li:first-child {
@@ -193,7 +229,7 @@ button:hover {
 }
 
 .post-near {
-    color: #999
+    color: var(--secondary-color)
 }
 
 .text-end {
@@ -203,7 +239,7 @@ button:hover {
 .archive-title {
     margin: 1em 0 -1em;
     padding-top: 20px;
-    color: #999;
+    color: var(--secondary-color);
     font-size: 1em
 }
 
@@ -239,13 +275,13 @@ button:hover {
 }
 
 .page-navigator a:hover {
-    background: #EEE;
+    background-color: var(--secondary-light-color);
     text-decoration: none
 }
 
 .page-navigator .current a {
-    color: #444;
-    background: #EEE
+    color: var(--text-color);
+    background-color: var(--secondary-light-color)
 }
 
 #comments {
@@ -265,19 +301,15 @@ button:hover {
 .comment-list li {
     padding: 14px;
     margin-top: 10px;
-    border: 1px solid #EEE
+    border: 1px solid var(--secondary-light-color)
 }
 
 .comment-list li.comment-level-odd {
-    background: #F6F6F3
+    background-color: var(--secondary-light-color);
 }
 
 .comment-list li.comment-level-even {
-    background: #FFF
-}
-
-.comment-list li.comment-by-author {
-    background: #FFF9E8
+    background-color: var(--bg-color);
 }
 
 .comment-list li .comment-reply {
@@ -285,15 +317,24 @@ button:hover {
     font-size: .92857em
 }
 
+.comment-list li .author-tag {
+    background-color: #CC0000;
+    color: #E0E0E0;
+    padding: 2px 3px;
+    margin-left: 5px;
+    border-radius: 2px;
+    font-size: 50%
+}
+
 .comment-meta a {
-    color: #999;
+    color: var(--primary-color);
     font-size: .92857em
 }
 
 .comment-author {
     display: block;
     margin-bottom: 3px;
-    color: #444
+    color: var(--text-color)
 }
 
 .comment-author .avatar {
@@ -308,7 +349,7 @@ button:hover {
 
 .comment-list .respond {
     margin-top: 15px;
-    border-top: 1px solid #EEE
+    border-top: 1px solid var(--secondary-light-color)
 }
 
 .respond .cancel-comment-reply {
@@ -330,7 +371,6 @@ button:hover {
 
 #secondary {
     padding-top: 15px;
-    padding-left: 2em;
     word-wrap: break-word
 }
 
@@ -361,8 +401,8 @@ button:hover {
     padding: 2em 0;
     line-height: 1.5;
     text-align: center;
-    color: #999;
-    border-top: 1px solid #eee
+    color: var(--secondary-color);
+    border-top: 1px solid var(--secondary-light-color)
 }
 
 .error-page {
@@ -413,7 +453,7 @@ button:hover {
 
 .post-content img {
     box-sizing: border-box;
-    border: 1px dashed rgb(233,235,236);
+    border: 1px dashed var(--secondary-light-color);
     padding: 4px;
     max-width: 100%;
     margin-top: -0.5em;
@@ -423,7 +463,7 @@ button:hover {
 
 .post-content hr {
     border-top: none;
-    border-bottom: 1px dashed rgb(233,235,236);
+    border-bottom: 1px dashed var(--secondary-light-color);
     margin: 1.5em 0
 }
 
@@ -451,9 +491,17 @@ button:hover {
     width: auto !important
 }
 
-@media (max-width:767px) {
+@media (max-width:768px) {
     body {
         font-size: 81.25%
+    }
+
+    #header {
+        text-align: center
+    }
+
+    #nav-menu {
+        padding: 0 2px
     }
 
     #nav-menu a {
@@ -463,13 +511,13 @@ button:hover {
     }
 }
 
-@media (max-width:768px) {
-    #header {
-        text-align: center
+@media (min-width: 768px) {
+    .site-helper {
+        text-align: right
     }
 
-    #nav-menu {
-        padding: 0 2px
+    #secondary {
+        padding-left: 2em
     }
 }
 
@@ -548,4 +596,14 @@ img.alignright {
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%
+}
+
+.hljs {
+    color: #383a42;
+    background: #fafafa;
+}
+
+[theme="dark"] .hljs {
+    color: #abb2bf;
+    background: #282c34;
 }
