@@ -1,0 +1,14 @@
+node_modules/
+dist/
+build/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+*.log
+*.flattened-pom.xml
+
+### Mac files ###
+*.DS_Store
