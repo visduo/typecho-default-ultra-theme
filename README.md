@@ -20,6 +20,10 @@ default-ultra 主题已开源，既是对自己回归写作本质初心的梳理
 
 ![](https://mmbiz.qpic.cn/sz_mmbiz_png/t4xrVE5OaWBa2baf6703U78Cm07cInib5Eb6vibOgxibiaJ2kFFibWaCQfHbCXT36q2hSXadhHnYcc3zxG831aGOhrA/640?wx_fmt=png&from=appmsg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=3)
 
+![](https://mmbiz.qpic.cn/sz_mmbiz_png/t4xrVE5OaWBa2baf6703U78Cm07cInib5QyzV0WAYiaJo12lMAkd42ic43dkXUWTXGWv0f25SUX2mngcSE89hw25Q/640?wx_fmt=png&from=appmsg&watermark=1&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=0)
+
+![](https://mmbiz.qpic.cn/sz_mmbiz_png/t4xrVE5OaWBa2baf6703U78Cm07cInib5LUxv2r3xnCOuQRT0NpVgpwooIy1nQunqlaoZoklwyjPibF4VehougCg/640?wx_fmt=png&from=appmsg&watermark=1&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=1)
+
 # 使用说明
 
 新手小白可以严格遵守以下步骤使用本主题：
@@ -28,6 +32,10 @@ default-ultra 主题已开源，既是对自己回归写作本质初心的梳理
 2. 将压缩文件上传至 Typecho 系统 /usr/themes/ 目录下。
 3. 解压代码文件，并将文件目录命名为 default-ultra。
 4. 登录 Typecho 后台，启用 default-ultra 主题。
+
+注意事项：
+
+1. 外观设置时复选框无法保存的问题：https://www.duozai.cn/post/40.html
 
 如果有任何问题或者建议，可以在此留言与我交流。
 
@@ -39,16 +47,17 @@ default-ultra 主题已开源，既是对自己回归写作本质初心的梳理
 
 # 更新记录
 
+## v1.1 发布于 2025年10月14日
+
+1. 适配暗黑模式（@多仔）
+2. 布局微调（@多仔）
+
 ## v1.0 发布于 2025年10月13日
 
 1. 引入 bootstrap-grid.css，替换默认栅格系统为 Bootstrap 栅格系统（@Memoo）
-
 2. 布局和样式改动、微调（@Memoo、@多仔）
-
 3. 引入 highlight 代码高亮系统（@多仔）
-
 4. 引入思源宋体作为全站字体、Maple Mono 字体作为代码块字体，并启用字图 CDN 为字体加载加速（@多仔）
-
 5. 侧栏加入最新合集、随机推荐、数据统计模块（@多仔）
 6. 文章加入阅读数量统计（@多仔）
 7. 顶部导航栏加入分类、独立页面菜单项（@多仔）
