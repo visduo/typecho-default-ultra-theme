@@ -205,6 +205,7 @@ button:hover {
 .post-title {
     margin: .83em 0;
     font-size: 1.4em;
+    line-height: 1.5;
     word-wrap: break-word;
     word-break: break-all
 }
@@ -606,4 +607,13 @@ img.alignright {
 [theme="dark"] .hljs {
     color: #abb2bf;
     background: #282c34;
+}
+
+#nprogress .bar {
+    background: var(--primary-color) !important;
+}
+
+#nprogress .spinner-icon {
+    border-top-color: var(--primary-color) !important;
+    border-left-color: var(--primary-color) !important;
 }

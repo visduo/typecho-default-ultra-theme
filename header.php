@@ -48,13 +48,13 @@
                 <nav id="nav-menu" class="clearfix">
                     <a href="<?php $this->options->siteUrl(); ?>">首页</a>
                     <?php if (!empty($this->options->menuBlock) && in_array('ShowCategory', $this->options->menuBlock)): ?>
-                        <?php \Widget\Metas\Category\Rows::alloc()->to($categories); ?>
+                        <?php $this->widget('Widget_Metas_Category_List')->to($categories); ?>
                         <?php while ($categories->next()): ?>
                             <a href="<?php $categories->permalink(); ?>"><?php $categories->name(); ?></a>
                         <?php endwhile; ?>
                     <?php endif; ?>
                     <?php if (!empty($this->options->menuBlock) && in_array('ShowPage', $this->options->menuBlock)): ?>
-                        <?php \Widget\Contents\Page\Rows::alloc()->to($pages); ?>
+                        <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
                         <?php while ($pages->next()): ?>
                             <a href="<?php $pages->permalink(); ?>"><?php $pages->title(); ?></a>
                         <?php endwhile; ?>

@@ -28,8 +28,7 @@
         <section class="widget">
             <h3 class="widget-title">近期文章</h3>
             <ul class="widget-list">
-                <?php \Widget\Contents\Post\Recent::alloc()
-                    ->parse('<li><a href="{permalink}">{title}</a></li>'); ?>
+                <?php $this->widget('Widget_Contents_Post_Recent')->parse('<li><a href="{permalink}">{title}</a></li>'); ?>
             </ul>
         </section>
     <?php endif; ?>
@@ -38,7 +37,7 @@
         <section class="widget">
             <h3 class="widget-title">近期评论</h3>
             <ul class="widget-list">
-                <?php \Widget\Comments\Recent::alloc()->to($comments); ?>
+                <?php $this->widget('Widget_Comments_Recent')->to($comments); ?>
                 <?php while ($comments->next()): ?>
                     <li>
                         <a href="<?php $comments->permalink(); ?>"><?php $comments->author(false); ?></a>: <?php $comments->excerpt(35, '...'); ?>
@@ -51,7 +50,7 @@
     <?php if (!empty($this->options->sidebarBlock) && in_array('ShowCategory', $this->options->sidebarBlock)): ?>
         <section class="widget">
             <h3 class="widget-title"><?php _e('分类'); ?></h3>
-            <?php \Widget\Metas\Category\Rows::alloc()->listCategories('wrapClass=widget-list'); ?>
+            <?php $this->widget('Widget_Metas_Category_List')->listCategories('wrapClass=widget-list'); ?>
         </section>
     <?php endif; ?>
 
@@ -59,8 +58,7 @@
         <section class="widget">
             <h3 class="widget-title"><?php _e('归档'); ?></h3>
             <ul class="widget-list">
-                <?php \Widget\Contents\Post\Date::alloc('type=month&format=F Y')
-                    ->parse('<li><a href="{permalink}">{date}</a></li>'); ?>
+                <?php $this->widget('Widget_Contents_Post_Date', 'type=month&format=F Y')->parse('<li><a href="{permalink}">{date}</a></li>'); ?>
             </ul>
         </section>
     <?php endif; ?>

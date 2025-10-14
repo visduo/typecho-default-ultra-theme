@@ -6,9 +6,9 @@
 
 default-ultra 主题已开源，既是对自己回归写作本质初心的梳理，也希望能给同样偏爱简单、专注内容的博主，提供一个不用费心折腾的安心选项。
 
-# 主题预览
+# default-ultra
 
-[站点示例](https://www.duozai.cn/) | [主题更新](https://www.duozai.cn/page/38.html) | [使用说明](https://www.duozai.cn/page/38.html) | [Github 开源](https://github.com/visduo/typecho-default-ultra-theme)
+[站点示例](https://www.duozai.cn/) | [主题更新](https://www.duozai.cn/page/38.html) | [使用说明](https://www.duozai.cn/page/38.html) | [Github](https://github.com/visduo/typecho-default-ultra-theme)
 
 ![](https://mmbiz.qpic.cn/sz_mmbiz_png/t4xrVE5OaWBa2baf6703U78Cm07cInib5E4v7ibJlbVaYOtZh6wOpfibqF88qMibibC9ZicCv03aHL1oUz7jVHq7j5icg/640?wx_fmt=png&from=appmsg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=0)
 
@@ -18,24 +18,28 @@ default-ultra 主题已开源，既是对自己回归写作本质初心的梳理
 
 ![](https://mmbiz.qpic.cn/sz_mmbiz_png/t4xrVE5OaWBa2baf6703U78Cm07cInib5C6GTlV2mrp9hyprBrf2fIalTuSnen6fAdtLdIw5vbx7NW9WrJ2CYhg/640?wx_fmt=png&from=appmsg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=2)
 
-![](https://mmbiz.qpic.cn/sz_mmbiz_png/t4xrVE5OaWBa2baf6703U78Cm07cInib5Eb6vibOgxibiaJ2kFFibWaCQfHbCXT36q2hSXadhHnYcc3zxG831aGOhrA/640?wx_fmt=png&from=appmsg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=3)
-
 ![](https://mmbiz.qpic.cn/sz_mmbiz_png/t4xrVE5OaWBa2baf6703U78Cm07cInib5QyzV0WAYiaJo12lMAkd42ic43dkXUWTXGWv0f25SUX2mngcSE89hw25Q/640?wx_fmt=png&from=appmsg&watermark=1&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=0)
 
 ![](https://mmbiz.qpic.cn/sz_mmbiz_png/t4xrVE5OaWBa2baf6703U78Cm07cInib5LUxv2r3xnCOuQRT0NpVgpwooIy1nQunqlaoZoklwyjPibF4VehougCg/640?wx_fmt=png&from=appmsg&watermark=1&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=1)
 
+![](https://mmbiz.qpic.cn/sz_mmbiz_png/t4xrVE5OaWBa2baf6703U78Cm07cInib5Eb6vibOgxibiaJ2kFFibWaCQfHbCXT36q2hSXadhHnYcc3zxG831aGOhrA/640?wx_fmt=png&from=appmsg&watermark=1&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=3)
+
 # 使用说明
 
-新手小白可以严格遵守以下步骤使用本主题：
+主题下载：[Github](https://github.com/visduo/typecho-default-ultra-theme/releases/)
+
+使用步骤：
 
 1. 下载本仓库主分支代码压缩文件。
 2. 将压缩文件上传至 Typecho 系统 /usr/themes/ 目录下。
 3. 解压代码文件，并将文件目录命名为 default-ultra。
 4. 登录 Typecho 后台，启用 default-ultra 主题。
+5. 进入 Typecho 后台 >> 控制台 >> 外观 >> 设置外观，配置主题参数。
 
 注意事项：
 
 1. 外观设置时复选框无法保存的问题：https://www.duozai.cn/post/40.html
+2. 目前主题仅在 Typecho 1.2.1，PHP 7.4 下测试通过，其他情况未作太多测试，如果问题可与我反馈。
 
 如果有任何问题或者建议，可以在此留言与我交流。
 
@@ -46,6 +50,15 @@ default-ultra 主题已开源，既是对自己回归写作本质初心的梳理
 感谢 Memoo 提供主题底层基建
 
 # 更新记录
+
+## v1.2 发布于 2025年10月15日
+
+1. 引入 jQuery pjax，实现全站无刷新加载（@多仔）
+2. 引入 jQuery fancybox，实现图片灯箱效果（@多仔）
+3. 引入 jQuery lazyload，实现图片懒加载效果（@多仔）
+4. 修复文章阅读数量统计的问题（@多仔）
+5. 适配旧版 Typecho（@多仔）
+6. 其他细节优化（@多仔）
 
 ## v1.1 发布于 2025年10月14日
 
