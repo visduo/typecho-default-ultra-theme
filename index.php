@@ -4,7 +4,7 @@
  *
  * @package default-ultra
  * @author 多仔
- * @version 1.2
+ * @version 1.3
  * @link https://www.duozai.cn
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
@@ -24,8 +24,15 @@ $this->need('header.php');
                     / <?php $this->tags(' & ', true, ''); ?>
                     <?php endif; ?>
                 </li>
-                <li>约 <?php postWordCount($this); ?> 字</li>
-                <li><?php postView($this); ?> 阅读</li>
+                <?php if ($this->options->showPostWordCount == "yes"): ?>
+                    <li>约 <?php echo postWordCount($this); ?> 字</li>
+                <?php endif; ?>
+                <?php if ($this->options->showPostReadingTime == "yes"): ?>
+                    <li>约 <?php echo postReadingTime($this); ?> 分钟</li>
+                <?php endif; ?>
+                <?php if ($this->options->showPostView == "yes"): ?>
+                    <li><?php echo postView($this); ?> 阅读</li>
+                <?php endif; ?>
                 <li><a href="<?php $this->permalink() ?>#comments"><?php $this->commentsNum('暂无评论', '1 条评论', '%d 条评论'); ?></a></li>
             </ul>
             <div class="post-content ellipsis-3">

@@ -5,7 +5,7 @@
         <section class="widget">
             <h3 class="widget-title">最新合集</h3>
             <ul class="widget-list tags-list">
-                <?php while ($tags->next()): ?>
+                <?php while($tags->next()): ?>
                     <a href="<?php $tags->permalink(); ?>" style="margin-right:1em;line-height:1.8;display:inline-block"><?php $tags->name(); ?></a>
                 <?php endwhile; ?>
             </ul>
@@ -17,7 +17,7 @@
         <section class="widget">
             <h3 class="widget-title">随机推荐</h3>
             <ul class="widget-list">
-                <?php while ($rand->next()): ?>
+                <?php while($rand->next()): ?>
                     <li><a href="<?php $rand->permalink(); ?>"><?php $rand->title(); ?></a></li>
                 <?php endwhile; ?>
             </ul>
@@ -38,7 +38,7 @@
             <h3 class="widget-title">近期评论</h3>
             <ul class="widget-list">
                 <?php $this->widget('Widget_Comments_Recent')->to($comments); ?>
-                <?php while ($comments->next()): ?>
+                <?php while($comments->next()): ?>
                     <li>
                         <a href="<?php $comments->permalink(); ?>"><?php $comments->author(false); ?></a>: <?php $comments->excerpt(35, '...'); ?>
                     </li>
@@ -67,9 +67,9 @@
         <section class="widget">
             <h3 class="widget-title">数据统计</h3>
             <ul class="widget-list">
-                <li>分类总数：<?php echo categoryCount(); ?>&nbsp;&nbsp;/&nbsp;&nbsp;合集总数：<?php echo tagCount(); ?></li>
-                <li>文章总数：<?php echo postCount(); ?>&nbsp;&nbsp;/&nbsp;&nbsp;阅读总数：<?php echo postViewCount(); ?></li>
-                <li>评论总数：<?php echo commentCount(); ?></li>
+                <li>分类总数：<?php echo categoryTotalCount(); ?>&nbsp;&nbsp;/&nbsp;&nbsp;合集总数：<?php echo tagTotalCount(); ?></li>
+                <li>文章总数：<?php echo postTotalCount(); ?>&nbsp;&nbsp;/&nbsp;&nbsp;阅读总数：<?php echo postViewTotalCount(); ?></li>
+                <li>评论总数：<?php echo commentTotalCount(); ?></li>
             </ul>
         </section>
     <?php endif; ?>
