@@ -49,14 +49,14 @@
 
     <?php if (!empty($this->options->sidebarBlock) && in_array('ShowCategory', $this->options->sidebarBlock)): ?>
         <section class="widget">
-            <h3 class="widget-title"><?php _e('分类'); ?></h3>
+            <h3 class="widget-title">文章分类</h3>
             <?php $this->widget('Widget_Metas_Category_List')->listCategories('wrapClass=widget-list'); ?>
         </section>
     <?php endif; ?>
 
     <?php if (!empty($this->options->sidebarBlock) && in_array('ShowArchive', $this->options->sidebarBlock)): ?>
         <section class="widget">
-            <h3 class="widget-title"><?php _e('归档'); ?></h3>
+            <h3 class="widget-title">文章归档</h3>
             <ul class="widget-list">
                 <?php $this->widget('Widget_Contents_Post_Date', 'type=month&format=F Y')->parse('<li><a href="{permalink}">{date}</a></li>'); ?>
             </ul>
