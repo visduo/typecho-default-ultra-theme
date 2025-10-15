@@ -397,6 +397,16 @@ button:hover {
     margin-left: 15px
 }
 
+.widget-list > a {
+    margin-right: 1em;
+    line-height: 1.8;
+    display: inline-block;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow-x: clip;
+    text-overflow: ellipsis
+}
+
 #footer {
     margin-top: 3em;
     padding: 2em 0;

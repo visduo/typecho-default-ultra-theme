@@ -6,7 +6,7 @@
             <h3 class="widget-title">最新合集</h3>
             <ul class="widget-list tags-list">
                 <?php while($tags->next()): ?>
-                    <a href="<?php $tags->permalink(); ?>" style="margin-right:1em;line-height:1.8;display:inline-block"><?php $tags->name(); ?></a>
+                    <a href="<?php $tags->permalink(); ?>"><?php $tags->name(); ?></a>
                 <?php endwhile; ?>
             </ul>
         </section>
