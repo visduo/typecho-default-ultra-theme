@@ -1,5 +1,13 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
-<?php $this->need('header.php'); ?>
+<?php
+/**
+ * 独立页
+ *
+ * @author 多仔
+ * @link https://www.duozai.cn
+ */
+if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+$this->need('header.php');
+?>
 <div class="col-sm-12 col-md-8" id="main">
     <article class="post">
         <h1 class="post-title"><?php $this->title() ?></h1>

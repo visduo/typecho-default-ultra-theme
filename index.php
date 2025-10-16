@@ -1,10 +1,10 @@
 <?php
 /**
- * Typecho 默认主题 Ultra 版
+ * Default Ultra theme for Typecho
  *
  * @package default-ultra
  * @author 多仔
- * @version 1.3
+ * @version 1.5
  * @link https://www.duozai.cn
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
@@ -21,19 +21,19 @@ $this->need('header.php');
                 <li>
                     <?php $this->category(','); ?>
                     <?php if ($this->tags): ?>
-                    / <?php $this->tags(' & ', true, ''); ?>
+                        / <?php $this->tags(' & ', true, ''); ?>
                     <?php endif; ?>
                 </li>
-                <?php if ($this->options->showPostWordCount == "yes"): ?>
-                    <li>约 <?php echo postWordCount($this); ?> 字</li>
-                <?php endif; ?>
-                <?php if ($this->options->showPostReadingTime == "yes"): ?>
-                    <li>约 <?php echo postReadingTime($this); ?> 分钟</li>
-                <?php endif; ?>
-                <?php if ($this->options->showPostView == "yes"): ?>
+                <?php if ($this->options->showPostView == 'yes'): ?>
                     <li><?php echo postView($this); ?> 阅读</li>
                 <?php endif; ?>
-                <li><a href="<?php $this->permalink() ?>#comments"><?php $this->commentsNum('暂无评论', '1 条评论', '%d 条评论'); ?></a></li>
+                <li><a href="<?php $this->permalink() ?>#comments"><?php $this->commentsNum('暂无评论', '%d 条评论'); ?></a></li>
+                <?php if ($this->options->showPostWordCount == 'yes'): ?>
+                    <li>全文约 <?php echo postWordCount($this); ?> 字</li>
+                <?php endif; ?>
+                <?php if ($this->options->showPostReadingTime == 'yes'): ?>
+                    <li>阅读预计需要 <?php echo postReadingTime($this); ?> 分钟</li>
+                <?php endif; ?>
             </ul>
             <div class="post-content ellipsis-3">
                 <?php $this->excerpt(500, ''); ?>

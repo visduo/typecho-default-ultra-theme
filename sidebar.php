@@ -1,17 +1,32 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+<?php
+/**
+ * 侧栏区
+ *
+ * @author 多仔
+ * @link https://www.duozai.cn
+ */
+if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+?>
 <div class="col-sm-12 col-md-4" id="secondary">
+    <?php if (!empty($this->options->sidebarBlock) && in_array('ShowCategory', $this->options->sidebarBlock)): ?>
+        <section class="widget">
+            <h3 class="widget-title">文章分类</h3>
+            <ul class="widget-list">
+                <?php $this->widget('Widget_Metas_Category_List')->parse('<a href="{permalink}">{name}</a>'); ?>
+            </ul>
+        </section>
+    <?php endif; ?>
     <?php if (!empty($this->options->sidebarBlock) && in_array('ShowRecentTags', $this->options->sidebarBlock)): ?>
         <?php $this->widget('Widget_Metas_Tag_Cloud', 'sort=mid&ignoreZeroCount=0&desc=1&limit=10')->to($tags); ?>
         <section class="widget">
             <h3 class="widget-title">最新合集</h3>
-            <ul class="widget-list tags-list">
+            <ul class="widget-list">
                 <?php while($tags->next()): ?>
                     <a href="<?php $tags->permalink(); ?>"><?php $tags->name(); ?></a>
                 <?php endwhile; ?>
             </ul>
         </section>
     <?php endif; ?>
-
     <?php if (!empty($this->options->sidebarBlock) && in_array('ShowRandPosts', $this->options->sidebarBlock)): ?>
         <?php $this->widget('Widget_Post_rand@rand', 'limit=7')->to($rand); ?>
         <section class="widget">
@@ -23,7 +38,6 @@
             </ul>
         </section>
     <?php endif; ?>
-
     <?php if (!empty($this->options->sidebarBlock) && in_array('ShowRandPosts', $this->options->sidebarBlock)): ?>
         <section class="widget">
             <h3 class="widget-title">近期文章</h3>
@@ -32,7 +46,6 @@
             </ul>
         </section>
     <?php endif; ?>
-
     <?php if (!empty($this->options->sidebarBlock) && in_array('ShowRecentComments', $this->options->sidebarBlock)): ?>
         <section class="widget">
             <h3 class="widget-title">近期评论</h3>
@@ -46,14 +59,6 @@
             </ul>
         </section>
     <?php endif; ?>
-
-    <?php if (!empty($this->options->sidebarBlock) && in_array('ShowCategory', $this->options->sidebarBlock)): ?>
-        <section class="widget">
-            <h3 class="widget-title">文章分类</h3>
-            <?php $this->widget('Widget_Metas_Category_List')->listCategories('wrapClass=widget-list'); ?>
-        </section>
-    <?php endif; ?>
-
     <?php if (!empty($this->options->sidebarBlock) && in_array('ShowArchive', $this->options->sidebarBlock)): ?>
         <section class="widget">
             <h3 class="widget-title">文章归档</h3>
@@ -62,7 +67,6 @@
             </ul>
         </section>
     <?php endif; ?>
-
     <?php if (!empty($this->options->sidebarBlock) && in_array('ShowStatistics', $this->options->sidebarBlock)): ?>
         <section class="widget">
             <h3 class="widget-title">数据统计</h3>

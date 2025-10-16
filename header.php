@@ -1,14 +1,22 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+<?php
+/**
+ * 导航区
+ *
+ * @author 多仔
+ * @link https://www.duozai.cn
+ */
+if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+?>
 <!doctype html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><?php $this->archiveTitle([
-                'category' => _t('分类 %s 下的文章'),
-                'search'   => _t('包含关键字 %s 的文章'),
-                'tag'      => _t('标签 %s 下的文章'),
-                'author'   => _t('%s 发布的文章')
+                'category' => '分类 %s 下的文章',
+                'search'   => '包含关键字 %s 的文章',
+                'tag'      => '标签 %s 下的文章',
+                'author'   => '%s 发布的文章'
         ], '', ' - '); ?><?php $this->options->title(); ?></title>
     <link rel="stylesheet" href="<?php $this->options->themeUrl('css/normalize.min.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('css/grid.min.css'); ?>">
@@ -29,20 +37,16 @@
             </div>
             <div class="site-helper col-md-6 col-sm-12">
                 <form id="search" method="post" action="<?php $this->options->siteUrl(); ?>">
-                    <label for="s" class="sr-only">搜索关键字</label>
                     <input type="text" id="s" name="s" class="text" placeholder="请输入关键字搜索"/>
                     <button type="submit" class="submit">搜索</button>
                 </form>
-                <div id="theme-selector" style="<?php if ($this->options->themeChangeStatus != "yes"): ?>display: none;<?php endif; ?>">
+                <div id="theme-selector" style="<?php if ($this->options->themeChangeStatus != 'yes'): ?>display: none;<?php endif; ?>">
                     <select id="themeMode">
                         <option value="auto">跟随系统</option>
                         <option value="light">亮色模式</option>
                         <option value="dark">深色模式</option>
                     </select>
                 </div>
-            </div>
-            <div class="site-search col-md-3 col-sm-12">
-
             </div>
             <div class="col-md-12">
                 <nav id="nav-menu" class="clearfix">
