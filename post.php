@@ -11,7 +11,7 @@ $this->need('header.php');
 <div class="col-sm-12 col-md-8" id="main">
     <article class="post">
         <h1 class="post-title"><?php $this->title() ?></h1>
-        <ul class="post-meta ellipsis-1">
+        <ul class="post-meta">
             <li><?php $this->date(); ?></li>
             <li>
                 <?php $this->category(','); ?>
