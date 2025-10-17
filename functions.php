@@ -229,10 +229,9 @@ function postView($archive) {
 /**
  * 计算文章字数
  */
-function postWordCount($archive){
+function postWordCount($archive) {
     $db = Typecho_Db::get ();
     $cid = $archive->cid;
-    
     // 获取文章内容
     $rs = $db->fetchRow($db->select ('table.contents.text')->from ('table.contents')->where ('table.contents.cid = ?', $cid)->order ('table.contents.cid', Typecho_Db::SORT_ASC)->limit (1));
     $content = $rs['text'];
@@ -259,36 +258,43 @@ function postWordCount($archive){
         // 移除 Markdown 标记
         $content = preg_replace($pattern, $replacement, $content);
     }
+
+    if (empty($content)) {
+        return 0;
+    }
+
+    // 处理空格（合并连续空格为1个，保留分隔作用）
+    $content = preg_replace('/\s+/', ' ', $content);
+    $content = trim($content);
+    if ($content === '') {
+        return 0;
+    }
+
+    // 字数计数器
+    $count = 0;
     
-    // 提取有效字词
-    // 中文相关：汉字（\p{Han}）及中文标点（如，。；等）
-    // 英文/数字相关：字母、数字及符号（如.、_、/等，覆盖英文单词、网址、邮箱等）
-    preg_match_all('/[\p{Han}，。；：？！“”‘’（）【】、]|[-a-zA-Z0-9._~:\/?#\[\]@!$&\'()*+,;=]+|[\x{0080}-\x{FFFF}]/u', $content, $matches);
-    
-    // 过滤无效字词并统计数量
-    $validWords = array_filter($matches[0], function($word) {
-        // 规则1：过滤空字符串
-        if ($word === '') {
-            return false;
+    // 按空格拆分成独立块
+    $blocks = preg_split('/\s+/', $content);
+
+    foreach ($blocks as $block) {
+        if (empty($block)) {
+            // 空格不计数
+            continue;
         }
-        // 规则2：纯中文及中文标点，有效
-        if (preg_match('/^[\p{Han}，。；：？！“”‘’（）【】、]+$/u', $word)) {
-            return true;
+
+        // 核心正则：按规则优先级拆分内容（先拆1-2类，再拆3类，最后剩4类）
+        // 匹配单个中文字符、单个中文符号、连续的英文/数字/英文符号序列、其他 Unicode
+        preg_match_all('/([\x{4e00}-\x{9fa5}]|[\x{3000}-\x{303f}\x{ff00}-\x{ffef}]|[a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\-\_\+\=\[\]\{\}\|\\\;\:\'\"\,\.\<\>\/\?\`]+|.)/ux', $block, $matches);
+
+        // 按规则计数
+        foreach ($matches[0] as $part) {
+            // 所有规则均为“单个/连续序列算1”，直接累加
+            $count++;
         }
-        // 规则3：含英文/数字的序列（过滤纯符号），有效
-        if (preg_match('/[a-zA-Z0-9]/', $word) === 1) {
-            return true;
-        }
-        // 规则4：纯其他Unicode字符（如日文、俄文、特殊符号），有效
-        if (preg_match('/^[\x{0080}-\x{FFFF}]+$/u', $word)) {
-            return true;
-        }
-        // 5、其他情况（如纯基础ASCII符号），无效
-        return false;
-    });
-    
+    }
+
     // 向上取整统计大约字数
-    return ceil(count($validWords) / 10) * 10;
+    return ceil($count / 10) * 10;
 }
 
 /**
