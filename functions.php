@@ -234,7 +234,7 @@ function postWordCount($archive){
     $cid = $archive->cid;
     
     // 获取文章内容
-    $rs = $db->fetchRow($db->select ('table.contents.text')->from ('table.contents')->where ('table.contents.cid=?',$cid)->order ('table.contents.cid',Typecho_Db::SORT_ASC)->limit (1));
+    $rs = $db->fetchRow($db->select ('table.contents.text')->from ('table.contents')->where ('table.contents.cid = ?', $cid)->order ('table.contents.cid', Typecho_Db::SORT_ASC)->limit (1));
     $content = $rs['text'];
     
     // 匹配 Markdown 标记的正则规则
