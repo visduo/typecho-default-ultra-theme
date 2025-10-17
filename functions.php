@@ -263,18 +263,28 @@ function postWordCount($archive){
     // 提取有效字词
     // 中文相关：汉字（\p{Han}）及中文标点（如，。；等）
     // 英文/数字相关：字母、数字及符号（如.、_、/等，覆盖英文单词、网址、邮箱等）
-    preg_match_all('/[\p{Han}，。；：？！“”‘’（）【】、]|[-a-zA-Z0-9._~:\/?#\[\]@!$&\'()*+,;=]+/u', $content, $matches);
+    preg_match_all('/[\p{Han}，。；：？！“”‘’（）【】、]|[-a-zA-Z0-9._~:\/?#\[\]@!$&\'()*+,;=]+|[\x{0080}-\x{FFFF}]/u', $content, $matches);
     
     // 过滤无效字词并统计数量
     $validWords = array_filter($matches[0], function($word) {
-        // 过滤空字符串
-        if ($word === '') return false;
-        // 中文序列：纯汉字或中文标点，视为有效
+        // 规则1：过滤空字符串
+        if ($word === '') {
+            return false;
+        }
+        // 规则2：纯中文及中文标点，有效
         if (preg_match('/^[\p{Han}，。；：？！“”‘’（）【】、]+$/u', $word)) {
             return true;
         }
-        // 英文/数字序列：必须包含至少一个字母或数字，视为有效（过滤纯符号）
-        return preg_match('/[a-zA-Z0-9]/', $word) === 1;
+        // 规则3：含英文/数字的序列（过滤纯符号），有效
+        if (preg_match('/[a-zA-Z0-9]/', $word) === 1) {
+            return true;
+        }
+        // 规则4：纯其他Unicode字符（如日文、俄文、特殊符号），有效
+        if (preg_match('/^[\x{0080}-\x{FFFF}]+$/u', $word)) {
+            return true;
+        }
+        // 5、其他情况（如纯基础ASCII符号），无效
+        return false;
     });
     
     // 向上取整统计大约字数
