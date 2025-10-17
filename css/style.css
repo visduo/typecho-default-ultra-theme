@@ -10,7 +10,7 @@
     --primary-color: #3354AA;
     --secondary-color: #999999;
     --secondary-light-color: #EEEEEE;
-    --secondary-lighter-color: #F5F5F5;
+    --secondary-lighter-color: #F5F5F5
 }
 
 [theme="dark"] {
@@ -19,7 +19,7 @@
     --primary-color: #6B92C7;
     --secondary-color: #999999;
     --secondary-light-color: #383838;
-    --secondary-lighter-color: #2D2D2D;
+    --secondary-lighter-color: #2D2D2D
 }
 
 body {
@@ -52,7 +52,7 @@ pre,code {
 code {
     padding: 2px 6px;
     color: #C7254E;
-    background-color: #F9F2F4;
+    background-color: #F9F2F4
 }
 
 pre {
@@ -119,7 +119,32 @@ button {
 }
 
 button:hover {
-    background-color: var(--secondary-light-color);
+    background-color: var(--secondary-light-color)
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px
+}
+
+::-webkit-scrollbar-track {
+  background: transparent
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(150, 150, 150, 0.3);
+  border-radius: 3px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 100, 100, 0.6);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2)
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent
 }
 
 .container-md {
@@ -258,7 +283,7 @@ button:hover {
 
 .post-meta li {
     display: inline-block;
-    margin: 2px 5px 2px 0;
+    margin: 2px 5px 2px 0
 }
 
 .post-meta .post-meta-separator {
@@ -376,11 +401,11 @@ button:hover {
 }
 
 .comment-list li.comment-level-odd {
-    background-color: var(--secondary-lighter-color);
+    background-color: var(--secondary-lighter-color)
 }
 
 .comment-list li.comment-level-even {
-    background-color: var(--bg-color);
+    background-color: var(--bg-color)
 }
 
 .comment-list li .comment-reply {
@@ -557,22 +582,34 @@ button:hover {
  * --------------- */
 .hljs {
     color: #383a42;
-    background: #fafafa;
+    background: #fafafa
+}
+
+pre code.hljs {
+    overflow-x: visible!important
+}
+
+pre {
+    background: #fafafa
+}
+
+[theme="dark"] pre {
+    background: #282c34
 }
 
 [theme="dark"] .hljs {
     color: #abb2bf;
-    background: #282c34;
+    background: #282c34
 }
 
 /* ------------------
  * nprogress样式
  * --------------- */
 #nprogress .bar {
-    background: var(--primary-color) !important;
+    background: var(--primary-color)!important
 }
 
 #nprogress .spinner-icon {
-    border-top-color: var(--primary-color) !important;
-    border-left-color: var(--primary-color) !important;
+    border-top-color: var(--primary-color)!important;
+    border-left-color: var(--primary-color)!important
 }
