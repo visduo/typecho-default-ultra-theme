@@ -21,26 +21,31 @@ $this->need('header.php');
                 <h2 class="post-title">
                     <a href="<?php $this->permalink() ?>"><?php $this->title() ?></a>
                 </h2>
-                <ul class="post-meta ellipsis-1">
+                <ul class="post-meta">
                     <li><?php $this->date(); ?></li>
+                    <li class="post-meta-separator">/</li>
                     <li>
                         <?php $this->category(','); ?>
                         <?php if ($this->tags): ?>
-                            / <?php $this->tags(' & ', true, ''); ?>
+                            & <?php $this->tags(' & ', true, ''); ?>
                         <?php endif; ?>
                     </li>
+                    <li class="post-meta-separator">/</li>
                     <?php if ($this->options->showPostView == 'yes'): ?>
                         <li><?php echo postView($this); ?> 阅读</li>
+                        <li class="post-meta-separator">/</li>
                     <?php endif; ?>
                     <li><a href="<?php $this->permalink() ?>#comments"><?php $this->commentsNum('暂无评论', '%d 条评论'); ?></a></li>
+                    <li class="post-meta-separator">/</li>
                     <?php if ($this->options->showPostWordCount == 'yes'): ?>
                         <li>全文约 <?php echo postWordCount($this); ?> 字</li>
+                        <li class="post-meta-separator">/</li>
                     <?php endif; ?>
                     <?php if ($this->options->showPostReadingTime == 'yes'): ?>
                         <li>阅读预计需要 <?php echo postReadingTime($this); ?> 分钟</li>
                     <?php endif; ?>
                 </ul>
-                <div class="post-content ellipsis-3">
+                <div class="post-content post-excerpt">
                     <?php $this->excerpt(500, ''); ?>
                 </div>
             </article>

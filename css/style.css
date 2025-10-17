@@ -122,6 +122,10 @@ button:hover {
     background-color: var(--secondary-light-color);
 }
 
+.container-md {
+    width: auto !important
+}
+
 /* ------------------
  * 导航区样式
  * --------------- */
@@ -255,14 +259,24 @@ button:hover {
 .post-meta li {
     display: inline-block;
     margin: 2px 5px 2px 0;
-    padding-left: 12px;
-    border-left: 1px solid var(--secondary-light-color)
 }
 
-.post-meta li:first-child {
-    margin-left: 0;
-    padding-left: 0;
-    border: none
+.post-meta .post-meta-separator {
+    display: inline;
+    color: var(--secondary-color)
+}
+
+.post-meta li:last-child.post-meta-separator {
+  display: none
+}
+
+.post-excerpt {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%
 }
 
 .post-content {
@@ -561,38 +575,4 @@ button:hover {
 #nprogress .spinner-icon {
     border-top-color: var(--primary-color) !important;
     border-left-color: var(--primary-color) !important;
-}
-
-/* ------------------
- * 其他样式
- * --------------- */
-.container-md {
-    width: auto !important
-}
-
-.ellipsis-3 {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%
-}
-
-.ellipsis-2 {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%
-}
-
-.ellipsis-1 {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%
 }
