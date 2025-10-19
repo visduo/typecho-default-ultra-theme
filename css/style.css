@@ -526,6 +526,7 @@ button:hover {
 }
 
 .widget-list {
+    overflow-x: hidden;
     list-style: none;
     padding: 0
 }
