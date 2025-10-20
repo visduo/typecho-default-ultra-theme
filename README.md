@@ -8,9 +8,9 @@ default-ultra 主题已开源，既是对自己回归写作本质初心的梳理
 
 # default-ultra
 
-[站点示例](https://www.duozai.cn/) | [使用说明](https://www.duozai.cn/page/38.html) | [更新记录](https://www.duozai.cn/page/38.html) | [主题下载](https://github.com/visduo/typecho-default-ultra-theme/releases/) | [Github 开源](https://github.com/visduo/typecho-default-ultra-theme)
+[站点示例](https://www.duozai.cn/) | [使用说明](https://www.duozai.cn/page/38.html) | [注意事项](https://www.duozai.cn/page/38.html) | [更新记录](https://www.duozai.cn/page/38.html) | [主题下载](https://github.com/visduo/typecho-default-ultra-theme/releases/) | [Github 开源](https://github.com/visduo/typecho-default-ultra-theme)
 
-使用步骤：
+使用说明：
 
 1. 下载主题压缩文件。
 2. 将压缩文件上传至 Typecho 系统 /usr/themes/ 目录下。
@@ -33,6 +33,10 @@ default-ultra 主题已开源，既是对自己回归写作本质初心的梳理
 感谢 Memoo 提供主题基建
 
 # 更新记录
+
+## v1.7 发布于 2025 年 10 月 19 日
+
+1. 布局微调和样式优化（@多仔）
 
 ## v1.6 发布于 2025 年 10 月 17 日
 
