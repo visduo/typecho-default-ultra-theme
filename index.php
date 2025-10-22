@@ -1,10 +1,10 @@
 <?php
 /**
- * Default Ultra theme for Typecho
+ * default-ultra theme for Typecho
  *
  * @package default-ultra
  * @author 多仔
- * @version 1.7
+ * @version 1.8
  * @link https://www.duozai.cn
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;

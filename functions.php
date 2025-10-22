@@ -338,7 +338,7 @@ function categoryTotalCount() {
 }
 
 /**
- * 计算全站合集/标签总数
+ * 计算全站合集/合集总数
  */
 function tagTotalCount() {
     $db = Typecho_Db::get();
