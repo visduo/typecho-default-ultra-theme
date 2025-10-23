@@ -36,7 +36,7 @@
 2. 新增文章预计阅读时间（@visduo）
 3. 优化主题配置参数（@visduo）
 
-## v1.2（2025.10.14）
+### v1.2（2025.10.14）
 
 1. 引入 jQuery pjax，实现全站无刷新加载（@visduo）
 2. 引入 jQuery fancybox，实现图片灯箱效果（@visduo）
@@ -45,12 +45,12 @@
 5. 适配旧版 Typecho（@visduo）
 6. 其他细节优化（@visduo）
 
-## v1.1（2025.10.13）
+### v1.1（2025.10.13）
 
 1. 适配暗黑模式（@visduo）
 2. 布局微调（@visduo）
 
-## v1.0（2025.10.12）
+### v1.0（2025.10.12）
 
 1. 引入 bootstrap-grid.css，替换默认栅格系统为 Bootstrap 栅格系统（@wei-with-two-swords）
 2. 布局和样式改动、微调（@wei-with-two-swords、@visduo）
