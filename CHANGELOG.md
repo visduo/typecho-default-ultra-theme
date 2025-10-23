@@ -1,0 +1,50 @@
+### v1.8（2025.10.22）
+
+1. 修复几处文字表述（@visduo）
+
+### v1.7（2025.10.19）
+
+1. 布局微调和样式优化（@visduo）
+
+### v1.6（2025.10.18）
+
+1. 优化文章字数统计逻辑（@visduo），参考：https://www.duozai.cn/post/60.html
+2. 布局微调和样式优化（@visduo）
+
+### v1.5（2025.10.17）
+
+1. 优化主题配置参数，新增多个主题配置项，特性功能高度自定义（@visduo）
+2. 修复 pjax 环境下，评论失败的问题（@visduo）
+3. 布局微调（@visduo）
+4. 优化代码（@visduo）
+
+### v1.3（2025.10.15）
+
+1. 优化文章字数统计逻辑（@visduo）
+2. 新增文章预计阅读时间（@visduo）
+3. 优化主题配置参数（@visduo）
+
+## v1.2（2025.10.14）
+
+1. 引入 jQuery pjax，实现全站无刷新加载（@visduo）
+2. 引入 jQuery fancybox，实现图片灯箱效果（@visduo）
+3. 引入 jQuery lazyload，实现图片懒加载效果（@visduo）
+4. 修复文章阅读数量统计的问题（@visduo）
+5. 适配旧版 Typecho（@visduo）
+6. 其他细节优化（@visduo）
+
+## v1.1（2025.10.13）
+
+1. 适配暗黑模式（@visduo）
+2. 布局微调（@visduo）
+
+## v1.0（2025.10.12）
+
+1. 引入 bootstrap-grid.css，替换默认栅格系统为 Bootstrap 栅格系统（@wei-with-two-swords）
+2. 布局和样式改动、微调（@wei-with-two-swords、@visduo）
+3. 引入 highlight 代码高亮系统（@visduo）
+4. 引入思源宋体作为全站字体、Maple Mono 字体作为代码块字体，并启用字图 CDN 为字体加载加速（@visduo）
+5. 侧栏加入最新合集、随机推荐、数据统计模块（@visduo）
+6. 文章加入阅读数量统计（@visduo）
+7. 顶部导航栏加入分类、独立页面菜单项（@visduo）
+8. 引入 images.weserv.nl 服务，解决微信公众号图片防盗链问题（@visduo）

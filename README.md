@@ -8,6 +8,6 @@ default-ultra 主题已开源，既是对自己回归写作本质初心的梳理
 
 # default-ultra
 
-[站点示例](https://www.duozai.cn/) | [使用说明](https://www.duozai.cn/post/65.html) | [注意事项](https://www.duozai.cn/post/65.html) | [更新记录](https://www.duozai.cn/page/38.html) | [更新计划](https://github.com/visduo/typecho-default-ultra-theme/issues) | [主题下载](https://github.com/visduo/typecho-default-ultra-theme/releases/) | [Github 开源](https://github.com/visduo/typecho-default-ultra-theme)
+[站点示例](https://www.duozai.cn/) | [使用说明](https://www.duozai.cn/post/65.html) | [注意事项](https://www.duozai.cn/post/65.html) | [更新记录](https://github.com/visduo/typecho-default-ultra-theme/blob/main/CHANGELOG.md) | [更新计划](https://github.com/visduo/typecho-default-ultra-theme/issues) | [主题下载](https://github.com/visduo/typecho-default-ultra-theme/releases/) | [Github 开源](https://github.com/visduo/typecho-default-ultra-theme)
 
 请仔细阅读使用说明和注意事项，如果有任何问题或者建议，可以留言与我交流反馈。
