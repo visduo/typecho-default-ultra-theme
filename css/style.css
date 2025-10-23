@@ -417,7 +417,7 @@ button:hover {
     pointer-events: none;
     position: absolute;
     right: 0;
-    top: 10px;
+    top: 1px;
     height: 100%
 }
 
