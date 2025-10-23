@@ -4,13 +4,13 @@
  *
  * @package default-ultra
  * @author 多仔
- * @version 1.8
+ * @version 2.0
  * @link https://www.duozai.cn
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $this->need('header.php');
 ?>
-<div class="col-sm-12 col-md-8" id="main">
+<div class="col-sm-12 <?php if ($this->options->sidebarStatus == 'yes'): ?>col-md-8<?php endif; ?>" id="main">
     <?php while ($this->next()): ?>
         <article class="post">
             <h2 class="post-title">
@@ -45,5 +45,5 @@ $this->need('header.php');
     <?php endwhile; ?>
     <?php $this->pageNav('&laquo; 前一页', '后一页 &raquo;'); ?>
 </div>
-<?php $this->need('sidebar.php'); ?>
+<?php $this->options->sidebarStatus == 'yes' ? $this->need('sidebar.php') : ''; ?>
 <?php $this->need('footer.php'); ?>

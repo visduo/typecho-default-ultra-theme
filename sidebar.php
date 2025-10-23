@@ -7,7 +7,7 @@
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 ?>
-<div class="col-sm-12 col-md-4" id="secondary">
+<div class="col-sm-12 col-md-4" id="sidebar" style="<?php if ($this->options->sidebarStickyStatus == 'yes'): ?>position: sticky; top: 10px; align-items: flex-start; align-self: start<?php endif; ?>">
     <?php if (!empty($this->options->sidebarBlock) && in_array('ShowCategory', $this->options->sidebarBlock)): ?>
         <section class="widget">
             <h3 class="widget-title">文章分类</h3>

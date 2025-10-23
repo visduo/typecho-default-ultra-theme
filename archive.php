@@ -1,6 +1,6 @@
 <?php
 /**
- * 归档页
+ * 文章列表页
  *
  * @author 多仔
  * @link https://www.duozai.cn
@@ -8,12 +8,13 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $this->need('header.php');
 ?>
-<div class="col-sm-12 col-md-8" id="main">
+<div class="col-sm-12 <?php if ($this->options->sidebarStatus == 'yes'): ?>col-md-8<?php endif; ?>" id="main">
     <h3 class="archive-title"><?php $this->archiveTitle([
                 'category' => '分类 %s 下的文章',
                 'search'   => '包含关键字 %s 的文章',
                 'tag'      => '合集 %s 下的文章',
-                'author'   => '%s 发布的文章'
+                'author'   => '%s 发布的文章',
+                'archive'   => '%s 发布的文章archive'
         ], '', ''); ?></h3>
     <?php if ($this->have()): ?>
         <?php while ($this->next()): ?>
@@ -55,5 +56,5 @@ $this->need('header.php');
     <?php endif; ?>
     <?php $this->pageNav('&laquo; 前一页', '后一页 &raquo;'); ?>
 </div>
-<?php $this->need('sidebar.php'); ?>
+<?php $this->options->sidebarStatus == 'yes' ? $this->need('sidebar.php') : ''; ?>
 <?php $this->need('footer.php'); ?>

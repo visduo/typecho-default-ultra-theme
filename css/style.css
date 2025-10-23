@@ -13,7 +13,7 @@
     --secondary-lighter-color: #F5F5F5
 }
 
-[theme="dark"] {
+[theme-mode="dark"] {
     --bg-color: #1E1E1E;
     --text-color: #D0D0D0;
     --primary-color: #6B92C7;
@@ -216,11 +216,11 @@ button:hover {
     text-indent: -9999em
 }
 
-#theme-selector {
+#themeMode-selector {
     display: inline-block
 }
 
-#theme-selector #themeMode {
+#themeMode-selector #themeMode {
     height: 28px;
     border: 1px solid var(--secondary-light-color);
     background-color: var(--bg-color);
@@ -377,6 +377,35 @@ button:hover {
     margin-bottom: 2em
 }
 
+.post-content .protected button,input[type=submit] {
+    margin-top: 1em;
+    padding: 9px 11px 9px 11px;
+    border: none;
+    color: var(--text-color);
+    background-color: var(--secondary-light-color);
+    cursor: pointer
+}
+
+.post-content .protected button:hover,input[type=submit]:hover {
+    background-color: var(--secondary-light-color)
+}
+
+.post-near {
+    list-style: none;
+    overflow-x: hidden;
+    margin: 4em 0 -1em 0;
+    padding: 0;
+    color: #999
+}
+
+.post-near li {
+    white-space: nowrap;
+    width: 100%;
+    overflow-x: clip;
+    text-overflow: ellipsis;
+    margin: 10px 0
+}
+
 /* ------------------
  * 评论区样式
  * --------------- */
@@ -416,7 +445,7 @@ button:hover {
 .comment-list li .author-tag {
     background-color: #CC0000;
     color: #E0E0E0;
-    padding: 2px 3px;
+    padding: 2px 5px;
     margin-left: 5px;
     border-radius: 2px;
     font-size: 50%
@@ -510,13 +539,13 @@ button:hover {
 /* ------------------
  * 侧栏区样式
  * --------------- */
-#secondary {
+#sidebar {
     padding-top: 15px;
     word-wrap: break-word
 }
 
 @media (min-width: 768px) {
-    #secondary {
+    #sidebar {
         padding-left: 2em
     }
 }
@@ -594,11 +623,11 @@ pre {
     background: #fafafa
 }
 
-[theme="dark"] pre {
+[theme-mode="dark"] pre {
     background: #282c34
 }
 
-[theme="dark"] .hljs {
+[theme-mode="dark"] .hljs {
     color: #abb2bf;
     background: #282c34
 }

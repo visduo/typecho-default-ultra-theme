@@ -11,27 +11,20 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  * 主题配置项
  */
 function themeConfig($form) {
-    $faviconUrl = new Typecho_Widget_Helper_Form_Element_Text(
-        'faviconUrl',
+    $hr = new Typecho_Widget_Helper_Form_Element_Checkbox(
+        'hr',
         null,
         null,
-        'favicon.ico图标路径'
+        '<hr style="border: 1px dashed #CCCCCC">'
     );
-    
-    $footerText = new Typecho_Widget_Helper_Form_Element_Textarea(
-        'footerText',
+
+    $basicSettings = new Typecho_Widget_Helper_Form_Element_Checkbox(
+        'basicSettings',
         null,
         null,
-        '版权信息'
+        '<h3># 基础设置</h3>'
     );
-    
-    $analyticsCode = new Typecho_Widget_Helper_Form_Element_Textarea(
-        'analyticsCode',
-        null,
-        null,
-        '网站统计代码'
-    );
-    
+
     $pjaxStatus = new Typecho_Widget_Helper_Form_Element_Radio(
         'pjaxStatus',
         [
@@ -39,7 +32,69 @@ function themeConfig($form) {
             'no'    => '否'
         ],
         'no',
-        '是否启用PJAX'
+        '是否启用全站 PJAX',
+        '开启后，全站页面实现 PJAX 无刷新跳转'
+    );
+    
+    $faviconUrl = new Typecho_Widget_Helper_Form_Element_Text(
+        'faviconUrl',
+        null,
+        null,
+        'favicon.ico 图标路径',
+        '指定网页 favicon 图标，即浏览器标签页上显示的小图标'
+    );
+
+    $footerText = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'footerText',
+        null,
+        null,
+        '版权信息',
+        '指定网页底部版权区域显示的内容'
+    );
+    
+    $analyticsCode = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'analyticsCode',
+        null,
+        null,
+        '网站统计代码',
+        '指定网站统计工具（如百度统计、Google Analytics 等）的嵌入代码'
+    );
+
+    $themeModeSettings = new Typecho_Widget_Helper_Form_Element_Checkbox(
+        'themeModeSettings',
+        null,
+        null,
+        '<h3># 主题模式设置</h3>'
+    );
+
+    $themeModeSelectStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'themeModeSelectStatus',
+        [
+            'yes'   => '是',
+            'no'    => '否'
+        ],
+        'no',
+        '是否启用主题模式切换',
+        '开启后，全站支持切换亮色/深色/跟随系统模式'
+    );
+    
+    $defaultThemeMode = new Typecho_Widget_Helper_Form_Element_Radio(
+        'defaultThemeMode',
+        [
+            'auto'      => '跟随系统',
+            'light'     => '亮色模式',
+            'dark'      => '深色模式',
+        ],
+        null,
+        '默认外观',
+        '指定未手动切换主题模式时全站的默认主题模式'
+    );
+
+    $menuSettings = new Typecho_Widget_Helper_Form_Element_Checkbox(
+        'menuSettings',
+        null,
+        null,
+        '<h3># 顶部菜单设置</h3>'
     );
     
     $menuBlock = new Typecho_Widget_Helper_Form_Element_Checkbox(
@@ -49,42 +104,60 @@ function themeConfig($form) {
             'ShowPage'      => '独立页面'
         ],
         [],
-        '顶部菜单显示内容'
+        '顶部菜单显示内容',
+        '指定网页顶部菜单显示的菜单项来源'
+    );
+
+    $sidebarSettings = new Typecho_Widget_Helper_Form_Element_Checkbox(
+        'sidebarSettings',
+        null,
+        null,
+        '<h3># 侧边栏设置</h3>'
+    );
+
+    $sidebarStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'sidebarStatus',
+        [
+            'yes'   => '是',
+            'no'    => '否'
+        ],
+        'no',
+        '是否启用侧边栏',
+        '开启后，将显示网页侧边栏'
     );
     
     $sidebarBlock = new Typecho_Widget_Helper_Form_Element_Checkbox(
         'sidebarBlock',
         [
+            'ShowCategory'          => '文章分类',
             'ShowRecentTags'        => '最新合集',
             'ShowRandPosts'         => '随机推荐',
             'ShowRecentPosts'       => '近期文章',
             'ShowRecentComments'    => '近期评论',
-            'ShowCategory'          => '显示分类',
-            'ShowArchive'           => '显示归档',
+            'ShowArchive'           => '文章归档',
             'ShowStatistics'        => '数据统计'
         ],
         [],
-        '侧边栏显示内容'
+        '侧边栏显示内容',
+        '指定网页侧边栏显示的内容'
     );
-    
-    $lazyloadStatus = new Typecho_Widget_Helper_Form_Element_Radio(
-        'lazyloadStatus',
+
+    $sidebarStickyStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'sidebarStickyStatus',
         [
             'yes'   => '是',
             'no'    => '否'
         ],
         'no',
-        '是否启用图片懒加载'
+        '是否启用侧边栏粘性布局',
+        '开启后，侧边栏会在页面滚动过程中始终保持在可视区域内'
     );
-    
-    $fancyboxStatus = new Typecho_Widget_Helper_Form_Element_Radio(
-        'fancyboxStatus',
-        [
-            'yes'   => '是',
-            'no'    => '否'
-        ],
-        'no',
-        '是否启用图片灯箱'
+
+    $postSettings = new Typecho_Widget_Helper_Form_Element_Checkbox(
+        'postSettings',
+        null,
+        null,
+        '<h3># 文章设置</h3>'
     );
     
     $weservStatus = new Typecho_Widget_Helper_Form_Element_Radio(
@@ -94,28 +167,30 @@ function themeConfig($form) {
             'no'    => '否'
         ],
         'no',
-        '是否启用images.weserv.nl服务'
+        '是否启用 images.weserv.nl 服务',
+        '开启后，文章内的图片将自动调用 images.weserv.nl 接口服务，处理外链图片（如微信公众号图片等）防盗链问题'
     );
-    
-    $themeChangeStatus = new Typecho_Widget_Helper_Form_Element_Radio(
-        'themeChangeStatus',
+
+    $imageLazyloadStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'imageLazyloadStatus',
         [
             'yes'   => '是',
             'no'    => '否'
         ],
         'no',
-        '是否启用主题切换'
+        '是否启用图片懒加载',
+        '开启后，文章内的图片仅在用户即将浏览到时才加载，非一次性全部加载'
     );
     
-    $defaultTheme = new Typecho_Widget_Helper_Form_Element_Radio(
-        'defaultTheme',
+    $imageLightBoxStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'imageLightBoxStatus',
         [
-            'auto'      => '跟随系统',
-            'light'     => '亮色模式',
-            'dark'      => '深色模式',
+            'yes'   => '是',
+            'no'    => '否'
         ],
-        null,
-        '默认主题'
+        'no',
+        '是否启用图片灯箱',
+        '开启后，文章内的图片仅在用户即将浏览到时才加载，非一次性全部加载'
     );
     
     $showPostWordCount = new Typecho_Widget_Helper_Form_Element_Radio(
@@ -125,7 +200,8 @@ function themeConfig($form) {
             'no'    => '否'
         ],
         'no',
-        '是否显示文章字数'
+        '是否显示文章字数',
+        '开启后，将在首页、文章列表页、文章页自动统计并显示文章字数'
     );
     
     $showPostReadingTime = new Typecho_Widget_Helper_Form_Element_Radio(
@@ -135,14 +211,16 @@ function themeConfig($form) {
             'no'    => '否'
         ],
         'no',
-        '是否显示文章预计阅读时间'
+        '是否显示文章预计阅读时长',
+        '开启后，将在首页、文章列表页、文章页自动计算并显示文章预计阅读时长'
     );
     
     $readingSpeed = new Typecho_Widget_Helper_Form_Element_Text(
         'readingSpeed',
         null,
         '200',
-        '默认阅读速度，单位为字/分钟'
+        '默认阅读速度',
+        '计算文章预计阅读时长时，会根据文章字数和默认阅读速度进行估算，其单位为字/分钟'
     );
     
     $showPostView = new Typecho_Widget_Helper_Form_Element_Radio(
@@ -152,34 +230,51 @@ function themeConfig($form) {
             'no'    => '否'
         ],
         'no',
-        '是否显示文章阅读数'
+        '是否显示文章阅读数',
+        '开启后，将在首页、文章列表页、文章页自动计算并显示文章阅读数'
     );
     
     $randMinPostView = new Typecho_Widget_Helper_Form_Element_Text(
         'randMinPostView',
         null,
         '800',
-        '随机生成文章阅读数最小值'
+        '随机生成文章阅读数最小值',
+        '文章发布后，会在设定的最小与最大值之间，为文章随机分配一个阅读数'
     );
     
     $randMaxPostView = new Typecho_Widget_Helper_Form_Element_Text(
         'randMaxPostView',
         null,
         '1200',
-        '随机生成文章阅读数最大值'
+        '随机生成文章阅读数最大值',
+        '文章发布后，会在设定的最小与最大值之间，为文章随机分配一个阅读数'
     );
-    
+
+    $form->addInput($basicSettings);
+    $form->addInput($pjaxStatus);
     $form->addInput($faviconUrl);
     $form->addInput($footerText);
     $form->addInput($analyticsCode);
-    $form->addInput($pjaxStatus);
+    $form->addInput($hr);
+
+    $form->addInput($themeModeSettings);
+    $form->addInput($themeModeSelectStatus);
+    $form->addInput($defaultThemeMode);
+    $form->addInput($hr);
+
+    $form->addInput($menuSettings);
     $form->addInput($menuBlock);
+    $form->addInput($hr);
+    $form->addInput($sidebarSettings);
+    $form->addInput($sidebarStatus);
     $form->addInput($sidebarBlock);
+    $form->addInput($sidebarStickyStatus);
+    $form->addInput($hr);
+
+    $form->addInput($postSettings);
     $form->addInput($weservStatus);
-    $form->addInput($lazyloadStatus);
-    $form->addInput($fancyboxStatus);
-    $form->addInput($themeChangeStatus);
-    $form->addInput($defaultTheme);
+    $form->addInput($imageLazyloadStatus);
+    $form->addInput($imageLightBoxStatus);
     $form->addInput($showPostWordCount);
     $form->addInput($showPostReadingTime);
     $form->addInput($readingSpeed);
@@ -194,11 +289,16 @@ function themeConfig($form) {
 function postView($archive) {
     $options = Helper::options();
     $db = Typecho_Db::get();
+    $adapterName = $db->getAdapterName();
     $cid = $archive->cid;
     
     // 文章阅读数字段不存在，自动创建
     if (!array_key_exists('views', $db->fetchRow($db->select()->from('table.contents')))) {
-        $db->query('ALTER TABLE `'.$db->getPrefix().'contents` ADD `views` INT(10) DEFAULT 0;');
+        if ($adapterName == 'pgsql' || $adapterName == 'Pdo_Pgsql') {
+            $db->query('ALTER TABLE "'.$db->getPrefix().'contents" ADD "views" INTEGER DEFAULT 0;');
+        } else {
+            $db->query('ALTER TABLE `'.$db->getPrefix().'contents` ADD `views` INT(10) DEFAULT 0;');
+        }
     }
     
     // 获取文章阅读数
@@ -233,7 +333,7 @@ function postWordCount($archive) {
     $db = Typecho_Db::get ();
     $cid = $archive->cid;
     // 获取文章内容
-    $rs = $db->fetchRow($db->select ('table.contents.text')->from ('table.contents')->where ('table.contents.cid = ?', $cid)->order ('table.contents.cid', Typecho_Db::SORT_ASC)->limit (1));
+    $rs = $db->fetchRow($db->select('table.contents.text')->from('table.contents')->where('table.contents.cid = ?', $cid)->order ('table.contents.cid', Typecho_Db::SORT_ASC)->limit (1));
     $content = $rs['text'];
     
     // 匹配 Markdown 标记的正则规则
@@ -365,13 +465,20 @@ class Widget_Post_rand extends Widget_Abstract_Contents {
     }
     
     public function execute() {
-        $select  = $this->select()->from('table.contents')
-            ->where('table.contents.password IS NULL OR table.contents.password = ""')
+        $adapterName = $this->db->getAdapterName();
+        if ($adapterName == 'pgsql' || $adapterName == 'Pdo_Pgsql' || $adapterName == 'Pdo_SQLite' || $adapterName == 'SQLite') {
+            $orderBy = 'RANDOM()';
+        } else {
+            $orderBy = 'RAND()';
+        }
+
+        $select = $this->select()->from('table.contents')
+            ->where('table.contents.password IS NULL OR table.contents.password = \'\'')
             ->where('table.contents.status = ?', 'publish')
             ->where('table.contents.created <= ?', time())
             ->where('table.contents.type = ?', 'post')
             ->limit($this->parameter->limit)
-            ->order('RAND()');
+            ->order($orderBy);
         $this->db->fetchAll($select, array($this, 'push'));
     }
 }
@@ -384,21 +491,23 @@ function parseContent($content) {
     
     // 文章图片处理
     $imagePattern = '/<img.*?src="(.*?)".*?alt="(.*?)".*?>/i';
-    $defaultImageUrl = $options->lazyloadStatus == 'yes' ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAACQCAMAAADQvUWjAAABP2lDQ1BpY2MAAHicfZC/SwJxGMY/11WWWA05NBQcJU0FUUtTgYZOEfgj1Kbz/FGgdt33QprLoaloiEZrCaLZxhz6A4KgIQqirdWghpKLrw5aUM/yfnh4Xt6XB5TnvFEQ3RoUirYVDvm1eCKpuV5Q8dLPIGO6IczlSDAKIPSSMGwrzw+936PIeTe9rhfTO6/Xq8kFpbo7UY4FP1Yu+F/udEYYwBfgM0zLBkUDxku2KXkJ8BrrehqUODBlxRNJUPakn2vxieRUiy8lW9FwAJQaoOU6ONXBhfy2vCslv/dkirEI0AeMIggTwv9HpreZCRBgBmRfv3sQ2bnZ1pZnEXqeHOdtElyH0DhynM9Tx2mcgfoIta32/mYF5uugHrS91DFc7cPIQ9vzVWCoDNUbU7f0pqUCXdkNqJ/DQAKGb8G99g3j4l+xfPB+eQAAABtQTFRF4ePp7e/1c3R31tjdoKKljY6Rx8nOtLa7XFxeR44UlQAAAAlwSFlzAAALEwAACxMBAJqcGAAAAHhlWElmSUkqAAgAAAAFABIBAwABAAAAAQAAABoBBQABAAAASgAAABsBBQABAAAAUgAAACgBAwABAAAAAgAAAGmHBAABAAAAWgAAAAAAAABJGQEA6AMAAEkZAQDoAwAAAgACoAQAAQAAAAABAAADoAQAAQAAAJAAAAAAAAAApI/SzwAAAiJJREFUeJzt19uO2zAMRVHy8Kb//+KCmmaaFgXaVwd7AfEgyvhBx6JEmwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPwnf139z7Hvb/vV3wZ///mZOiIsVoeZRYZl+J2qWef7v/qMu2X397yz7fFOZSnXSTfP43Mqlfdhp+6fZRam7LTTVa+btZk93AkfmUW42s01pu459yn7bACRMzluOaqUHfOK9wAeHsIJP1V55GqzUBxVSbsepnRS6jOj8u6ojGhNZJqp9q57uavlsY7tes9jG4DnaZXNCdN4WMqzQu45nlmntlIqtwYUWxN9L48OQJNeR+Z3IkdeatXcIvAsnwzZBnB3hEir9mgL3ZvDNrhnBxAeJVVvAFk7Y53u3oLwSs9XAFOnVOocV/oO3pufH0Bn5dzZtXXLp7rkeQPQ/ArAZ4sh7oDv6fFzD6ivDfOxtIf7aCx2D2hFdpXO10mn8JpXCajqpKKrdtfTtg7aLuLhK+CYZW5Dc0+Blk11n3vU+5S/BXDjmfZzy/8eflsCTz8GZW6xh909BVrRkTW1vYHXuKtbYTV+F0ZmxCm/TeOnNEI5Mz2qPfv8roDZBqiOdW1LZH0ytWOTcm+1Mj8tgNzPDaBirOuMe1h15NlH7z69DXHXtgVuOh8UQPjLnUxs199f7zh34H2Di7CvFvlVAh/wLvR3/u93ZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPtvPwB/Bwrf0wZNQgAAAABJRU5ErkJggg==' : '';
+    $defaultImageUrl = $options->imageLazyloadStatus == 'yes' ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAACQCAMAAADQvUWjAAABP2lDQ1BpY2MAAHicfZC/SwJxGMY/11WWWA05NBQcJU0FUUtTgYZOEfgj1Kbz/FGgdt33QprLoaloiEZrCaLZxhz6A4KgIQqirdWghpKLrw5aUM/yfnh4Xt6XB5TnvFEQ3RoUirYVDvm1eCKpuV5Q8dLPIGO6IczlSDAKIPSSMGwrzw+936PIeTe9rhfTO6/Xq8kFpbo7UY4FP1Yu+F/udEYYwBfgM0zLBkUDxku2KXkJ8BrrehqUODBlxRNJUPakn2vxieRUiy8lW9FwAJQaoOU6ONXBhfy2vCslv/dkirEI0AeMIggTwv9HpreZCRBgBmRfv3sQ2bnZ1pZnEXqeHOdtElyH0DhynM9Tx2mcgfoIta32/mYF5uugHrS91DFc7cPIQ9vzVWCoDNUbU7f0pqUCXdkNqJ/DQAKGb8G99g3j4l+xfPB+eQAAABtQTFRF4ePp7e/1c3R31tjdoKKljY6Rx8nOtLa7XFxeR44UlQAAAAlwSFlzAAALEwAACxMBAJqcGAAAAHhlWElmSUkqAAgAAAAFABIBAwABAAAAAQAAABoBBQABAAAASgAAABsBBQABAAAAUgAAACgBAwABAAAAAgAAAGmHBAABAAAAWgAAAAAAAABJGQEA6AMAAEkZAQDoAwAAAgACoAQAAQAAAAABAAADoAQAAQAAAJAAAAAAAAAApI/SzwAAAiJJREFUeJzt19uO2zAMRVHy8Kb//+KCmmaaFgXaVwd7AfEgyvhBx6JEmwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPwnf139z7Hvb/vV3wZ///mZOiIsVoeZRYZl+J2qWef7v/qMu2X397yz7fFOZSnXSTfP43Mqlfdhp+6fZRam7LTTVa+btZk93AkfmUW42s01pu459yn7bACRMzluOaqUHfOK9wAeHsIJP1V55GqzUBxVSbsepnRS6jOj8u6ojGhNZJqp9q57uavlsY7tes9jG4DnaZXNCdN4WMqzQu45nlmntlIqtwYUWxN9L48OQJNeR+Z3IkdeatXcIvAsnwzZBnB3hEir9mgL3ZvDNrhnBxAeJVVvAFk7Y53u3oLwSs9XAFOnVOocV/oO3pufH0Bn5dzZtXXLp7rkeQPQ/ArAZ4sh7oDv6fFzD6ivDfOxtIf7aCx2D2hFdpXO10mn8JpXCajqpKKrdtfTtg7aLuLhK+CYZW5Dc0+Blk11n3vU+5S/BXDjmfZzy/8eflsCTz8GZW6xh909BVrRkTW1vYHXuKtbYTV+F0ZmxCm/TeOnNEI5Mz2qPfv8roDZBqiOdW1LZH0ytWOTcm+1Mj8tgNzPDaBirOuMe1h15NlH7z69DXHXtgVuOh8UQPjLnUxs199f7zh34H2Di7CvFvlVAh/wLvR3/u93ZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPtvPwB/Bwrf0wZNQgAAAABJRU5ErkJggg==' : '';
     $actualImageUrl = ($options->weservStatus == 'yes' ? 'https://images.weserv.nl/?url=' : '').'$1';
     
-    if($options->lazyloadStatus == 'yes') {
+    if($options->imageLazyloadStatus == 'yes') {
         // 开启图片懒加载
         $imageReplacement = '<img src="'.$defaultImageUrl.'" data-original="'.$actualImageUrl.'" class="lazyload">';
     } else {
         $imageReplacement = '<img src="'.$actualImageUrl.'">';
     }
     
-    if($options->fancyboxStatus == 'yes') {
+    if($options->imageLightBoxStatus == 'yes') {
         // 开启图片灯箱
         $imageReplacement = '<a href="'.$actualImageUrl.'" data-fancybox="gallery"/>'.$imageReplacement.'</a>';
     }
     
     // 文章内容处理
-    return preg_replace($imagePattern, $imageReplacement, $content);
+    $content = preg_replace($imagePattern, $imageReplacement, $content);
+
+    return $content;
 }

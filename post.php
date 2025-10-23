@@ -8,7 +8,7 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $this->need('header.php');
 ?>
-<div class="col-sm-12 col-md-8" id="main">
+<div class="col-sm-12 <?php if ($this->options->sidebarStatus == 'yes'): ?>col-md-8<?php endif; ?>" id="main">
     <article class="post">
         <h1 class="post-title"><?php $this->title() ?></h1>
         <ul class="post-meta">
@@ -36,8 +36,12 @@ $this->need('header.php');
         <div class="post-content" style="margin-top: 2em;">
             <?php echo parseContent($this->content); ?>
         </div>
+        <ul class="post-near">
+            <li>上一篇：<?php $this->thePrev('%s', '没有了'); ?></li>
+            <li>下一篇：<?php $this->theNext('%s', '没有了'); ?></li>
+        </ul>
     </article>
     <?php $this->need('comments.php'); ?>
 </div>
-<?php $this->need('sidebar.php'); ?>
+<?php $this->options->sidebarStatus == 'yes' ? $this->need('sidebar.php') : ''; ?>
 <?php $this->need('footer.php'); ?>

@@ -11,7 +11,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php $this->archiveTitle([
                 'category' => '分类 %s 下的文章',
                 'search'   => '包含关键字 %s 的文章',
@@ -26,8 +26,16 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     <?php else: ?>
         <link rel="shortcut icon" href="<?php $this->options->themeUrl('images/favicon.ico'); ?>" type="image/x-icon" />
     <?php endif ?>
+    <?php if ($this->options->sidebarStatus != 'yes'): ?>
+        <style>
+        .container-md {
+            max-width: 850px;
+        }
+        </style>
+    <?php endif; ?>
+    <?php $this->header(); ?>
 </head>
-<body theme="">
+<body theme-mode="">
 <header id="header" class="clearfix">
     <div class="container-md">
         <div class="row">
@@ -40,7 +48,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                     <input type="text" id="s" name="s" class="text" placeholder="请输入关键字搜索"/>
                     <button type="submit" class="submit">搜索</button>
                 </form>
-                <div id="theme-selector" style="<?php if ($this->options->themeChangeStatus != 'yes'): ?>display: none;<?php endif; ?>">
+                <div id="themeMode-selector" style="<?php if ($this->options->themeModeSelectStatus != 'yes'): ?>display: none<?php endif; ?>">
                     <select id="themeMode">
                         <option value="auto">跟随系统</option>
                         <option value="light">亮色模式</option>

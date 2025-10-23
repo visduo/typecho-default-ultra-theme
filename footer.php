@@ -17,17 +17,17 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 <?php $this->options->analyticsCode(); ?>
 <script src="//static-lab.6os.net/jquery/3.6.0/jquery.min.js"></script>
 <script src="//static-lab.6os.net/highlight/11.11.1/highlight.min.js"></script>
-<link id="highlightTheme" rel="stylesheet" href="">
+<link id="highlightThemeCss" rel="stylesheet" href="">
 <?php if ($this->options->pjaxStatus == 'yes'): ?>
     <script src="//static-lab.6os.net/jquery-pjax/2.0.1/jquery.pjax.min.js"></script>
     <script src="//static-lab.6os.net/nprogress/0.2.0/nprogress.min.js"></script>
     <link rel="stylesheet" href="//static-lab.6os.net/nprogress/0.2.0/nprogress.min.css">
 <?php endif; ?>
-<?php if ($this->options->fancyboxStatus == 'yes'): ?>
+<?php if ($this->options->imageLightBoxStatus == 'yes'): ?>
     <link rel="stylesheet" href="//static-lab.6os.net/fancybox/3.5.7/jquery.fancybox.min.css">
     <script src="//static-lab.6os.net/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 <?php endif; ?>
-<?php if ($this->options->lazyloadStatus == 'yes'): ?>
+<?php if ($this->options->imageLazyloadStatus == 'yes'): ?>
     <script src="//static-lab.6os.net/jquery-lazyload/1.9.5/jquery.lazyload.min.js"></script>
 <?php endif; ?>
 <script>
@@ -41,29 +41,68 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         }).on('submit', 'form[id=search]', function (event) {
             event.preventDefault();
             $.pjax({
-                url: '<?php $this->options->siteUrl(); ?>search/' + $('#search #s').val() + '/',
+                url: '<?php echo $this->options->siteUrl.($this->options->rewrite == 0 ? 'index.php/' : ''); ?>search/' + $('#search #s').val() + '/',
                 container: '#main',
                 fragment: '#main'
             });
             $('#search #s').val('');
         }).on('submit', 'form[id=comment-form]', function (event) {
+            event.preventDefault();
             $.pjax.submit(event, {
                 container: '#main',
                 fragment: '#main'
             });
-        }).on('pjax:beforeReplace', function(event) {
-            if (event.state.url.endsWith('/comment')) {
+        }).on('pjax:complete', function(event, data, status, xhr, options) {
+            if(!event.relatedTarget) {
+                return;
+            }
 
+            const isCommentsForm = event.relatedTarget.tagName === 'FORM' && event.relatedTarget.id === 'comment-form';
+            if (!isCommentsForm) {
+                return;
+            }
+
+            let message = (data.responseText.match(/<div class="container">\s*([\s\S]*?)\s*<\/div>/i) || [, ''])[1].trim();
+            if(message) {
+                alert(message);
                 $.pjax({
-                    url: event.previousState.url.endsWith('#comments') ? event.previousState.url : event.previousState.url + '#comments',
+                    url: xhr.url.replace(/\/comment$/, '/#comments'),
                     container: '#main',
                     fragment: '#main'
                 });
             }
+        }).on('pjax:beforeReplace', function(event) {
+            if (event.state.url.endsWith('/comment')) {
+                $.pjax({
+                    url: /#(comments|comment-\d+)$/.test(event.previousState.url) ? event.previousState.url : event.previousState.url + '#comments',
+                    container: '#main',
+                    fragment: '#main'
+                });
+            }
+        }).on('submit', 'form[class=protected]', function (event) {
+            event.preventDefault();
+            $.pjax.submit(event, {
+                container: '#main',
+                fragment: '#main'
+            });
+        }).on('pjax:complete', function(event, data, status, xhr, options) {
+            if(!event.relatedTarget) {
+                return;
+            }
+
+            const isProtectedForm = event.relatedTarget.tagName === 'FORM' && event.relatedTarget.classList.contains('protected');
+            if (!isProtectedForm) {
+                return;
+            }
+
+            let message = (data.responseText.match(/<div class="container">\s*([\s\S]*?)\s*<\/div>/i) || [, ''])[1].trim();
+            if(message) {
+                alert(message);
+            }
         }).on('pjax:complete', function() {
             hljs.highlightAll();
 
-            <?php if ($this->options->lazyloadStatus == 'yes'): ?>
+            <?php if ($this->options->imageLazyloadStatus == 'yes'): ?>
                 $('img.lazyload').lazyload();
             <?php endif; ?>
 
@@ -76,62 +115,62 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         <?php else: ?>
             hljs.highlightAll();
 
-            <?php if ($this->options->lazyloadStatus == 'yes'): ?>
+            <?php if ($this->options->imageLazyloadStatus == 'yes'): ?>
                 $('img.lazyload').lazyload();
             <?php endif; ?>
     <?php endif; ?>
 
     const body = document.body;
-    const themeSelect = document.getElementById('themeMode');
-    const highlightLink = document.getElementById('highlightTheme');
-    const highlightLightTheme = '//static-lab.6os.net/highlight/11.11.1/styles/atom-one-light.min.css';
-    const highlightDarkTheme = '//static-lab.6os.net/highlight/11.11.1/styles/atom-one-dark.min.css';
-    const systemThemeMedia = window.matchMedia('(prefers-color-scheme: dark)');
+    const themeModeSelect = document.getElementById('themeMode');
+    const highlightThemeCss = document.getElementById('highlightThemeCss');
+    const highlightLightThemeCss = '//static-lab.6os.net/highlight/11.11.1/styles/atom-one-light.min.css';
+    const highlightDarkThemeCss = '//static-lab.6os.net/highlight/11.11.1/styles/atom-one-dark.min.css';
+    const systemThemeModeMedia = window.matchMedia('(prefers-color-scheme: dark)');
 
-    let isAutoMode = false;
-    function handleSystemThemeChange() {
-        if (isAutoMode) {
-            const newTheme = systemThemeMedia.matches ? 'dark' : 'light';
-            setBodyTheme(newTheme);
+    let isAutoThemeMode = false;
+    function handleSystemThemeModeChange() {
+        if (isAutoThemeMode) {
+            const newThemeMode = systemThemeModeMedia.matches ? 'dark' : 'light';
+            setBodyThemeMode(newThemeMode);
         }
     }
 
-    systemThemeMedia.addEventListener('change', handleSystemThemeChange);
+    systemThemeModeMedia.addEventListener('change', handleSystemThemeModeChange);
 
-    function setBodyTheme(theme) {
-        body.setAttribute('theme', theme);
-        highlightLink.href = theme === 'dark' ? highlightDarkTheme : highlightLightTheme;
+    function setBodyThemeMode(themeMode) {
+        body.setAttribute('theme-mode', themeMode);
+        highlightThemeCss.href = themeMode === 'dark' ? highlightDarkThemeCss : highlightLightThemeCss;
     }
 
-    function initTheme() {
-        const savedMode = localStorage.getItem('themeMode') || '<?php echo $this->options->defaultTheme ?>';
-        themeSelect.value = savedMode;
+    function initThemeMode() {
+        const savedThemeMode = localStorage.getItem('theme-mode') || '<?php echo $this->options->defaultThemeMode ?>';
+        themeModeSelect.value = savedThemeMode;
 
-        if (savedMode === 'auto') {
-            isAutoMode = true;
-            const initialTheme = systemThemeMedia.matches ? 'dark' : 'light';
-            setBodyTheme(initialTheme);
+        if (savedThemeMode === 'auto') {
+            isAutoThemeMode = true;
+            const initialThemeMode = systemThemeModeMedia.matches ? 'dark' : 'light';
+            setBodyThemeMode(initialThemeMode);
         } else {
-            isAutoMode = false;
-            setBodyTheme(savedMode);
+            isAutoThemeMode = false;
+            setBodyThemeMode(savedThemeMode);
         }
     }
 
-    themeSelect.addEventListener('change', (e) => {
-        const selectedMode = e.target.value;
-        localStorage.setItem('themeMode', selectedMode);
+    themeModeSelect.addEventListener('change', (e) => {
+        const selectedThemeMode = e.target.value;
+        localStorage.setItem('theme-mode', selectedThemeMode);
 
-        if (selectedMode === 'auto') {
-            isAutoMode = true;
-            const currentSystemTheme = systemThemeMedia.matches ? 'dark' : 'light';
-            setBodyTheme(currentSystemTheme);
+        if (selectedThemeMode === 'auto') {
+            isAutoThemeMode = true;
+            const currentSystemThemeMode = systemThemeModeMedia.matches ? 'dark' : 'light';
+            setBodyThemeMode(currentSystemThemeMode);
         } else {
-            isAutoMode = false;
-            setBodyTheme(selectedMode);
+            isAutoThemeMode = false;
+            setBodyThemeMode(selectedThemeMode);
         }
     });
 
-    initTheme();
+    initThemeMode();
 </script>
 </body>
 </html>
