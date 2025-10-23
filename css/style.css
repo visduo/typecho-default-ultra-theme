@@ -3,6 +3,7 @@
  * --------------- */
 @import url("//chinese-fonts-cdn.netlify.app/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css");
 @import url("//chinese-fonts-cdn.netlify.app/packages/syst/dist/SourceHanSerifCN/result.css");
+@import url("//static-lab.6os.net/noto-color-emoji/1/result.css");
 
 :root {
     --bg-color: #FFFFFF;
@@ -10,7 +11,9 @@
     --primary-color: #3354AA;
     --secondary-color: #999999;
     --secondary-light-color: #EEEEEE;
-    --secondary-lighter-color: #F5F5F5
+    --secondary-lighter-color: #F5F5F5;
+    --body-font-famliy: "Source Han Serif CN VF","Noto Color Emoji","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --code-font-famliy: "Maple Mono CN","Noto Color Emoji","Helvetica Neue",Helvetica,Arial,sans-serif
 }
 
 [theme-mode="dark"] {
@@ -25,7 +28,7 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: "Source Han Serif CN VF","Helvetica Neue",Helvetica,Arial,sans-serif
+    font-family: var(--body-font-famliy)
 }
 
 @media (max-width:768px) {
@@ -44,7 +47,7 @@ a:hover,a:active {
 }
 
 pre,code {
-    font-family: "Maple Mono CN","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: var(--code-font-famliy);
     font-size: .92857em;
     tab-size: 4
 }
@@ -68,7 +71,7 @@ pre code {
 
 code.language-plaintext {
     text-wrap: initial;
-    font-family: "Source Han Serif CN VF","Helvetica Neue",Helvetica,Arial,sans-serif
+    font-family: var(--body-font-famliy)
 }
 
 blockquote {

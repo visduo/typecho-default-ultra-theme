@@ -3,11 +3,12 @@
 1. 新增文章页上一篇/下一篇按钮（@visduo）
 2. 新增文章 TOC 目录树（@visduo）
 3. 新增是否启用侧边栏、是否启用侧边栏粘性布局（@visduo）
-4. 优化主题功能适配其他数据库（@visduo），参考：https://www.duozai.cn/post/64.html
-5. 优化后台外观设置配置项（@visduo）
-6. 优化密码保护文章样式及 pjax 适配问题（@visduo）
-7. 优化文章评论 pjax 适配问题（@visduo）
-8. 优化未开启伪静态时，部分 pjax 异常问题（@visduo）
+4. 新增 Noto Color Emoji 字体
+5. 优化主题功能适配其他数据库（@visduo），参考：https://www.duozai.cn/post/64.html
+6. 优化后台外观设置配置项（@visduo）
+7. 优化密码保护文章样式及 pjax 适配问题（@visduo）
+8. 优化文章评论 pjax 适配问题（@visduo）
+9. 优化未开启伪静态时，部分 pjax 异常问题（@visduo）
 
 ### v1.8（2025.10.22）
 
