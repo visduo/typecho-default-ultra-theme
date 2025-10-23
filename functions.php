@@ -268,7 +268,7 @@ function themeConfig($form) {
             'no'    => '否'
         ],
         'no',
-        '默认是否打开 TOC 列表',
+        '是否自动打开 TOC 列表',
         '开启后，将默认打开 TOC 列表'
     );
     
@@ -279,8 +279,26 @@ function themeConfig($form) {
             'no'    => '否'
         ],
         'no',
-        '默认是否展开 TOC 列表项',
-        '开启后，将默认展开 TOC 列表项'
+        '是否自动展开 TOC 列表项',
+        '开启后，将默认展开全部 TOC 列表项'
+    );
+    
+    $commentSettings = new Typecho_Widget_Helper_Form_Element_Checkbox(
+        'commentSettings',
+        null,
+        null,
+        '<h3># 评论设置</h3>'
+    );
+    
+    $commentAuthorIp2RegionStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'commentAuthorIp2RegionStatus',
+        [
+            'yes'   => '是',
+            'no'    => '否'
+        ],
+        'no',
+        '是否显示评论者 IP 地址归属地信息',
+        '开启后，将显示评论者 IP 地址归属地信息。该功能需要配合 ip2region 插件使用，请确保已安装 ip2region 插件。'
     );
     
     $form->addInput($basicSettings);
@@ -318,6 +336,10 @@ function themeConfig($form) {
     $form->addInput($tocStatus);
     $form->addInput($tocDefaultVisibleStatus);
     $form->addInput($tocDefaultExpandedStatus);
+    $form->addInput($hr);
+    
+    $form->addInput($commentSettings);
+    $form->addInput($commentAuthorIp2RegionStatus);
 }
 
 /**

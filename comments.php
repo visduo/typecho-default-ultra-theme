@@ -45,11 +45,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                 </p>
             </form>
         </div>
-        <?php if ($this->options->commentsThreaded && $this->options->pjaxStatus == 'yes'): ?>
-            <script>
+    <?php if ($this->options->commentsThreaded && $this->options->pjaxStatus == 'yes'): ?>
+        <script>
             (function(){window.TypechoComment={dom:function(id){return document.getElementById(id)},create:function(tag,attr){var el=document.createElement(tag);for(var key in attr){el.setAttribute(key,attr[key])}return el},reply:function(cid,coid){var comment=this.dom(cid),parent=comment.parentNode,response=this.dom('<?php $this->respondId(); ?>'),input=this.dom('comment-parent'),form='form'==response.tagName?response:response.getElementsByTagName('form')[0],textarea=response.getElementsByTagName('textarea')[0];if(null==input){input=this.create('input',{'type':'hidden','name':'parent','id':'comment-parent'});form.appendChild(input)}input.setAttribute('value',coid);if(null==this.dom('comment-form-place-holder')){var holder=this.create('div',{'id':'comment-form-place-holder'});response.parentNode.insertBefore(holder,response)}comment.appendChild(response);this.dom('cancel-comment-reply-link').style.display='';if(null!=textarea&&'text'==textarea.name){textarea.focus()}return false},cancelReply:function(){var response=this.dom('<?php $this->respondId(); ?>'),holder=this.dom('comment-form-place-holder'),input=this.dom('comment-parent');if(null!=input){input.parentNode.removeChild(input)}if(null==holder){return true}this.dom('cancel-comment-reply-link').style.display='none';holder.parentNode.insertBefore(response,holder);return false}}})();
-            </script>
-        <?php endif; ?>
+        </script>
+    <?php endif; ?>
     <?php else: ?>
         <h3>评论已关闭</h3>
     <?php endif; ?>
@@ -57,6 +57,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         <h3><?php $this->commentsNum('暂无评论', '%d 条评论'); ?></h3>
         <?php
         function threadedComments($comments, $options) {
+            $options = Helper::options();
             $commentClass = '';
             if ($comments->authorId) {
                 if ($comments->authorId == $comments->ownerId) {
@@ -91,9 +92,16 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                     </div>
                     <div class="comment-meta">
                         <?php $comments->date('Y-m-d H:i'); ?>
+                        <?php if(class_exists('ip2region_Plugin') && $options->commentAuthorIp2RegionStatus == 'yes'): ?>
+                            <?php echo '回复于 '.ip2region_Plugin::get($comments->ip); ?>
+                        <?php endif; ?>
+                        &nbsp;&nbsp;
                         <span class="comment-reply"><?php $comments->reply(); ?></span>
                     </div>
                     <?php $comments->content(); ?>
+                    <?php if ('waiting' == $comments->status): ?>
+                        <br>温馨提示：您的评论需管理员审核后才能显示～
+                    <?php endif; ?>
                 </div>
                 <?php if ($comments->children): ?>
                     <div class="comment-children">
