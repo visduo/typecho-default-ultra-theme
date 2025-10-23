@@ -17,14 +17,14 @@ function themeConfig($form) {
         null,
         '<hr style="border: 1px dashed #CCCCCC">'
     );
-
+    
     $basicSettings = new Typecho_Widget_Helper_Form_Element_Checkbox(
         'basicSettings',
         null,
         null,
         '<h3># 基础设置</h3>'
     );
-
+    
     $pjaxStatus = new Typecho_Widget_Helper_Form_Element_Radio(
         'pjaxStatus',
         [
@@ -43,7 +43,7 @@ function themeConfig($form) {
         'favicon.ico 图标路径',
         '指定网页 favicon 图标，即浏览器标签页上显示的小图标'
     );
-
+    
     $footerText = new Typecho_Widget_Helper_Form_Element_Textarea(
         'footerText',
         null,
@@ -59,14 +59,14 @@ function themeConfig($form) {
         '网站统计代码',
         '指定网站统计工具（如百度统计、Google Analytics 等）的嵌入代码'
     );
-
+    
     $themeModeSettings = new Typecho_Widget_Helper_Form_Element_Checkbox(
         'themeModeSettings',
         null,
         null,
         '<h3># 主题模式设置</h3>'
     );
-
+    
     $themeModeSelectStatus = new Typecho_Widget_Helper_Form_Element_Radio(
         'themeModeSelectStatus',
         [
@@ -89,7 +89,7 @@ function themeConfig($form) {
         '默认外观',
         '指定未手动切换主题模式时全站的默认主题模式'
     );
-
+    
     $menuSettings = new Typecho_Widget_Helper_Form_Element_Checkbox(
         'menuSettings',
         null,
@@ -107,14 +107,14 @@ function themeConfig($form) {
         '顶部菜单显示内容',
         '指定网页顶部菜单显示的菜单项来源'
     );
-
+    
     $sidebarSettings = new Typecho_Widget_Helper_Form_Element_Checkbox(
         'sidebarSettings',
         null,
         null,
         '<h3># 侧边栏设置</h3>'
     );
-
+    
     $sidebarStatus = new Typecho_Widget_Helper_Form_Element_Radio(
         'sidebarStatus',
         [
@@ -141,7 +141,7 @@ function themeConfig($form) {
         '侧边栏显示内容',
         '指定网页侧边栏显示的内容'
     );
-
+    
     $sidebarStickyStatus = new Typecho_Widget_Helper_Form_Element_Radio(
         'sidebarStickyStatus',
         [
@@ -152,7 +152,7 @@ function themeConfig($form) {
         '是否启用侧边栏粘性布局',
         '开启后，侧边栏会在页面滚动过程中始终保持在可视区域内'
     );
-
+    
     $postSettings = new Typecho_Widget_Helper_Form_Element_Checkbox(
         'postSettings',
         null,
@@ -170,7 +170,7 @@ function themeConfig($form) {
         '是否启用 images.weserv.nl 服务',
         '开启后，文章内的图片将自动调用 images.weserv.nl 接口服务，处理外链图片（如微信公众号图片等）防盗链问题'
     );
-
+    
     $imageLazyloadStatus = new Typecho_Widget_Helper_Form_Element_Radio(
         'imageLazyloadStatus',
         [
@@ -289,12 +289,12 @@ function themeConfig($form) {
     $form->addInput($footerText);
     $form->addInput($analyticsCode);
     $form->addInput($hr);
-
+    
     $form->addInput($themeModeSettings);
     $form->addInput($themeModeSelectStatus);
     $form->addInput($defaultThemeMode);
     $form->addInput($hr);
-
+    
     $form->addInput($menuSettings);
     $form->addInput($menuBlock);
     $form->addInput($hr);
@@ -304,7 +304,7 @@ function themeConfig($form) {
     $form->addInput($sidebarBlock);
     $form->addInput($sidebarStickyStatus);
     $form->addInput($hr);
-
+    
     $form->addInput($postSettings);
     $form->addInput($weservStatus);
     $form->addInput($imageLazyloadStatus);
@@ -395,41 +395,41 @@ function postWordCount($archive) {
         // 移除 Markdown 标记
         $content = preg_replace($pattern, $replacement, $content);
     }
-
+    
     if (empty($content)) {
         return 0;
     }
-
+    
     // 处理空格（合并连续空格为1个，保留分隔作用）
     $content = preg_replace('/\s+/', ' ', $content);
     $content = trim($content);
     if ($content === '') {
         return 0;
     }
-
+    
     // 字数计数器
     $count = 0;
     
     // 按空格拆分成独立块
     $blocks = preg_split('/\s+/', $content);
-
+    
     foreach ($blocks as $block) {
         if (empty($block)) {
             // 空格不计数
             continue;
         }
-
+        
         // 核心正则：按规则优先级拆分内容（先拆1-2类，再拆3类，最后剩4类）
         // 匹配单个中文字符、单个中文符号、连续的英文/数字/英文符号序列、其他 Unicode
         preg_match_all('/([\x{4e00}-\x{9fa5}]|[\x{3000}-\x{303f}\x{ff00}-\x{ffef}]|[a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\-\_\+\=\[\]\{\}\|\\\;\:\'\"\,\.\<\>\/\?\`]+|.)/ux', $block, $matches);
-
+        
         // 按规则计数
         foreach ($matches[0] as $part) {
             // 所有规则均为“单个/连续序列算1”，直接累加
             $count++;
         }
     }
-
+    
     // 向上取整统计大约字数
     return ceil($count / 10) * 10;
 }
@@ -508,7 +508,7 @@ class Widget_Post_rand extends Widget_Abstract_Contents {
         } else {
             $orderBy = 'RAND()';
         }
-
+        
         $select = $this->select()->from('table.contents')
             ->where('table.contents.password IS NULL OR table.contents.password = \'\'')
             ->where('table.contents.status = ?', 'publish')
@@ -545,6 +545,6 @@ function parseContent($content) {
     
     // 文章内容处理
     $content = preg_replace($imagePattern, $imageReplacement, $content);
-
+    
     return $content;
 }

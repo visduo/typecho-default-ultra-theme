@@ -7,8 +7,8 @@
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 ?>
-        </div>
-    </div>
+</div>
+</div>
 </div>
 <footer id="footer">
     <?php $this->options->footerText(); ?><br>
@@ -31,7 +31,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     <script src="//static-lab.6os.net/jquery-lazyload/1.9.5/jquery.lazyload.min.js"></script>
 <?php endif; ?>
 <script>
-<?php if ($this->options->pjaxStatus == 'yes'): ?>
+    <?php if ($this->options->pjaxStatus == 'yes'): ?>
     $(document).pjax('a[href^="<?php $this->options->siteUrl() ?>"]:not(a[target="_blank"], a[no-pjax])', {
         container: '#main',
         fragment: '#main',
@@ -89,7 +89,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         hljs.highlightAll();
 
         <?php if ($this->options->imageLazyloadStatus == 'yes'): ?>
-            $('img.lazyload').lazyload();
+        $('img.lazyload').lazyload();
         <?php endif; ?>
 
         NProgress.done();
@@ -99,64 +99,64 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         $(document).trigger('pjax:complete');
     });
     <?php else: ?>
-        hljs.highlightAll();
+    hljs.highlightAll();
 
-        <?php if ($this->options->imageLazyloadStatus == 'yes'): ?>
-            $('img.lazyload').lazyload();
-        <?php endif; ?>
-<?php endif; ?>
+    <?php if ($this->options->imageLazyloadStatus == 'yes'): ?>
+    $('img.lazyload').lazyload();
+    <?php endif; ?>
+    <?php endif; ?>
 
-const body = document.body;
-const themeModeSelect = document.getElementById('themeMode');
-const highlightThemeCss = document.getElementById('highlightThemeCss');
-const highlightLightThemeCss = '//static-lab.6os.net/highlight/11.11.1/styles/atom-one-light.min.css';
-const highlightDarkThemeCss = '//static-lab.6os.net/highlight/11.11.1/styles/atom-one-dark.min.css';
-const systemThemeModeMedia = window.matchMedia('(prefers-color-scheme: dark)');
+    const body = document.body;
+    const themeModeSelect = document.getElementById('themeMode');
+    const highlightThemeCss = document.getElementById('highlightThemeCss');
+    const highlightLightThemeCss = '//static-lab.6os.net/highlight/11.11.1/styles/atom-one-light.min.css';
+    const highlightDarkThemeCss = '//static-lab.6os.net/highlight/11.11.1/styles/atom-one-dark.min.css';
+    const systemThemeModeMedia = window.matchMedia('(prefers-color-scheme: dark)');
 
-let isAutoThemeMode = false;
-function handleSystemThemeModeChange() {
-    if (isAutoThemeMode) {
-        const newThemeMode = systemThemeModeMedia.matches ? 'dark' : 'light';
-        setBodyThemeMode(newThemeMode);
+    let isAutoThemeMode = false;
+    function handleSystemThemeModeChange() {
+        if (isAutoThemeMode) {
+            const newThemeMode = systemThemeModeMedia.matches ? 'dark' : 'light';
+            setBodyThemeMode(newThemeMode);
+        }
     }
-}
 
-systemThemeModeMedia.addEventListener('change', handleSystemThemeModeChange);
+    systemThemeModeMedia.addEventListener('change', handleSystemThemeModeChange);
 
-function setBodyThemeMode(themeMode) {
-    body.setAttribute('theme-mode', themeMode);
-    highlightThemeCss.href = themeMode === 'dark' ? highlightDarkThemeCss : highlightLightThemeCss;
-}
-
-function initThemeMode() {
-    const savedThemeMode = localStorage.getItem('theme-mode') || '<?php echo $this->options->defaultThemeMode ?>';
-    themeModeSelect.value = savedThemeMode;
-
-    if (savedThemeMode === 'auto') {
-        isAutoThemeMode = true;
-        const initialThemeMode = systemThemeModeMedia.matches ? 'dark' : 'light';
-        setBodyThemeMode(initialThemeMode);
-    } else {
-        isAutoThemeMode = false;
-        setBodyThemeMode(savedThemeMode);
+    function setBodyThemeMode(themeMode) {
+        body.setAttribute('theme-mode', themeMode);
+        highlightThemeCss.href = themeMode === 'dark' ? highlightDarkThemeCss : highlightLightThemeCss;
     }
-}
 
-themeModeSelect.addEventListener('change', (e) => {
-    const selectedThemeMode = e.target.value;
-    localStorage.setItem('theme-mode', selectedThemeMode);
+    function initThemeMode() {
+        const savedThemeMode = localStorage.getItem('theme-mode') || '<?php echo $this->options->defaultThemeMode ?>';
+        themeModeSelect.value = savedThemeMode;
 
-    if (selectedThemeMode === 'auto') {
-        isAutoThemeMode = true;
-        const currentSystemThemeMode = systemThemeModeMedia.matches ? 'dark' : 'light';
-        setBodyThemeMode(currentSystemThemeMode);
-    } else {
-        isAutoThemeMode = false;
-        setBodyThemeMode(selectedThemeMode);
+        if (savedThemeMode === 'auto') {
+            isAutoThemeMode = true;
+            const initialThemeMode = systemThemeModeMedia.matches ? 'dark' : 'light';
+            setBodyThemeMode(initialThemeMode);
+        } else {
+            isAutoThemeMode = false;
+            setBodyThemeMode(savedThemeMode);
+        }
     }
-});
 
-initThemeMode();
+    themeModeSelect.addEventListener('change', (e) => {
+        const selectedThemeMode = e.target.value;
+        localStorage.setItem('theme-mode', selectedThemeMode);
+
+        if (selectedThemeMode === 'auto') {
+            isAutoThemeMode = true;
+            const currentSystemThemeMode = systemThemeModeMedia.matches ? 'dark' : 'light';
+            setBodyThemeMode(currentSystemThemeMode);
+        } else {
+            isAutoThemeMode = false;
+            setBodyThemeMode(selectedThemeMode);
+        }
+    });
+
+    initThemeMode();
 </script>
 </body>
 </html>

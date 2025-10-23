@@ -123,28 +123,28 @@ button:hover {
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px
+    width: 6px;
+    height: 6px
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent
+    background: transparent
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(150, 150, 150, 0.3);
-  border-radius: 3px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s
+    background: rgba(150, 150, 150, 0.3);
+    border-radius: 3px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 100, 100, 0.6);
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2)
+    background: rgba(100, 100, 100, 0.6);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2)
 }
 
 ::-webkit-scrollbar-corner {
-  background: transparent
+    background: transparent
 }
 
 .container-md {
@@ -293,7 +293,7 @@ button:hover {
 }
 
 .post-meta li:last-child.post-meta-separator {
-  display: none
+    display: none
 }
 
 .post-excerpt {

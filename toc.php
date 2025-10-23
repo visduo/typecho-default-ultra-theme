@@ -14,7 +14,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     <div class="toc"></div>
 </div>
 <script>
-<?php if ($this->options->pjaxStatus == 'yes'): ?>
     function initTOC() {
         const DEFAULT_TOC_VISIBLE = <?php echo ($this->options->tocDefaultVisibleStatus == 'yes' ? 'true' : 'false'); ?>;
         const DEFAULT_TOC_EXPANDED = <?php echo ($this->options->tocDefaultExpandedStatus == 'yes' ? 'true' : 'false'); ?>;
@@ -145,10 +144,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
     document.addEventListener('DOMContentLoaded', initTOC);
 
+    <?php if ($this->options->pjaxStatus == 'yes'): ?>
     if (window.jQuery && window.jQuery.pjax && typeof window.jQuery.pjax === 'function') {
         $(document).on('pjax:success', function() {
             initTOC();
         });
     }
-<?php endif; ?>
+    <?php endif; ?>
 </script>

@@ -28,9 +28,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     <?php endif ?>
     <?php if ($this->options->sidebarStatus != 'yes'): ?>
         <style>
-        .container-md {
-            max-width: 850px;
-        }
+            .container-md {
+                max-width: 850px;
+            }
         </style>
     <?php endif; ?>
     <?php $this->header(); ?>
