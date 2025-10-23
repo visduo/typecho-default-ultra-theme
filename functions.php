@@ -193,8 +193,8 @@ function themeConfig($form) {
         '开启后，文章内的图片仅在用户即将浏览到时才加载，非一次性全部加载'
     );
     
-    $showPostWordCount = new Typecho_Widget_Helper_Form_Element_Radio(
-        'showPostWordCount',
+    $postWordCountVisibleStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'postWordCountVisibleStatus',
         [
             'yes'   => '是',
             'no'    => '否'
@@ -204,8 +204,8 @@ function themeConfig($form) {
         '开启后，将在首页、文章列表页、文章页自动统计并显示文章字数'
     );
     
-    $showPostReadingTime = new Typecho_Widget_Helper_Form_Element_Radio(
-        'showPostReadingTime',
+    $postReadingTimeVisibleStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'postReadingTimeVisibleStatus',
         [
             'yes'   => '是',
             'no'    => '否'
@@ -223,8 +223,8 @@ function themeConfig($form) {
         '计算文章预计阅读时长时，会根据文章字数和默认阅读速度进行估算，其单位为字/分钟'
     );
     
-    $showPostView = new Typecho_Widget_Helper_Form_Element_Radio(
-        'showPostView',
+    $postViewVisibleStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'postViewVisibleStatus',
         [
             'yes'   => '是',
             'no'    => '否'
@@ -249,7 +249,40 @@ function themeConfig($form) {
         '随机生成文章阅读数最大值',
         '文章发布后，会在设定的最小与最大值之间，为文章随机分配一个阅读数'
     );
-
+    
+    $tocStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'tocStatus',
+        [
+            'yes'   => '是',
+            'no'    => '否'
+        ],
+        'no',
+        '是否启用 TOC',
+        '开启后，将显示 TOC 面板'
+    );
+    
+    $tocDefaultVisibleStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'tocDefaultVisibleStatus',
+        [
+            'yes'   => '是',
+            'no'    => '否'
+        ],
+        'no',
+        '默认是否打开 TOC 列表',
+        '开启后，将默认打开 TOC 列表'
+    );
+    
+    $tocDefaultExpandedStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'tocDefaultExpandedStatus',
+        [
+            'yes'   => '是',
+            'no'    => '否'
+        ],
+        'no',
+        '默认是否展开 TOC 列表项',
+        '开启后，将默认展开 TOC 列表项'
+    );
+    
     $form->addInput($basicSettings);
     $form->addInput($pjaxStatus);
     $form->addInput($faviconUrl);
@@ -265,6 +298,7 @@ function themeConfig($form) {
     $form->addInput($menuSettings);
     $form->addInput($menuBlock);
     $form->addInput($hr);
+    
     $form->addInput($sidebarSettings);
     $form->addInput($sidebarStatus);
     $form->addInput($sidebarBlock);
@@ -275,12 +309,15 @@ function themeConfig($form) {
     $form->addInput($weservStatus);
     $form->addInput($imageLazyloadStatus);
     $form->addInput($imageLightBoxStatus);
-    $form->addInput($showPostWordCount);
-    $form->addInput($showPostReadingTime);
+    $form->addInput($postWordCountVisibleStatus);
+    $form->addInput($postReadingTimeVisibleStatus);
     $form->addInput($readingSpeed);
-    $form->addInput($showPostView);
+    $form->addInput($postViewVisibleStatus);
     $form->addInput($randMinPostView);
     $form->addInput($randMaxPostView);
+    $form->addInput($tocStatus);
+    $form->addInput($tocDefaultVisibleStatus);
+    $form->addInput($tocDefaultExpandedStatus);
 }
 
 /**

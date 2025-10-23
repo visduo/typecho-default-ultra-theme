@@ -263,6 +263,7 @@ button:hover {
  * 文章内容页样式
  * --------------- */
 .post {
+    position: relative;
     padding: 1.5em 0 2em;
     border-bottom: 1px solid var(--secondary-light-color)
 }
@@ -404,6 +405,112 @@ button:hover {
     overflow-x: clip;
     text-overflow: ellipsis;
     margin: 10px 0
+}
+
+/* ------------------
+ * TOC区样式
+ * --------------- */
+.toc-panel {
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    height: 100%
+}
+
+.toc-control {
+    pointer-events: auto;
+    position: sticky;
+    float: right;
+    top: 10px;
+    width: 40px;
+    height: 40px;
+    color: var(--text-color);
+    background-color: var(--secondary-light-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer
+}
+
+.toc-control:hover {
+    background-color: var(--secondary-light-color)
+}
+
+.toc.hidden {
+    display: none
+}
+
+.toc {
+    pointer-events: auto;
+    position: sticky;
+    float: right;
+    top: 10px;
+    margin-right: 10px;
+    width: 200px;
+    max-width: calc(100vw - 100px);
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    padding: 9px 15px;
+    background-color: var(--bg-color);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1)
+}
+
+[theme-mode="dark"] .toc {
+    background-color: var(--secondary-light-color)
+}
+
+.toc-list, .toc-sublist {
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+.toc-sublist {
+    padding-left: 18px;
+    display: block
+}
+
+.toc-item {
+    margin: 6px 0;
+    padding: 4px 6px;
+    font-size: 14px;
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center
+}
+
+.toc-toggle {
+    margin-right: 8px;
+    font-size: 12px;
+    transition: transform 0.2s ease;
+    color: #999999;
+    cursor: pointer
+}
+
+.toc-item.collapsed .toc-toggle {
+    transform: rotate(-90deg)
+}
+
+.toc-item:hover {
+    color: var(--primary-color);
+    background: #F0F7FF
+}
+
+.toc-item.toc-active {
+    color: var(--primary-color);
+    font-weight: 600;
+    background: #E8F3FF
+}
+
+.toc-item.collapsed + .toc-sublist {
+    display: none
+}
+
+.toc-item:not(.has-children) {
+    padding-left: 20px
 }
 
 /* ------------------
