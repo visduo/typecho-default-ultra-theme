@@ -575,6 +575,6 @@ function parseContent($content) {
  * 获取主题版本号
  */
 function version() {
-    $info = Typecho_Plugin::parseInfo(__DIR__ . '/index.php');
+    $info = Typecho_Plugin::parseInfo(__DIR__.'/index.php');
     return $info['version'];
 }
