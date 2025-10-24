@@ -42,7 +42,7 @@ a {
     text-decoration: none
 }
 
-a:hover,a:active {
+a:active {
     color: var(--text-color)
 }
 
@@ -437,10 +437,6 @@ button:hover {
     cursor: pointer
 }
 
-.toc-control:hover {
-    background-color: var(--secondary-light-color)
-}
-
 .toc-control-icon {
     width: 16px;
     height: 16px
@@ -494,7 +490,7 @@ button:hover {
 
 .toc-toggle {
     margin-right: 8px;
-    font-size: 12px;
+    font-size: 12px
 }
 
 .toc-toggle svg {
@@ -504,11 +500,6 @@ button:hover {
 
 .toc-item:not(.collapsed) .toc-toggle svg {
     transform: rotate(90deg)
-}
-
-.toc-item:hover {
-    color: var(--primary-color);
-    background: #F0F7FF
 }
 
 .toc-item.toc-active {
@@ -644,11 +635,6 @@ button:hover {
     padding: 0 10px;
     height: 30px;
     line-height: 30px
-}
-
-.page-navigator a:hover {
-    background-color: var(--secondary-light-color);
-    text-decoration: none
 }
 
 .page-navigator .current a {

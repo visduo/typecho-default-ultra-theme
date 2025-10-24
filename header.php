@@ -13,14 +13,14 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php $this->archiveTitle([
-                'category' => '分类 %s 下的文章',
-                'search'   => '包含关键字 %s 的文章',
-                'tag'      => '合集 %s 下的文章',
-                'author'   => '%s 发布的文章'
+            'category' => '分类 %s 下的文章',
+            'search'   => '包含关键字 %s 的文章',
+            'tag'      => '合集 %s 下的文章',
+            'author'   => '%s 发布的文章'
         ], '', ' - '); ?><?php $this->options->title(); ?></title>
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/normalize.min.css'); ?>">
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/grid.min.css'); ?>">
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/style.min.css'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/normalize.min.css') ?>?v=<?php echo version(); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/grid.min.css'); ?>?v=<?php echo version(); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/style.min.css'); ?>?v=<?php echo version(); ?>">
     <?php if($this->options->faviconUrl):  ?>
         <link rel="shortcut icon" href="<?php $this->options->faviconUrl(); ?>" type="image/x-icon" />
     <?php else: ?>

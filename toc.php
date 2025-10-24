@@ -18,152 +18,176 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     <div class="toc"></div>
 </div>
 <script>
-    function initTOC() {
-        const DEFAULT_TOC_VISIBLE = <?php echo ($this->options->tocDefaultVisibleStatus == 'yes' ? 'true' : 'false'); ?>;
-        const DEFAULT_TOC_EXPANDED = <?php echo ($this->options->tocDefaultExpandedStatus == 'yes' ? 'true' : 'false'); ?>;
+function initTOC() {
+    const DEFAULT_TOC_VISIBLE = <?php echo ($this->options->tocDefaultVisibleStatus == 'yes' ? 'true' : 'false'); ?>;
+    const DEFAULT_TOC_EXPANDED = <?php echo ($this->options->tocDefaultExpandedStatus == 'yes' ? 'true' : 'false'); ?>;
 
-        const tocPanel = document.querySelector('.toc-panel');
-        const tocContainer = document.querySelector('.toc');
-        const content = document.querySelector('.post-content');
-        const tocControl = document.querySelector('.toc-control');
+    const tocPanel = document.querySelector('.toc-panel');
+    const tocContainer = document.querySelector('.toc');
+    const content = document.querySelector('.post-content');
+    const tocControl = document.querySelector('.toc-control');
 
-        if (!tocContainer || !content || !tocControl) {
+    if (!tocContainer || !content || !tocControl) {
+        return;
+    }
+
+    const headings = Array.from(content.querySelectorAll('h1, h2, h3, h4, h5, h6'));
+    if (headings.length === 0) {
+        tocPanel.style.display = 'none';
+        return;
+    } else {
+        tocPanel.style.display = 'block';
+    }
+
+    const originalLevels = headings.map(heading => parseInt(heading.tagName.replace('H', '')));
+    const minLevel = Math.min(...originalLevels);
+    const levelOffset = minLevel - 1;
+
+    let tocHTML = '<ul class="toc-list">';
+    let prevLevel = 1;
+    const headingHasChildren = new Array(headings.length).fill(false);
+
+    headings.forEach((heading, index) => {
+        if (index < headings.length - 1) {
+            const currentOriginalLevel = parseInt(heading.tagName.replace('H', ''));
+            const currentLevel = currentOriginalLevel - levelOffset;
+            const nextOriginalLevel = parseInt(headings[index + 1].tagName.replace('H', ''));
+            const nextLevel = nextOriginalLevel - levelOffset;
+            if (nextLevel > currentLevel) {
+                headingHasChildren[index] = true;
+            }
+        }
+    });
+
+    headings.forEach((heading, index) => {
+        const headingId = `heading-${index}`;
+        heading.id = headingId;
+        const currentOriginalLevel = parseInt(heading.tagName.replace('H', ''));
+        const currentLevel = currentOriginalLevel - levelOffset;
+        const headingText = heading.textContent.trim();
+        const hasChildren = headingHasChildren[index];
+
+        if (currentLevel > prevLevel) {
+            tocHTML += '<ul class="toc-sublist">';
+        } else if (currentLevel < prevLevel) {
+            tocHTML += '</ul>'.repeat(prevLevel - currentLevel);
+        }
+
+        const collapsedClass = hasChildren && !DEFAULT_TOC_EXPANDED ? ' collapsed' : '';
+        tocHTML += `<li class="toc-item ${hasChildren ? 'has-children' : ''}${collapsedClass}" data-id="${headingId}" data-level="${currentLevel}">`;
+        if (hasChildren) {
+            tocHTML += '<span class="toc-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg></span>';
+        }
+        tocHTML += `${headingText}</li>`;
+
+        prevLevel = currentLevel;
+    });
+
+
+
+    tocHTML += '</ul>'.repeat(prevLevel);
+    tocContainer.innerHTML = tocHTML;
+
+    tocContainer.addEventListener('click', (e) => {
+        const tocItem = e.target.closest('.toc-item');
+        const toggleIcon = e.target.closest('.toc-toggle');
+
+        if (toggleIcon && tocItem) {
+            tocItem.classList.toggle('collapsed');
             return;
         }
 
-        const headings = Array.from(content.querySelectorAll('h1, h2, h3, h4, h5, h6'));
-        if (headings.length === 0) {
-            tocPanel.style.display = 'none';
-            return;
+        if (tocItem) {
+        const targetHash = '#' + tocItem.dataset.id;
+        const currentHash = window.location.hash;
+
+        if (targetHash === currentHash) {
+            window.location.hash = '';
+            setTimeout(() => {
+                window.location.hash = targetHash;
+            }, 0);
         } else {
-            tocPanel.style.display = 'block';
+            window.location.hash = targetHash;
         }
+    }
+    });
 
-        let tocHTML = '<ul class="toc-list">';
-        let prevLevel = 1;
-        const headingHasChildren = new Array(headings.length).fill(false);
+    function highlightCurrentToc() {
+        let currentId = null;
+        const viewportTop = 50;
 
-        headings.forEach((heading, index) => {
-            if (index < headings.length - 1) {
-                const currentLevel = parseInt(heading.tagName.replace('H', ''));
-                const nextLevel = parseInt(headings[index + 1].tagName.replace('H', ''));
-                if (nextLevel > currentLevel) {
-                    headingHasChildren[index] = true;
-                }
-            }
-        });
+        for (let i = 0; i < headings.length; i++) {
+            const heading = headings[i];
+            const rect = heading.getBoundingClientRect();
 
-        headings.forEach((heading, index) => {
-            const headingId = `heading-${index}`;
-            heading.id = headingId;
-            const currentLevel = parseInt(heading.tagName.replace('H', ''));
-            const headingText = heading.textContent.trim();
-            const hasChildren = headingHasChildren[index];
+            const isTouchedTop = rect.top <= viewportTop;
 
-            if (currentLevel > prevLevel) {
-                tocHTML += '<ul class="toc-sublist">';
-            } else if (currentLevel < prevLevel) {
-                tocHTML += '</ul>'.repeat(prevLevel - currentLevel);
-            }
-
-            const collapsedClass = hasChildren && !DEFAULT_TOC_EXPANDED ? ' collapsed' : '';
-            tocHTML += `<li class="toc-item ${hasChildren ? 'has-children' : ''}${collapsedClass}" data-id="${headingId}" data-level="${currentLevel}">`;
-            if (hasChildren) {
-                tocHTML += '<span class="toc-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg></span>';
-            }
-            tocHTML += `${headingText}</li>`;
-
-            prevLevel = currentLevel;
-        });
-
-        tocHTML += '</ul>'.repeat(prevLevel);
-        tocContainer.innerHTML = tocHTML;
-
-        tocContainer.addEventListener('click', (e) => {
-            const tocItem = e.target.closest('.toc-item');
-            const toggleIcon = e.target.closest('.toc-toggle');
-
-            if (toggleIcon && tocItem) {
-                tocItem.classList.toggle('collapsed');
-                return;
-            }
-
-            if (tocItem) {
-                window.location.hash = '#' + tocItem.dataset.id;
-            }
-        });
-
-        function highlightCurrentToc() {
-            const scrollTop = window.scrollY + 100;
-            const contentBottom = content.offsetTop + content.offsetHeight;
-            let currentId = null;
-
-            if (scrollTop >= contentBottom) {
-                currentId = headings[headings.length - 1].id;
-            } else if (scrollTop <= headings[0].offsetTop + headings[0].offsetHeight) {
-                currentId = headings[0].id;
-            } else {
-                for (let i = headings.length - 1; i >= 1; i--) {
-                    const currentHeading = headings[i];
-                    const prevHeading = headings[i - 1];
-                    if (currentHeading.offsetTop <= scrollTop && prevHeading.offsetTop < scrollTop) {
-                        currentId = currentHeading.id;
-                        break;
-                    }
+            let isLastTouched = true;
+            for (let j = i + 1; j < headings.length; j++) {
+                const nextRect = headings[j].getBoundingClientRect();
+                if (nextRect.top <= viewportTop) {
+                    isLastTouched = false;
+                    break;
                 }
             }
 
-            document.querySelectorAll('.toc-item').forEach(item => {
-                item.classList.remove('toc-active');
-            });
-            const currentTocItem = document.querySelector(`.toc-item[data-id="${currentId}"]`);
-            if (currentTocItem) {
-                currentTocItem.classList.add('toc-active');
-
-                let parentItem = currentTocItem.closest('.toc-sublist')?.previousElementSibling;
-                while (parentItem && parentItem.classList.contains('toc-item')) {
-                    if (parentItem.classList.contains('has-children')) {
-                        parentItem.classList.remove('collapsed');
-                    }
-                    parentItem = parentItem.closest('.toc-sublist')?.previousElementSibling;
-                }
+            if (isTouchedTop && isLastTouched) {
+                currentId = heading.id;
+                break;
             }
         }
 
-        highlightCurrentToc();
-        window.addEventListener('scroll', highlightCurrentToc, { passive: true });
+        document.querySelectorAll('.toc-item.toc-active').forEach(item => {
+            item.classList.remove('toc-active');
+        });
+        const currentTocItem = document.querySelector(`.toc-item[data-id="${currentId}"]`);
+        if (currentTocItem) {
+            currentTocItem.classList.add('toc-active');
 
-        let isTocVisible = DEFAULT_TOC_VISIBLE;
+            let parentItem = currentTocItem.closest('.toc-sublist')?.previousElementSibling;
+            while (parentItem && parentItem.classList.contains('toc-item')) {
+                if (parentItem.classList.contains('has-children')) {
+                    parentItem.classList.remove('collapsed');
+                }
+                parentItem = parentItem.closest('.toc-sublist')?.previousElementSibling;
+            }
+        }
+    }
 
+    highlightCurrentToc();
+    window.addEventListener('scroll', highlightCurrentToc, { passive: true });
+    window.addEventListener('resize', highlightCurrentToc, { passive: true });
+
+    let isTocVisible = DEFAULT_TOC_VISIBLE;
+    tocContainer.classList.toggle('hidden', !isTocVisible);
+
+    tocControl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        isTocVisible = !isTocVisible;
         tocContainer.classList.toggle('hidden', !isTocVisible);
+    });
 
-        tocControl.addEventListener('click', (e) => {
-            e.stopPropagation();
-            isTocVisible = !isTocVisible;
-            tocContainer.classList.toggle('hidden', !isTocVisible);
-        });
+    tocContainer.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
 
-        tocContainer.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
+    document.addEventListener('click', (e) => {
+        const isClickInsideToc = tocContainer.contains(e.target);
+        const isClickOnControl = tocControl.contains(e.target);
+        if (isTocVisible && !isClickInsideToc && !isClickOnControl) {
+            isTocVisible = false;
+            tocContainer.classList.add('hidden');
+        }
+    });
+}
 
-        document.addEventListener('click', (e) => {
-            const isClickInsideToc = tocContainer.contains(e.target);
-            const isClickOnControl = tocControl.contains(e.target);
-            if (isTocVisible && !isClickInsideToc && !isClickOnControl) {
-                isTocVisible = false;
-                tocContainer.classList.add('hidden');
-            }
-        });
-    }
+document.addEventListener('DOMContentLoaded', initTOC);
 
-    document.addEventListener('DOMContentLoaded', initTOC);
-
-    <?php if ($this->options->pjaxStatus == 'yes'): ?>
-    if (window.jQuery && window.jQuery.pjax && typeof window.jQuery.pjax === 'function') {
-        $(document).on('pjax:success', function() {
-            initTOC();
-        });
-    }
-    <?php endif; ?>
+<?php if ($this->options->pjaxStatus == 'yes'): ?>
+if (window.jQuery && window.jQuery.pjax && typeof window.jQuery.pjax === 'function') {
+    $(document).on('pjax:success', function() {
+        initTOC();
+    });
+}
+<?php endif; ?>
 </script>
