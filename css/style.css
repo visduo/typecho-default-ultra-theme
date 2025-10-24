@@ -548,8 +548,7 @@ button:hover {
 }
 
 .comment-list li .comment-reply {
-    text-align: right;
-    font-size: .92857em
+    text-align: right
 }
 
 .comment-list li .author-tag {
@@ -561,9 +560,12 @@ button:hover {
     font-size: 50%
 }
 
-.comment-meta a {
-    color: var(--primary-color);
+.comment-meta {
     font-size: .92857em
+}
+
+.comment-meta a {
+    color: var(--primary-color)
 }
 
 .comment-author {
@@ -589,8 +591,7 @@ button:hover {
 
 .respond .cancel-comment-reply {
     float: right;
-    margin-top: 15px;
-    font-size: .92857em
+    margin-top: 15px
 }
 
 #comment-form label {

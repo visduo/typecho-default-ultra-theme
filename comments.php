@@ -93,7 +93,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                     <div class="comment-meta">
                         <?php $comments->date('Y-m-d H:i'); ?>
                         <?php if(class_exists('ip2region_Plugin') && $options->commentAuthorIp2RegionStatus == 'yes'): ?>
-                            <?php echo '回复于 '.ip2region_Plugin::get($comments->ip); ?>
+                            <?php echo '评论于 '.ip2region_Plugin::get($comments->ip); ?>
                         <?php endif; ?>
                         &nbsp;&nbsp;
                         <span class="comment-reply"><?php $comments->reply(); ?></span>
