@@ -441,6 +441,11 @@ button:hover {
     background-color: var(--secondary-light-color)
 }
 
+.toc-control-icon {
+    width: 16px;
+    height: 16px
+}
+
 .toc.hidden {
     display: none
 }
@@ -490,13 +495,15 @@ button:hover {
 .toc-toggle {
     margin-right: 8px;
     font-size: 12px;
-    transition: transform 0.2s ease;
-    color: #999999;
-    cursor: pointer
 }
 
-.toc-item.collapsed .toc-toggle {
-    transform: rotate(-90deg)
+.toc-toggle svg {
+    transition: transform 0.3s ease;
+    transform: rotate(0deg)
+}
+
+.toc-item:not(.collapsed) .toc-toggle svg {
+    transform: rotate(90deg)
 }
 
 .toc-item:hover {

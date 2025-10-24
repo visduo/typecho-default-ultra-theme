@@ -9,7 +9,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 ?>
 <div class="toc-panel" style="display: none;">
     <div class="toc-control">
-        <span class="toc-control-icon">☰</span>
+        <span class="toc-control-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+            </svg>
+        </span>
     </div>
     <div class="toc"></div>
 </div>
@@ -22,7 +26,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         const tocContainer = document.querySelector('.toc');
         const content = document.querySelector('.post-content');
         const tocControl = document.querySelector('.toc-control');
-        const tocControlIcon = document.querySelector('.toc-control-icon');
 
         if (!tocContainer || !content || !tocControl) {
             return;
@@ -66,7 +69,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             const collapsedClass = hasChildren && !DEFAULT_TOC_EXPANDED ? ' collapsed' : '';
             tocHTML += `<li class="toc-item ${hasChildren ? 'has-children' : ''}${collapsedClass}" data-id="${headingId}" data-level="${currentLevel}">`;
             if (hasChildren) {
-                tocHTML += '<span class="toc-toggle">▸</span>';
+                tocHTML += '<span class="toc-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg></span>';
             }
             tocHTML += `${headingText}</li>`;
 
@@ -133,12 +136,24 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         let isTocVisible = DEFAULT_TOC_VISIBLE;
 
         tocContainer.classList.toggle('hidden', !isTocVisible);
-        tocControlIcon.textContent = isTocVisible ? '×' : '≡';
 
-        tocControl.addEventListener('click', () => {
+        tocControl.addEventListener('click', (e) => {
+            e.stopPropagation();
             isTocVisible = !isTocVisible;
             tocContainer.classList.toggle('hidden', !isTocVisible);
-            tocControlIcon.textContent = isTocVisible ? '×' : '≡';
+        });
+
+        tocContainer.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        document.addEventListener('click', (e) => {
+            const isClickInsideToc = tocContainer.contains(e.target);
+            const isClickOnControl = tocControl.contains(e.target);
+            if (isTocVisible && !isClickInsideToc && !isClickOnControl) {
+                isTocVisible = false;
+                tocContainer.classList.add('hidden');
+            }
         });
     }
 
