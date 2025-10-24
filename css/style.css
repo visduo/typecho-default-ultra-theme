@@ -481,8 +481,10 @@ button:hover {
     font-size: 14px;
     color: var(--text-color);
     cursor: pointer;
-    display: flex;
-    align-items: center
+    white-space: nowrap;
+    max-width: 100%;
+    overflow-x: clip;
+    text-overflow: ellipsis
 }
 
 .toc-toggle {
