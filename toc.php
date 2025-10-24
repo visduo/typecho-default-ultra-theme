@@ -98,16 +98,14 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             }
 
             if (tocItem) {
-                const targetHash = '#' + tocItem.dataset.id;
-                const currentHash = window.location.hash;
+                const targetId = tocItem.dataset.id;
+                const targetElement = document.getElementById(targetId);
 
-                if (targetHash === currentHash) {
-                    window.location.hash = '';
-                    setTimeout(() => {
-                        window.location.hash = targetHash;
-                    }, 0);
-                } else {
-                    window.location.hash = targetHash;
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'auto',
+                        block: 'start'
+                    });
                 }
             }
         });
