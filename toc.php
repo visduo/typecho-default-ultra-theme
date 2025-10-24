@@ -133,12 +133,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         let isTocVisible = DEFAULT_TOC_VISIBLE;
 
         tocContainer.classList.toggle('hidden', !isTocVisible);
-        tocControlIcon.textContent = isTocVisible ? '✕' : '≡';
+        tocControlIcon.textContent = isTocVisible ? '×' : '≡';
 
         tocControl.addEventListener('click', () => {
             isTocVisible = !isTocVisible;
             tocContainer.classList.toggle('hidden', !isTocVisible);
-            tocControlIcon.textContent = isTocVisible ? '✕' : '≡';
+            tocControlIcon.textContent = isTocVisible ? '×' : '≡';
         });
     }
 
