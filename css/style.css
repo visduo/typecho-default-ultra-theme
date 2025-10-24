@@ -316,24 +316,25 @@ button:hover {
 
 .post-content h1 {
     font-size: 1.3em;
-    margin-block-start: 3em;
-    margin-block-end: 1em
+    margin-top: 3em
 }
 
 .post-content h2 {
     font-size: 1.2em;
-    margin-block-start: 2em;
-    margin-block-end: 1em
+    margin-top: 2em
 }
 
 .post-content h3 {
     font-size: 1.1em;
-    margin-block-start: 1.5em;
-    margin-block-end: 1em
+    margin-top: 1em
 }
 
 .post-content h1:first-child,.post-content h2:first-child,.post-content h3:first-child {
-    margin-block-start: 0
+    margin-top: 0
+}
+
+.post-content h1 + h2 {
+    margin-top: 1.5em
 }
 
 .post-content p:has(+ ul),.post-content p:has(+ ol) {
