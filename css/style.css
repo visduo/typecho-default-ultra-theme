@@ -325,8 +325,9 @@ button:hover {
 }
 
 .post-content h3 {
-    font-size: 1.1em;
-    margin-top: 1em
+    font-size: 1em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
 }
 
 .post-content h1:first-child,.post-content h2:first-child,.post-content h3:first-child {
