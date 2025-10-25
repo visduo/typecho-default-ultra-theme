@@ -336,7 +336,7 @@ function themeConfig($form) {
         ],
         'no',
         '是否启用返回顶部按钮',
-        '开启后，将在网页右下角显示返回顶部'
+        '开启后，将在网页右下角显示返回顶部按钮'
     );
     
     $form->addInput($message);
