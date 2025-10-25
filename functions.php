@@ -13,11 +13,18 @@ error_reporting(0);
  * 主题配置项
  */
 function themeConfig($form) {
+    $message = new Typecho_Widget_Helper_Form_Element_Checkbox(
+        'hr',
+        null,
+        null,
+        '主题使用说明与注意事项：<a href="https://www.duozai.cn/post/65.html" target="_blank">https://www.duozai.cn/post/65.html</a>'
+    );
+    
     $hr = new Typecho_Widget_Helper_Form_Element_Checkbox(
         'hr',
         null,
         null,
-        '<hr style="border: 1px dashed #CCCCCC">'
+        '<hr style="border: 1px dashed #CCCCCC; margin: 32px 0">'
     );
     
     $basicSettings = new Typecho_Widget_Helper_Form_Element_Checkbox(
@@ -252,39 +259,6 @@ function themeConfig($form) {
         '文章发布后，会在设定的最小与最大值之间，为文章随机分配一个阅读数'
     );
     
-    $tocStatus = new Typecho_Widget_Helper_Form_Element_Radio(
-        'tocStatus',
-        [
-            'yes'   => '是',
-            'no'    => '否'
-        ],
-        'no',
-        '是否启用 TOC',
-        '开启后，将显示 TOC 面板'
-    );
-    
-    $tocDefaultVisibleStatus = new Typecho_Widget_Helper_Form_Element_Radio(
-        'tocDefaultVisibleStatus',
-        [
-            'yes'   => '是',
-            'no'    => '否'
-        ],
-        'no',
-        '是否自动打开 TOC 列表',
-        '开启后，将默认打开 TOC 列表'
-    );
-    
-    $tocDefaultExpandedStatus = new Typecho_Widget_Helper_Form_Element_Radio(
-        'tocDefaultExpandedStatus',
-        [
-            'yes'   => '是',
-            'no'    => '否'
-        ],
-        'no',
-        '是否自动展开 TOC 列表项',
-        '开启后，将默认展开全部 TOC 列表项'
-    );
-    
     $commentSettings = new Typecho_Widget_Helper_Form_Element_Checkbox(
         'commentSettings',
         null,
@@ -300,8 +274,72 @@ function themeConfig($form) {
         ],
         'no',
         '是否显示评论者 IP 地址归属地信息',
-        '开启后，将显示评论者 IP 地址归属地信息。该功能需要配合 ip2region 插件使用，请确保已安装 ip2region 插件。'
+        '开启后，将显示评论者 IP 地址归属地信息。该功能需要配合 ip2region 插件使用，请确保已安装 ip2region 插件'
     );
+    
+    $minitoolSettings = new Typecho_Widget_Helper_Form_Element_Checkbox(
+        'minitoolSettings',
+        null,
+        null,
+        '<h3># 悬浮工具设置</h3>'
+    );
+    
+    $tocMinitoolStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'tocMinitoolStatus',
+        [
+            'yes'   => '是',
+            'no'    => '否'
+        ],
+        'no',
+        '是否启用 TOC',
+        '开启后，将启用 TOC 并在网页右下角显示 TOC 按钮'
+    );
+    
+    $tocDefaultVisibleStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'tocDefaultVisibleStatus',
+        [
+            'yes'   => '是',
+            'no'    => '否'
+        ],
+        'no',
+        '是否自动打开 TOC 面板',
+        '开启后，将默认打开 TOC 面板'
+    );
+    
+    $tocDefaultExpandedStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'tocDefaultExpandedStatus',
+        [
+            'yes'   => '是',
+            'no'    => '否'
+        ],
+        'no',
+        '是否自动展开 TOC 列表项',
+        '开启后，将默认展开全部 TOC 列表项'
+    );
+    
+    $themeModeMinitoolStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'themeModeMinitoolStatus',
+        [
+            'yes'   => '是',
+            'no'    => '否'
+        ],
+        'no',
+        '是否启用主题模式切换按钮',
+        '开启后，将在网页右下角显示主题模式切换按钮，需同时开启主题模式切换'
+    );
+    
+    $topMinitoolStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'topMinitoolStatus',
+        [
+            'yes'   => '是',
+            'no'    => '否'
+        ],
+        'no',
+        '是否启用返回顶部按钮',
+        '开启后，将在网页右下角显示返回顶部'
+    );
+    
+    $form->addInput($message);
     
     $form->addInput($basicSettings);
     $form->addInput($pjaxStatus);
@@ -335,13 +373,19 @@ function themeConfig($form) {
     $form->addInput($postViewVisibleStatus);
     $form->addInput($randMinPostView);
     $form->addInput($randMaxPostView);
-    $form->addInput($tocStatus);
-    $form->addInput($tocDefaultVisibleStatus);
-    $form->addInput($tocDefaultExpandedStatus);
     $form->addInput($hr);
     
     $form->addInput($commentSettings);
     $form->addInput($commentAuthorIp2RegionStatus);
+    $form->addInput($hr);
+    
+    $form->addInput($minitoolSettings);
+    $form->addInput($tocMinitoolStatus);
+    $form->addInput($tocDefaultVisibleStatus);
+    $form->addInput($tocDefaultExpandedStatus);
+    $form->addInput($themeModeMinitoolStatus);
+    $form->addInput($topMinitoolStatus);
+    $form->addInput($hr);
 }
 
 /**

@@ -11,7 +11,7 @@ $this->need('header.php');
 <div class="col-sm-12 <?php if ($this->options->sidebarStatus == 'yes'): ?>col-md-8<?php endif; ?>" id="main">
     <article class="post">
         <h1 class="post-title"><?php $this->title() ?></h1>
-        <div class="post-content" style="margin-top: 2em;">
+        <div class="post-content" style="margin-top: 2em">
             <?php echo parseContent($this->content); ?>
         </div>
     </article>
