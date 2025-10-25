@@ -4,7 +4,7 @@
  *
  * @package default-ultra
  * @author 多仔
- * @version 2.0
+ * @version 2.1
  * @link https://www.duozai.cn
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;

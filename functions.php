@@ -363,7 +363,7 @@ function postView($archive) {
     // 获取文章阅读数
     $exist = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid))['views'];
     
-    if($exist == 0) {
+    if ($exist == 0) {
         // 随机生成文章阅读数
         $randMinPostView = (isset($options->randMinPostView) && is_numeric($options->randMinPostView)) ? (int)$options->randMinPostView : 800;
         $randMaxPostView = (isset($options->randMaxPostView) && is_numeric($options->randMaxPostView)) ? (int)$options->randMaxPostView : 1000;
@@ -553,14 +553,14 @@ function parseContent($content) {
     $defaultImageUrl = $options->imageLazyloadStatus == 'yes' ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAACQCAMAAADQvUWjAAABP2lDQ1BpY2MAAHicfZC/SwJxGMY/11WWWA05NBQcJU0FUUtTgYZOEfgj1Kbz/FGgdt33QprLoaloiEZrCaLZxhz6A4KgIQqirdWghpKLrw5aUM/yfnh4Xt6XB5TnvFEQ3RoUirYVDvm1eCKpuV5Q8dLPIGO6IczlSDAKIPSSMGwrzw+936PIeTe9rhfTO6/Xq8kFpbo7UY4FP1Yu+F/udEYYwBfgM0zLBkUDxku2KXkJ8BrrehqUODBlxRNJUPakn2vxieRUiy8lW9FwAJQaoOU6ONXBhfy2vCslv/dkirEI0AeMIggTwv9HpreZCRBgBmRfv3sQ2bnZ1pZnEXqeHOdtElyH0DhynM9Tx2mcgfoIta32/mYF5uugHrS91DFc7cPIQ9vzVWCoDNUbU7f0pqUCXdkNqJ/DQAKGb8G99g3j4l+xfPB+eQAAABtQTFRF4ePp7e/1c3R31tjdoKKljY6Rx8nOtLa7XFxeR44UlQAAAAlwSFlzAAALEwAACxMBAJqcGAAAAHhlWElmSUkqAAgAAAAFABIBAwABAAAAAQAAABoBBQABAAAASgAAABsBBQABAAAAUgAAACgBAwABAAAAAgAAAGmHBAABAAAAWgAAAAAAAABJGQEA6AMAAEkZAQDoAwAAAgACoAQAAQAAAAABAAADoAQAAQAAAJAAAAAAAAAApI/SzwAAAiJJREFUeJzt19uO2zAMRVHy8Kb//+KCmmaaFgXaVwd7AfEgyvhBx6JEmwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPwnf139z7Hvb/vV3wZ///mZOiIsVoeZRYZl+J2qWef7v/qMu2X397yz7fFOZSnXSTfP43Mqlfdhp+6fZRam7LTTVa+btZk93AkfmUW42s01pu459yn7bACRMzluOaqUHfOK9wAeHsIJP1V55GqzUBxVSbsepnRS6jOj8u6ojGhNZJqp9q57uavlsY7tes9jG4DnaZXNCdN4WMqzQu45nlmntlIqtwYUWxN9L48OQJNeR+Z3IkdeatXcIvAsnwzZBnB3hEir9mgL3ZvDNrhnBxAeJVVvAFk7Y53u3oLwSs9XAFOnVOocV/oO3pufH0Bn5dzZtXXLp7rkeQPQ/ArAZ4sh7oDv6fFzD6ivDfOxtIf7aCx2D2hFdpXO10mn8JpXCajqpKKrdtfTtg7aLuLhK+CYZW5Dc0+Blk11n3vU+5S/BXDjmfZzy/8eflsCTz8GZW6xh909BVrRkTW1vYHXuKtbYTV+F0ZmxCm/TeOnNEI5Mz2qPfv8roDZBqiOdW1LZH0ytWOTcm+1Mj8tgNzPDaBirOuMe1h15NlH7z69DXHXtgVuOh8UQPjLnUxs199f7zh34H2Di7CvFvlVAh/wLvR3/u93ZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPtvPwB/Bwrf0wZNQgAAAABJRU5ErkJggg==' : '';
     $actualImageUrl = ($options->weservStatus == 'yes' ? 'https://images.weserv.nl/?url=' : '').'$1';
     
-    if($options->imageLazyloadStatus == 'yes') {
+    if ($options->imageLazyloadStatus == 'yes') {
         // 开启图片懒加载
         $imageReplacement = '<img src="'.$defaultImageUrl.'" data-original="'.$actualImageUrl.'" class="lazyload">';
     } else {
         $imageReplacement = '<img src="'.$actualImageUrl.'">';
     }
     
-    if($options->imageLightBoxStatus == 'yes') {
+    if ($options->imageLightBoxStatus == 'yes') {
         // 开启图片灯箱
         $imageReplacement = '<a href="'.$actualImageUrl.'" data-fancybox="gallery"/>'.$imageReplacement.'</a>';
     }

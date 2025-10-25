@@ -31,11 +31,36 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     <script src="//static-lab.6os.net/jquery-lazyload/1.9.5/jquery.lazyload.min.js"></script>
 <?php endif; ?>
 <script>
+    function init() {
+        hljs.highlightAll();
+
+        <?php if ($this->options->imageLazyloadStatus == 'yes'): ?>
+        $('img.lazyload').lazyload();
+        <?php endif; ?>
+
+        <?php if ($this->options->tocStatus == 'yes'): ?>
+        const tocPanel = document.querySelector('.toc-panel');
+        const postContent = document.querySelector('.post-content');
+
+        if (typeof initToc === 'function') {
+            tocPanel && postContent ? initToc() : '';
+        }
+
+        if (typeof highlightToc === 'function') {
+            window.removeEventListener('scroll', highlightToc, { passive: true });
+            window.removeEventListener('resize', highlightToc, { passive: true });
+
+            tocPanel && postContent ? window.addEventListener('scroll', highlightToc, { passive: true }) : '';
+            tocPanel && postContent ? window.addEventListener('resize', highlightToc, { passive: true }) : '';
+        }
+        <?php endif; ?>
+    }
+
     <?php if ($this->options->pjaxStatus == 'yes'): ?>
     $(document).pjax('a[href^="<?php $this->options->siteUrl() ?>"]:not(a[target="_blank"], a[no-pjax])', {
         container: '#main',
         fragment: '#main',
-        timeout: 3000
+        timeout: 7000
     }).on('pjax:send', function() {
         NProgress.start();
     }).on('submit', 'form[id=search]', function (event) {
@@ -67,10 +92,10 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             fragment: '#main'
         });
     }).on('pjax:complete', function(event, data, status, xhr, options) {
-        if(event.relatedTarget) {
-            if(event.relatedTarget.tagName === 'FORM' && event.relatedTarget.id === 'comment-form') {
+        if (event.relatedTarget) {
+            if (event.relatedTarget.tagName === 'FORM' && event.relatedTarget.id === 'comment-form') {
                 let message = (data.responseText.match(/<div class="container">\s*([\s\S]*?)\s*<\/div>/i) || [, ''])[1].trim();
-                if(message) {
+                if (message) {
                     alert(message);
                     $.pjax({
                         url: xhr.url.replace(/\/comment$/, '/#comments'),
@@ -78,32 +103,28 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                         fragment: '#main'
                     });
                 }
-            } else if(event.relatedTarget.tagName === 'FORM' && event.relatedTarget.classList.contains('protected')) {
+            } else if (event.relatedTarget.tagName === 'FORM' && event.relatedTarget.classList.contains('protected')) {
                 let message = (data.responseText.match(/<div class="container">\s*([\s\S]*?)\s*<\/div>/i) || [, ''])[1].trim();
-                if(message) {
+                if (message) {
                     alert(message);
                 }
             }
         }
 
-        hljs.highlightAll();
-
-        <?php if ($this->options->imageLazyloadStatus == 'yes'): ?>
-        $('img.lazyload').lazyload();
-        <?php endif; ?>
-
+        init();
+    }).on('pjax:end', function() {
         NProgress.done();
     });
 
     document.addEventListener('DOMContentLoaded', function() {
         $(document).trigger('pjax:complete');
     });
-    <?php else: ?>
-    hljs.highlightAll();
 
-    <?php if ($this->options->imageLazyloadStatus == 'yes'): ?>
-    $('img.lazyload').lazyload();
-    <?php endif; ?>
+    document.addEventListener('pjax:error', function(e) {
+        window.location.href = e.triggerElement.href;
+    });
+    <?php else: ?>
+    init();
     <?php endif; ?>
 
     const body = document.body;

@@ -21,7 +21,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         <section class="widget">
             <h3 class="widget-title">最新合集</h3>
             <ul class="widget-list">
-                <?php while($tags->next()): ?>
+                <?php while ($tags->next()): ?>
                     <a href="<?php $tags->permalink(); ?>"><?php $tags->name(); ?></a>
                 <?php endwhile; ?>
             </ul>
@@ -32,7 +32,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         <section class="widget">
             <h3 class="widget-title">随机推荐</h3>
             <ul class="widget-list">
-                <?php while($rand->next()): ?>
+                <?php while ($rand->next()): ?>
                     <li><a href="<?php $rand->permalink(); ?>"><?php $rand->title(); ?></a></li>
                 <?php endwhile; ?>
             </ul>
@@ -51,7 +51,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             <h3 class="widget-title">近期评论</h3>
             <ul class="widget-list">
                 <?php $this->widget('Widget_Comments_Recent')->to($comments); ?>
-                <?php while($comments->next()): ?>
+                <?php while ($comments->next()): ?>
                     <li>
                         <a href="<?php $comments->permalink(); ?>"><?php $comments->author(false); ?></a>: <?php $comments->excerpt(35, '...'); ?>
                     </li>

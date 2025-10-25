@@ -10,28 +10,26 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 <div class="toc-panel" style="display: none;">
     <div class="toc-control">
         <span class="toc-control-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul"
+                 viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                      d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
             </svg>
         </span>
     </div>
     <div class="toc"></div>
 </div>
 <script>
-    function initTOC() {
-        const DEFAULT_TOC_VISIBLE = <?php echo ($this->options->tocDefaultVisibleStatus == 'yes' ? 'true' : 'false'); ?>;
-        const DEFAULT_TOC_EXPANDED = <?php echo ($this->options->tocDefaultExpandedStatus == 'yes' ? 'true' : 'false'); ?>;
+    function initToc() {
+        const DEFAULT_TOC_VISIBLE = <?php echo($this->options->tocDefaultVisibleStatus == 'yes' ? 'true' : 'false'); ?>;
+        const DEFAULT_TOC_EXPANDED = <?php echo($this->options->tocDefaultExpandedStatus == 'yes' ? 'true' : 'false'); ?>;
 
         const tocPanel = document.querySelector('.toc-panel');
         const tocContainer = document.querySelector('.toc');
-        const content = document.querySelector('.post-content');
+        const postContent = document.querySelector('.post-content');
         const tocControl = document.querySelector('.toc-control');
 
-        if (!tocContainer || !content || !tocControl) {
-            return;
-        }
-
-        const headings = Array.from(content.querySelectorAll('h1, h2, h3, h4, h5, h6'));
+        const headings = Array.from(postContent.querySelectorAll('h1, h2, h3, h4, h5, h6'));
         if (headings.length === 0) {
             tocPanel.style.display = 'none';
             return;
@@ -83,8 +81,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             prevLevel = currentLevel;
         });
 
-
-
         tocHTML += '</ul>'.repeat(prevLevel);
         tocContainer.innerHTML = tocHTML;
 
@@ -110,52 +106,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             }
         });
 
-        function highlightCurrentToc() {
-            let currentId = null;
-            const viewportTop = 50;
-
-            for (let i = 0; i < headings.length; i++) {
-                const heading = headings[i];
-                const rect = heading.getBoundingClientRect();
-
-                const isTouchedTop = rect.top <= viewportTop;
-
-                let isLastTouched = true;
-                for (let j = i + 1; j < headings.length; j++) {
-                    const nextRect = headings[j].getBoundingClientRect();
-                    if (nextRect.top <= viewportTop) {
-                        isLastTouched = false;
-                        break;
-                    }
-                }
-
-                if (isTouchedTop && isLastTouched) {
-                    currentId = heading.id;
-                    break;
-                }
-            }
-
-            document.querySelectorAll('.toc-item.toc-active').forEach(item => {
-                item.classList.remove('toc-active');
-            });
-            const currentTocItem = document.querySelector(`.toc-item[data-id="${currentId}"]`);
-            if (currentTocItem) {
-                currentTocItem.classList.add('toc-active');
-
-                let parentItem = currentTocItem.closest('.toc-sublist')?.previousElementSibling;
-                while (parentItem && parentItem.classList.contains('toc-item')) {
-                    if (parentItem.classList.contains('has-children')) {
-                        parentItem.classList.remove('collapsed');
-                    }
-                    parentItem = parentItem.closest('.toc-sublist')?.previousElementSibling;
-                }
-            }
-        }
-
-        highlightCurrentToc();
-        window.addEventListener('scroll', highlightCurrentToc, { passive: true });
-        window.addEventListener('resize', highlightCurrentToc, { passive: true });
-
         let isTocVisible = DEFAULT_TOC_VISIBLE;
         tocContainer.classList.toggle('hidden', !isTocVisible);
 
@@ -179,13 +129,51 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         });
     }
 
-    document.addEventListener('DOMContentLoaded', initTOC);
+    function highlightToc() {
+        let currentId = null;
+        const viewportTop = 50;
 
-    <?php if ($this->options->pjaxStatus == 'yes'): ?>
-    if (window.jQuery && window.jQuery.pjax && typeof window.jQuery.pjax === 'function') {
-        $(document).on('pjax:success', function() {
-            initTOC();
+        const content = document.querySelector('.post-content');
+        const headings = Array.from(content.querySelectorAll('h1, h2, h3, h4, h5, h6'));
+        if (headings.length === 0) {
+            return;
+        }
+
+        for (let i = 0; i < headings.length; i++) {
+            const heading = headings[i];
+            const rect = heading.getBoundingClientRect();
+
+            const isTouchedTop = rect.top <= viewportTop;
+
+            let isLastTouched = true;
+            for (let j = i + 1; j < headings.length; j++) {
+                const nextRect = headings[j].getBoundingClientRect();
+                if (nextRect.top <= viewportTop) {
+                    isLastTouched = false;
+                    break;
+                }
+            }
+
+            if (isTouchedTop && isLastTouched) {
+                currentId = heading.id;
+                break;
+            }
+        }
+
+        document.querySelectorAll('.toc-item.toc-active').forEach(item => {
+            item.classList.remove('toc-active');
         });
+        const currentTocItem = document.querySelector(`.toc-item[data-id="${currentId}"]`);
+        if (currentTocItem) {
+            currentTocItem.classList.add('toc-active');
+
+            let parentItem = currentTocItem.closest('.toc-sublist')?.previousElementSibling;
+            while (parentItem && parentItem.classList.contains('toc-item')) {
+                if (parentItem.classList.contains('has-children')) {
+                    parentItem.classList.remove('collapsed');
+                }
+                parentItem = parentItem.closest('.toc-sublist')?.previousElementSibling;
+            }
+        }
     }
-    <?php endif; ?>
 </script>
