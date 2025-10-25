@@ -33,7 +33,6 @@ $this->need('header.php');
                 <li>阅读预计需要 <?php echo postReadingTime($this); ?> 分钟</li>
             <?php endif; ?>
         </ul>
-        <?php $this->options->tocStatus == 'yes' ? $this->need('toc.php') : ''; ?>
         <div class="post-content" style="margin-top: 2em;">
             <?php echo parseContent($this->content); ?>
         </div>

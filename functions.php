@@ -7,6 +7,8 @@
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
+error_reporting(0);
+
 /**
  * 主题配置项
  */
@@ -85,7 +87,7 @@ function themeConfig($form) {
             'light'     => '亮色模式',
             'dark'      => '深色模式',
         ],
-        null,
+        'auto',
         '默认外观',
         '指定未手动切换主题模式时全站的默认主题模式'
     );

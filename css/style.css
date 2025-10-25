@@ -327,7 +327,7 @@ button:hover {
 .post-content h3 {
     font-size: 1em;
     margin-block-start: 1em;
-    margin-block-end: 1em;
+    margin-block-end: 1em
 }
 
 .post-content h1:first-child,.post-content h2:first-child,.post-content h3:first-child {
@@ -414,112 +414,6 @@ button:hover {
     overflow-x: clip;
     text-overflow: ellipsis;
     margin: 10px 0
-}
-
-/* ------------------
- * TOC区样式
- * --------------- */
-.toc-panel {
-    pointer-events: none;
-    position: absolute;
-    right: 0;
-    top: 1px;
-    height: 100%
-}
-
-.toc-control {
-    pointer-events: auto;
-    position: sticky;
-    float: right;
-    top: 10px;
-    width: 40px;
-    height: 40px;
-    color: var(--text-color);
-    background-color: var(--secondary-light-color);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer
-}
-
-.toc-control-icon {
-    width: 16px;
-    height: 16px
-}
-
-.toc.hidden {
-    display: none
-}
-
-.toc {
-    pointer-events: auto;
-    position: sticky;
-    float: right;
-    top: 10px;
-    margin-right: 10px;
-    width: 200px;
-    max-width: calc(100vw - 100px);
-    max-height: calc(100vh - 100px);
-    overflow-y: auto;
-    padding: 9px 15px;
-    background-color: var(--bg-color);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1)
-}
-
-[theme-mode="dark"] .toc {
-    background-color: var(--secondary-light-color)
-}
-
-.toc-list, .toc-sublist {
-    margin: 0;
-    padding: 0;
-    list-style: none
-}
-
-.toc-sublist {
-    padding-left: 18px;
-    display: block
-}
-
-.toc-item {
-    margin: 6px 0;
-    padding: 4px 6px;
-    font-size: 14px;
-    color: var(--text-color);
-    cursor: pointer;
-    white-space: nowrap;
-    max-width: 100%;
-    overflow-x: clip;
-    text-overflow: ellipsis
-}
-
-.toc-toggle {
-    margin-right: 8px;
-    font-size: 12px
-}
-
-.toc-toggle svg {
-    transition: transform 0.3s ease;
-    transform: rotate(0deg)
-}
-
-.toc-item:not(.collapsed) .toc-toggle svg {
-    transform: rotate(90deg)
-}
-
-.toc-item.toc-active {
-    color: var(--primary-color);
-    font-weight: 600;
-    background: #E8F3FF
-}
-
-.toc-item.collapsed + .toc-sublist {
-    display: none
-}
-
-.toc-item:not(.has-children) {
-    padding-left: 20px
 }
 
 /* ------------------
@@ -705,6 +599,170 @@ button:hover {
     text-align: center;
     color: var(--secondary-color);
     border-top: 1px solid var(--secondary-light-color)
+}
+
+/* ------------------
+ * 悬浮工具区样式
+ * --------------- */
+.minitool-group {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 12px
+}
+
+.minitool-group .vertical-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    outline: none;
+    color: var(--text-color);
+    background-color: var(--secondary-light-color)
+}
+
+.minitool-group .toc-minitool {
+    display: none
+}
+
+.minitool-group .top-minitool {
+    opacity: 0;
+    transition: all 300ms ease-in-out
+}
+
+.minitool-group .themeMode-minitool .bi-sun {
+    display: block
+}
+
+.minitool-group .themeMode-minitool .bi-moon-stars {
+    display: none
+}
+
+[theme-mode="dark"] .minitool-group .themeMode-minitool .bi-sun {
+    display: none
+}
+
+[theme-mode="dark"] .minitool-group .themeMode-minitool .bi-moon-stars {
+    display: block
+}
+
+/* ------------------
+ * TOC区样式
+ * --------------- */
+.toc-panel {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 256px;
+    background-color: var(--secondary-lighter-color);
+    box-shadow: -4px 0 6px -1px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: transform 300ms ease-in-out;
+    z-index: 40;
+    padding: 24px;
+    overflow-y: auto
+}
+
+.toc-panel .toc-header {
+    margin-bottom: 24px
+}
+
+.toc-panel.active {
+    transform: translateX(0)
+}
+
+.toc-panel h3 {
+    margin: 0
+}
+
+.toc-panel .toc-close {
+    position: absolute;
+    padding: 0;
+    top: 24px;
+    right: 24px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer
+}
+
+.toc-panel .toc-list:not(:has(.has-children)) .toc-item {
+    padding-left: 0
+}
+
+.toc-panel .toc-list,.toc-sublist {
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+.toc-panel .toc-sublist {
+    padding-left: 18px;
+    display: block
+}
+
+.toc-panel .toc-item {
+    margin: 6px 0;
+    padding: 4px 0;
+    font-size: 14px;
+    color: var(--text-color);
+    cursor: pointer;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow-x: clip;
+    text-overflow: ellipsis
+}
+
+.toc-panel .toc-toggle {
+    margin-right: 8px;
+    font-size: 12px
+}
+
+.toc-panel .toc-toggle svg {
+    transition: transform 0.3s ease;
+    transform: rotate(0deg)
+}
+
+.toc-panel .toc-item:not(.collapsed) .toc-toggle svg {
+    transform: rotate(90deg)
+}
+
+.toc-panel .toc-item.toc-active {
+    color: var(--primary-color);
+    font-weight: 600;
+    background: #E8F3FF
+}
+
+.toc-panel .toc-item.collapsed + .toc-sublist {
+    display: none
+}
+
+.toc-panel .toc-item:not(.has-children) {
+    margin-left: 20px
+}
+
+.toc-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 30;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 300ms ease-in-out
+}
+
+.toc-overlay.active {
+    opacity: 1;
+    pointer-events: auto
 }
 
 /* ------------------
