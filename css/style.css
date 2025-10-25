@@ -666,7 +666,7 @@ button:hover {
     background-color: var(--secondary-lighter-color);
     box-shadow: -4px 0 6px -1px rgba(0, 0, 0, 0.1);
     transform: translateX(100%);
-    transition: transform 300ms ease-in-out;
+    transition: transform 400ms ease-in-out;
     z-index: 40;
     padding: 24px;
     overflow-y: auto
@@ -696,7 +696,7 @@ button:hover {
 }
 
 .toc-panel .toc-list:not(:has(.has-children)) .toc-item {
-    padding-left: 0
+    margin-left: 0
 }
 
 .toc-panel .toc-list,.toc-sublist {
@@ -712,7 +712,7 @@ button:hover {
 
 .toc-panel .toc-item {
     margin: 6px 0;
-    padding: 4px 0;
+    padding: 4px 8px;
     font-size: 14px;
     color: var(--text-color);
     cursor: pointer;

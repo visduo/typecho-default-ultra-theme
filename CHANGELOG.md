@@ -1,6 +1,10 @@
 ### v2.1（2025.10.25）
 
-1. 计划：优化 TOC pjax 适配问题（@visduo）
+1. 新增返回顶部按钮（@visduo）
+2. 新增切换主题模式按钮（@visduo）
+3. 优化 TOC pjax 适配问题（@visduo）
+4. 优化调整 TOC 按钮的位置（@visduo）
+5. 使用 jQuery 改造原生 JavaScript 代码（@visduo）
 
 ### v2.0（2025.10.24）
 
