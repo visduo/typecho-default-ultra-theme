@@ -351,6 +351,10 @@ button:hover {
     margin-left: 16px
 }
 
+.post-content li {
+    margin-top: 0.4em
+}
+
 .post-content img {
     box-sizing: border-box;
     border: 1px dashed var(--secondary-light-color);
