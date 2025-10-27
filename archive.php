@@ -44,7 +44,7 @@ $this->need('header.php');
                         <li>阅读预计需要 <?php echo postReadingTime($this); ?> 分钟</li>
                     <?php endif; ?>
                 </ul>
-                <div class="post-content post-excerpt">
+                <div class="post-summary">
                     <?php $this->excerpt(500, ''); ?>
                 </div>
             </article>

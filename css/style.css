@@ -299,13 +299,16 @@ button:hover {
     display: none
 }
 
-.post-excerpt {
+.post-summary {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
-    overflow: hidden;
+    overflow: clip;
     text-overflow: ellipsis;
-    width: 100%
+    width: 100%;
+    line-height: 1.8;
+    word-wrap: break-word;
+    word-break: break-all
 }
 
 .post-content {
@@ -314,45 +317,56 @@ button:hover {
     word-break: break-all
 }
 
+.post-content * {
+    margin: 0
+}
+
 .post-content h1 {
     font-size: 1.3em;
-    margin-top: 3em
+    padding-top: 2em;
+    padding-bottom: 1.2em
 }
 
 .post-content h2 {
     font-size: 1.2em;
-    margin-top: 2em
+    padding-top: 1em;
+    padding-bottom: 1em
 }
 
 .post-content h3 {
     font-size: 1em;
-    margin-block-start: 1em;
-    margin-block-end: 1em
+    padding-bottom: 0.6em
 }
 
 .post-content h1:first-child,.post-content h2:first-child,.post-content h3:first-child {
-    margin-top: 0
+    padding-top: 0
 }
 
 .post-content h1 + h2 {
-    margin-top: 1.5em
+    padding-top: 0
 }
 
-.post-content p:has(+ ul),.post-content p:has(+ ol) {
-    margin-bottom: 0
-}
-
-.post-content p + ul,.post-content p + ol {
-    margin-top: 0
+.post-content p {
+    padding-bottom: 0.6em
 }
 
 .post-content ul,ol {
-    padding-left: 0;
-    margin-left: 1em
+    padding-left: 0em;
+    padding-bottom: 0.6em;
+    margin-left: 1em !important
 }
 
-.post-content li {
-    margin-top: 0.4em
+.post-content p:has(+ ul),.post-content p:has(+ ol) {
+    padding-bottom: 0
+}
+
+.post-content p:has(img) {
+    padding-bottom: 1em;
+    margin-top: -0.2em
+}
+
+.post-content p a[data-fancybox="gallery"] {
+    display: flex
 }
 
 .post-content img {
@@ -360,35 +374,16 @@ button:hover {
     border: 1px dashed var(--secondary-light-color);
     padding: 4px;
     max-width: 100%;
-    margin-top: -0.5em;
-    margin-bottom: 0.5em;
-    vertical-align: bottom
 }
 
-.post-content hr {
-    border-top: none;
-    border-bottom: 1px dashed var(--secondary-light-color);
-    margin: 1.5em 0
-}
-
-.post-content p:has(+ table) {
-    margin-bottom: 0.5em
+.post-content blockquote {
+    margin-bottom: 1em;
+    margin-top: -0.2em
 }
 
 .post-content table {
-    margin-bottom: 1.5em
-}
-
-.post-content p:has(+ pre) {
-    margin-bottom: -0.5em
-}
-
-.post-content pre {
-    margin-bottom: 1.5em
-}
-
-.post-content pre:has(+ hr) {
-    margin-bottom: 2em
+    margin-bottom: 1em;
+    margin-top: -0.2em
 }
 
 .post-content .protected button,input[type=submit] {
@@ -402,6 +397,18 @@ button:hover {
 
 .post-content .protected button:hover,input[type=submit]:hover {
     background-color: var(--secondary-light-color)
+}
+
+.post-content hr {
+    border-top: none;
+    border-bottom: 1px dashed var(--secondary-light-color);
+    margin-top: 0.4em;
+    margin-bottom: 1em
+}
+
+.post-content pre {
+    margin-bottom: 1em;
+    margin-top: -0.2em
 }
 
 .post-near {

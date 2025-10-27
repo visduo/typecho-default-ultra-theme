@@ -151,7 +151,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             const $tocMinitool = $('.toc-minitool');
             const $tocPanel = $('.toc-panel');
             const $tocContainer = $('.toc-container');
-            const $postContent = $('.post-content:not(.post-excerpt)');
+            const $postContent = $('.post-content');
 
             $tocContainer.html('');
 
@@ -265,7 +265,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             let currentId = null;
             const viewportTop = 50; // 视口顶部偏移量
 
-            const $postContent = $('.post-content:not(.post-excerpt)');
+            const $postContent = $('.post-content');
             const $headings = $postContent.find('h1, h2, h3, h4, h5, h6');
             if ($headings.length === 0) {
                 return;
@@ -354,7 +354,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         $(window).off('resize', highlightToc);
 
         // 当元素存在时，绑定事件
-        if ($('.toc-minitool').length && $('.post-content:not(.post-excerpt)').length) {
+        if ($('.toc-minitool').length && $('.post-content').length) {
             $(window).on('scroll', { passive: true }, highlightToc);
             $(window).on('resize', { passive: true }, highlightToc);
         }
