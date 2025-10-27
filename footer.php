@@ -151,6 +151,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             const $tocMinitool = $('.toc-minitool');
             const $tocPanel = $('.toc-panel');
             const $tocContainer = $('.toc-container');
+            const $tocOverlay = $('.toc-overlay');
             const $postContent = $('.post-content');
 
             $tocContainer.html('');
@@ -158,6 +159,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             // 文章内容不存在
             if ($postContent.length === 0) {
                 $tocMinitool.hide();
+                $tocPanel.removeClass('active');
+                $tocOverlay.removeClass('active');
                 return;
             }
 
@@ -166,6 +169,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             // 若无标题则隐藏目录工具
             if ($headings.length === 0) {
                 $tocMinitool.hide();
+                $tocPanel.removeClass('active');
+                $tocOverlay.removeClass('active');
                 return;
             } else {
                 $tocMinitool.show();
@@ -434,6 +439,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
     $(function() {
         // 页面加载完成（直接访问），触发PJAX完成事件
+        $(document).trigger('pjax:complete');
+    });
+
+    $(window).on('popstate', function() {
+        // 历史记录状态发生变化时（前进后退），触发PJAX完成事件
         $(document).trigger('pjax:complete');
     });
 
