@@ -113,7 +113,7 @@ textarea {
     resize: vertical
 }
 
-button {
+button,input[type=submit] {
     padding: 9px 11px 9px 11px;
     border: none;
     color: var(--text-color);
@@ -121,7 +121,7 @@ button {
     cursor: pointer
 }
 
-button:hover {
+button:hover,input[type=submit]:hover {
     background-color: var(--secondary-light-color)
 }
 
@@ -350,8 +350,8 @@ button:hover {
     padding-bottom: 0.6em
 }
 
-.post-content ul,ol {
-    padding-left: 0em;
+.post-content ul,.post-content ol {
+    padding-left: 0;
     padding-bottom: 0.6em;
     margin-left: 1em !important
 }
@@ -386,17 +386,8 @@ button:hover {
     margin-top: -0.2em
 }
 
-.post-content .protected button,input[type=submit] {
-    margin-top: 1em;
-    padding: 9px 11px 9px 11px;
-    border: none;
-    color: var(--text-color);
-    background-color: var(--secondary-light-color);
-    cursor: pointer
-}
-
-.post-content .protected button:hover,input[type=submit]:hover {
-    background-color: var(--secondary-light-color)
+.post-content .protected input[type=submit] {
+    margin-top: 1em
 }
 
 .post-content hr {
