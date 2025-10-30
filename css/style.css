@@ -373,7 +373,7 @@ button:hover,input[type=submit]:hover {
     box-sizing: border-box;
     border: 1px dashed var(--secondary-light-color);
     padding: 4px;
-    max-width: 100%;
+    max-width: 100%
 }
 
 .post-content blockquote {
@@ -494,6 +494,11 @@ button:hover,input[type=submit]:hover {
 .respond .cancel-comment-reply {
     float: right;
     margin-top: 15px
+}
+
+.comment-list li p {
+    line-height: 1.8;
+    margin-bottom: 0
 }
 
 #comment-form label {
