@@ -676,6 +676,7 @@ button:hover,input[type=submit]:hover {
     transition: transform 400ms ease-in-out;
     z-index: 40;
     padding: 24px;
+    box-sizing: border-box;
     overflow-y: auto
 }
 
