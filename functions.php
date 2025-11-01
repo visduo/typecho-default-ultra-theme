@@ -199,7 +199,7 @@ function themeConfig($form) {
         ],
         'no',
         '是否启用图片灯箱',
-        '开启后，文章内的图片仅在用户即将浏览到时才加载，非一次性全部加载'
+            '开启后，点击文章内的图片，即可让图片展开放大'
     );
     
     $postWordCountVisibleStatus = new Typecho_Widget_Helper_Form_Element_Radio(
