@@ -51,7 +51,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 <?php endif; ?>
 <footer id="footer">
     <?php $this->options->footerText(); ?><br>
-    Theme by <a href="https://www.duozai.cn/" target="_blank" style="color: #999">多仔</a>
+    Theme by <a href="https://www.duozai.cn/" target="_blank" style="color: #999">duozai</a>
 </footer>
 <?php $this->options->analyticsCode(); ?>
 <script src="//static-lab.6os.net/jquery/3.6.0/jquery.min.js"></script>
