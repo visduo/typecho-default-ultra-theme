@@ -481,5 +481,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         });
     </script>
 <?php endif; ?>
+<?php $this->footer(); ?>
 </body>
 </html>
