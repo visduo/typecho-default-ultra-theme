@@ -366,7 +366,8 @@ button:hover,input[type=submit]:hover {
 }
 
 .post-content p a[data-fancybox="gallery"] {
-    display: flex
+    display: flex;
+    width: fit-content
 }
 
 .post-content img {
