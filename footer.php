@@ -448,8 +448,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     });
 
     $(document).on('pjax:error', function(e) {
-        // PJAX错误，直接跳转
-        window.location.href = e.triggerElement.href;
+        // PJAX错误，刷新页面
+        window.location.reload();
     });
     <?php else: ?>
     // 非PJAX，直接初始化main容器
