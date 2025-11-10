@@ -25,6 +25,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                 <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278M4.858 1.311A7.27 7.27 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.32 7.32 0 0 0 5.205-2.162q-.506.063-1.029.063c-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286"/>
                 <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.73 1.73 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.73 1.73 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.73 1.73 0 0 0 1.097-1.097zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"/>
             </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783"/>
+            </svg>
         </button>
     <?php endif; ?>
     <?php if ($this->options->topMinitoolStatus == 'yes'): ?>
@@ -51,7 +54,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 <?php endif; ?>
 <footer id="footer">
     <?php $this->options->footerText(); ?><br>
-    Theme by <a href="https://www.duozai.cn/" target="_blank" style="color: #999">duozai</a>
+    Theme by <a href="https://www.duozai.cn/" target="_blank" style="color: var(--secondary-color);">duozai</a>
 </footer>
 <?php $this->options->analyticsCode(); ?>
 <script src="//static-lab.6os.net/jquery/3.6.0/jquery.min.js"></script>
@@ -111,7 +114,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     }
 
     // 切换主题模式
-    $themeModeSelect.change(function(e) {
+    $themeModeSelect.change(function (e) {
         const selectedThemeMode = e.target.value;
         localStorage.setItem('theme-mode', selectedThemeMode);
 
@@ -132,10 +135,13 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     // 主题模式切换
     $('.themeMode-minitool').click(function () {
         const bodyThemeMode = $body.attr('theme-mode');
-        if (bodyThemeMode === 'dark') {
-            $themeModeSelect.val('light').trigger('change');
-        } else {
+        // 亮色、暗色、护眼三种主题轮换
+        if (bodyThemeMode === 'light') {
             $themeModeSelect.val('dark').trigger('change');
+        } else if (bodyThemeMode === 'dark') {
+            $themeModeSelect.val('read').trigger('change');
+        } else {
+            $themeModeSelect.val('light').trigger('change');
         }
     })
     <?php endif; ?>
@@ -177,7 +183,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             }
 
             // 处理标题级别
-            const originalLevels = $headings.map(function() {
+            const originalLevels = $headings.map(function () {
                 return parseInt($(this).prop('tagName').replace('H', ''));
             }).get();
             const minLevel = Math.min(...originalLevels);
@@ -189,7 +195,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             const headingHasChildren = new Array($headings.length).fill(false);
 
             // 标记有子级的标题
-            $headings.each(function(index) {
+            $headings.each(function (index) {
                 if (index < $headings.length - 1) {
                     const currentLevel = parseInt($(this).prop('tagName').replace('H', '')) - levelOffset;
                     const nextLevel = parseInt($headings.eq(index + 1).prop('tagName').replace('H', '')) - levelOffset;
@@ -200,7 +206,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             });
 
             // 遍历标题生成目录项
-            $headings.each(function(index) {
+            $headings.each(function (index) {
                 const headingId = `heading-${index}`;
                 $(this).attr('id', headingId); // 给标题添加唯一ID用于锚点跳转
                 const currentLevel = parseInt($(this).prop('tagName').replace('H', '')) - levelOffset;
@@ -231,7 +237,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
             // 绑定目录点击事件
             $tocContainer.off('click');
-            $tocContainer.on('click', function(e) {
+            $tocContainer.on('click', function (e) {
                 const $tocItem = $(e.target).closest('.toc-item');
                 const $toggleIcon = $(e.target).closest('.toc-toggle');
 
@@ -255,12 +261,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             });
 
             // 设置TOC初始可见状态
-            if(DEFAULT_TOC_VISIBLE) {
+            if (DEFAULT_TOC_VISIBLE) {
                 $tocMinitool.click();
             }
 
             // 阻止事件冒泡
-            $tocContainer.on('click', function(e) {
+            $tocContainer.on('click', function (e) {
                 e.stopPropagation();
             });
         }
@@ -364,18 +370,23 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             $(window).on('resize', { passive: true }, highlightToc);
         }
         <?php endif; ?>
+
+        // 初始化时间轴
+        if ($('.timeline').length && typeof initTimeline === 'function') {
+            initTimeline();
+        }
     }
 
     <?php if ($this->options->pjaxStatus == 'yes'): ?>
     // PJAX实现
-    $(document).pjax('a[href^="<?php $this->options->siteUrl() ?>"]:not(a[target="_blank"], a[no-pjax])', {
+    $(document).pjax('a[href^="<?php $this->options->siteUrl(); ?>"]:not(a[target="_blank"], a[no-pjax])', {
         container: '#main',
         fragment: '#main',
         timeout: 7000
-    }).on('pjax:send', function() {
+    }).on('pjax:send', function () {
         // 显示进度条
         NProgress.start();
-    }).on('submit', 'form[id=search]', function(event) {
+    }).on('submit', 'form[id=search]', function (event) {
         // 搜索表单提交，替换为PJAX跳转到搜索结果页
         event.preventDefault();
         const searchKeywords = $('#search #s');
@@ -385,14 +396,14 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             fragment: '#main'
         });
         searchKeywords.val('');
-    }).on('submit', 'form[id=comment-form]', function(event) {
+    }).on('submit', 'form[id=comment-form]', function (event) {
         // 评论表单提交，替换为PJAX提交
         event.preventDefault();
         $.pjax.submit(event, {
             container: '#main',
             fragment: '#main'
         });
-    }).on('pjax:beforeReplace', function(event) {
+    }).on('pjax:beforeReplace', function (event) {
         if (event.state.url.endsWith('/comment')) {
             // 评论提交后，替换为PJAX跳转到评论页
             $.pjax({
@@ -401,14 +412,14 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                 fragment: '#main'
             });
         }
-    }).on('submit', 'form[class=protected]', function(event) {
+    }).on('submit', 'form[class=protected]', function (event) {
         // 加密文章密码表单提交，替换为PJAX提交
         event.preventDefault();
         $.pjax.submit(event, {
             container: '#main',
             fragment: '#main'
         });
-    }).on('pjax:complete', function(event, data, status, xhr, options) {
+    }).on('pjax:complete', function (event, data, status, xhr, options) {
         if (event.relatedTarget) {
             if (event.relatedTarget.tagName === 'FORM' && event.relatedTarget.id === 'comment-form') {
                 // 如果PJAX来源是评论表单，则显示提示信息
@@ -432,24 +443,19 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
         // PJAX完成，初始化main容器
         initMain();
-    }).on('pjax:end', function() {
+    }).on('pjax:end', function () {
         // 隐藏进度条
         NProgress.done();
     });
 
-    $(function() {
+    $(function () {
         // 页面加载完成（直接访问），触发PJAX完成事件
         $(document).trigger('pjax:complete');
     });
 
-    $(window).on('popstate', function() {
+    $(window).on('popstate', function () {
         // 历史记录状态发生变化时（前进后退），触发PJAX完成事件
         $(document).trigger('pjax:complete');
-    });
-
-    $(document).on('pjax:error', function(e) {
-        // PJAX错误，刷新页面
-        window.location.reload();
     });
     <?php else: ?>
     // 非PJAX，直接初始化main容器
@@ -467,7 +473,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             });
         });
 
-        $(window).on('scroll', function() {
+        $(window).on('scroll', function () {
             // 判断滚动距离是否超过300px
             if ($(window).scrollTop() > 300) {
                 $('.top-minitool').css('opacity', '1');
@@ -476,7 +482,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             }
         });
 
-        $(window).on('load', function() {
+        $(window).on('load', function () {
             $(window).trigger('scroll');
         });
     </script>

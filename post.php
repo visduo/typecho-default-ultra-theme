@@ -10,7 +10,7 @@ $this->need('header.php');
 ?>
 <div class="col-sm-12 <?php if ($this->options->sidebarStatus == 'yes'): ?>col-md-8<?php endif; ?>" id="main">
     <article class="post">
-        <h1 class="post-title"><?php $this->title() ?></h1>
+        <h1 class="post-title"><?php $this->title(); ?></h1>
         <ul class="post-meta">
             <li><?php $this->date(); ?></li>
             <li class="post-meta-separator">/</li>
@@ -23,7 +23,7 @@ $this->need('header.php');
             <li class="post-meta-separator">/</li>
             <li style="<?php if ($this->options->postViewVisibleStatus != 'yes'): ?>display: none;<?php endif; ?>"><?php echo postView($this); ?> 阅读</li>
             <li class="post-meta-separator" style="<?php if ($this->options->postViewVisibleStatus != 'yes'): ?>display: none;<?php endif; ?>">/</li>
-            <li><a href="<?php $this->permalink() ?>#comments"><?php $this->commentsNum('暂无评论', '%d 条评论'); ?></a></li>
+            <li><a href="<?php $this->permalink(); ?>#comments"><?php $this->commentsNum('暂无评论', '%d 条评论'); ?></a></li>
             <li class="post-meta-separator">/</li>
             <?php if ($this->options->postWordCountVisibleStatus == 'yes'): ?>
                 <li>全文约 <?php echo postWordCount($this); ?> 字</li>

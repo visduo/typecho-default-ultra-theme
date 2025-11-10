@@ -18,9 +18,10 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                 'tag'      => '合集 %s 下的文章',
                 'author'   => '%s 发布的文章'
         ], '', ' - '); ?><?php $this->options->title(); ?></title>
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/normalize.min.css') ?>?v=<?php echo version(); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/normalize.min.css'); ?>?v=<?php echo version(); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('css/grid.min.css'); ?>?v=<?php echo version(); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('css/style.min.css'); ?>?v=<?php echo version(); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/custom.css'); ?>?v=<?php echo version(); ?>">
     <?php if ($this->options->faviconUrl):  ?>
         <link rel="shortcut icon" href="<?php $this->options->faviconUrl(); ?>" type="image/x-icon" />
     <?php else: ?>
@@ -53,6 +54,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                         <option value="auto">跟随系统</option>
                         <option value="light">亮色模式</option>
                         <option value="dark">深色模式</option>
+                        <option value="read">护眼模式</option>
                     </select>
                 </div>
             </div>

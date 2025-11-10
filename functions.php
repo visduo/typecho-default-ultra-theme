@@ -93,6 +93,7 @@ function themeConfig($form) {
             'auto'      => '跟随系统',
             'light'     => '亮色模式',
             'dark'      => '深色模式',
+            'read'      => '护眼模式',
         ],
         'auto',
         '默认外观',

@@ -15,7 +15,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                 <?php $comments->cancelReply(); ?>
             </div>
             <h3 id="response">添加新评论</h3>
-            <form method="post" action="<?php $this->commentUrl() ?>" id="comment-form">
+            <form method="post" action="<?php $this->commentUrl(); ?>" id="comment-form">
                 <?php if ($this->user->hasLogin()): ?>
                     <p>登录身份: <a href="<?php $this->options->profileUrl(); ?>"><?php $this->user->screenName(); ?></a></p>
                 <?php else: ?>
