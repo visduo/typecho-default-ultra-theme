@@ -811,7 +811,6 @@ button:hover,input[type=submit]:hover {
     tap-highlight-color: transparent;
     -webkit-tap-highlight-color: transparent;
     cursor: pointer;
-    font-weight: bold;
     padding-bottom: .6em
 }
 
@@ -819,7 +818,6 @@ button:hover,input[type=submit]:hover {
     tap-highlight-color: transparent;
     -webkit-tap-highlight-color: transparent;
     cursor: pointer;
-    font-weight: bold;
     padding-bottom: .6em;
     padding-left: 1em
 }
