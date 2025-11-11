@@ -21,7 +21,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     <link rel="stylesheet" href="<?php $this->options->themeUrl('css/normalize.min.css'); ?>?v=<?php echo version(); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('css/grid.min.css'); ?>?v=<?php echo version(); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('css/style.min.css'); ?>?v=<?php echo version(); ?>">
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/custom.css'); ?>?v=<?php echo version(); ?>">
     <?php if ($this->options->faviconUrl):  ?>
         <link rel="shortcut icon" href="<?php $this->options->faviconUrl(); ?>" type="image/x-icon" />
     <?php else: ?>
