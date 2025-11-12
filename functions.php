@@ -260,6 +260,17 @@ function themeConfig($form) {
         '文章发布后，会在设定的最小与最大值之间，为文章随机分配一个阅读数'
     );
     
+    $elinkTargetBlankStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'elinkTargetBlankStatus',
+        [
+            'yes'   => '是',
+            'no'    => '否'
+        ],
+        'no',
+        '文章外链新窗口打开',
+        '开启后，文章中的所有外链将自动在新窗口打开'
+    );
+    
     $commentSettings = new Typecho_Widget_Helper_Form_Element_Checkbox(
         'commentSettings',
         null,
@@ -374,6 +385,7 @@ function themeConfig($form) {
     $form->addInput($postViewVisibleStatus);
     $form->addInput($randMinPostView);
     $form->addInput($randMaxPostView);
+    $form->addInput($elinkTargetBlankStatus);
     $form->addInput($hr);
     
     $form->addInput($commentSettings);

@@ -344,6 +344,28 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         $('.toc-overlay').click(toggleToc);
     </script>
 <?php endif; ?>
+<?php if ($this->options->elinkTargetBlankStatus == 'yes'): ?>
+    <!-- 外链处理 -->
+    <script>
+        function initElink() {
+            $('.post-content a').each(function () {
+                // 排除内链
+                if (this.href.includes('<?php $this->options->siteUrl(); ?>')) {
+                    return;
+                }
+
+                // 排除灯箱
+                if ($(this).attr('data-fancybox')) {
+                    return;
+                }
+
+                // 添加target属性
+                $(this).attr('target', '_blank');
+                $(this).attr('rel', 'external nofollow');
+            })
+        }
+    </script>
+<?php endif; ?>
 <!-- 初始化 -->
 <script>
     // 初始化main容器
@@ -380,6 +402,10 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         if ($('.aisummary').length && typeof initAISummary === 'function') {
             initAISummary();
         }
+
+        <?php if ($this->options->elinkTargetBlankStatus == 'yes'): ?>
+        initElink();
+        <?php endif; ?>
     }
 
     <?php if ($this->options->pjaxStatus == 'yes'): ?>

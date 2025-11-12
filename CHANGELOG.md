@@ -2,9 +2,10 @@
 
 1. 新增阅读模式（@visduo）
 2. 新增时间轴页面（@visduo）
-3. 优化文章内容样式（@visduo）
-4. 优化暗黑模式配色（@visduo）
-5. 适配 AI 摘要插件 AISummary（@visduo）
+3. 新增文章外链处理（@visduo）
+4. 优化文章内容样式（@visduo）
+5. 优化暗黑模式配色（@visduo）
+6. 适配 AI 摘要插件 AISummary（@visduo）
 
 ### v2.4（2025.11.04）
 
