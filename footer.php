@@ -375,6 +375,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         if ($('.timeline').length && typeof initTimeline === 'function') {
             initTimeline();
         }
+
+        // 初始化AISummary（适配）
+        if ($('.aisummary').length && typeof initAISummary === 'function') {
+            initAISummary();
+        }
     }
 
     <?php if ($this->options->pjaxStatus == 'yes'): ?>
