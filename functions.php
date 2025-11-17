@@ -579,7 +579,7 @@ function postViewTotalCount() {
 class Widget_Post_rand extends Widget_Abstract_Contents {
     public function __construct($request, $response, $params = NULL) {
         parent::__construct($request, $response, $params);
-        $this->parameter->setDefault(array('limit' => $this->options->commentsListSize, 'parentId' => 0, 'ignoreAuthor' => false));
+        $this->parameter->setDefault(array('limit' => $this->options->postsListSize, 'parentId' => 0, 'ignoreAuthor' => false));
     }
     
     public function execute() {

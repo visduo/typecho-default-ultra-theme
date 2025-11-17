@@ -28,9 +28,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         </section>
     <?php endif; ?>
     <?php if (!empty($this->options->sidebarBlock) && in_array('ShowRandPosts', $this->options->sidebarBlock)): ?>
-        <?php $this->widget('Widget_Post_rand@rand', 'limit=7')->to($rand); ?>
+        <?php $this->widget('Widget_Post_rand@rand')->to($rand); ?>
         <section class="widget">
-            <h3 class="widget-title">随机推荐</h3>
+            <h3 class="widget-title">随机推荐<?php echo $this->options->postsListSize ?></h3>
             <ul class="widget-list">
                 <?php while ($rand->next()): ?>
                     <li><a href="<?php $rand->permalink(); ?>"><?php $rand->title(); ?></a></li>
@@ -38,7 +38,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             </ul>
         </section>
     <?php endif; ?>
-    <?php if (!empty($this->options->sidebarBlock) && in_array('ShowRandPosts', $this->options->sidebarBlock)): ?>
+    <?php if (!empty($this->options->sidebarBlock) && in_array('ShowRecentPosts', $this->options->sidebarBlock)): ?>
         <section class="widget">
             <h3 class="widget-title">近期文章</h3>
             <ul class="widget-list">
