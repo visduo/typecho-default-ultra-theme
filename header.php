@@ -33,6 +33,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             }
         </style>
     <?php endif; ?>
+    <!-- Katex科学公式渲染 引入CSS (来自官方文档) Start -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css" integrity="sha384-WcoG4HRXMzYzfCgiyfrySxx90XSl2rxY5mnVY5TwtWE6KLrArNKn0T/mOgNL0Mmi" crossorigin="anonymous">
+    <!-- Katex科学公式渲染 引入CSS (来自官方文档) End -->
     <?php $this->header(); ?>
 </head>
 <body theme-mode="">
