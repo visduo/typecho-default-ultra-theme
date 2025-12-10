@@ -58,12 +58,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 </footer>
 <?php $this->options->analyticsCode(); ?>
 <script src="//static-lab.6os.net/jquery/3.6.0/jquery.min.js"></script>
-
-<!-- KaTeX 数学公式渲染 js库 (来自官方文档) Start -->
-<script src="//cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.js" integrity="sha384-J+9dG2KMoiR9hqcFao0IBLwxt6zpcyN68IgwzsCSkbreXUjmNVRhPFTssqdSGjwQ" crossorigin="anonymous"></script>
-<script src="//cdn.jsdelivr.net/npm/katex@0.16.25/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
-<!-- KaTeX 数学公式渲染 js库 (来自官方文档) End -->
-
+<script src="//cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/katex@0.16.25/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
 <script src="//static-lab.6os.net/highlight/11.11.1/highlight.min.js"></script>
 <link id="highlightThemeCss" rel="stylesheet" href="">
 <?php if ($this->options->pjaxStatus == 'yes'): ?>
@@ -378,8 +374,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     function initMain() {
         // 代码高亮
         hljs.highlightAll();
-        
-        // 渲染LaTeX/KaTeX数学公式 Start
+
+        // 渲染LaTeX/KaTeX数学公式
         if (typeof renderMathInElement === 'function') {
             $('.post-content').each(function() {
                 renderMathInElement(this, {
@@ -390,7 +386,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                             right: '$$',
                             display: true
                         },
-
                         // 行内：$ ... $
                         {
                             left: '$',
@@ -400,14 +395,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                             allowedPrecedes: '(?:^|[^\w\$])', // 前不能是单词字符或 $
                             allowedFollows: '(?:^|[^\w\$])' // 后不能是单词字符或 $
                         },
-
                         // LaTeX 标准行内：\( ... \)
                         {
                             left: '\\(',
                             right: '\\)',
                             display: false
                         },
-
                         // LaTeX 标准块级：\[ ... \]（
                         {
                             left: '\\[',
@@ -420,8 +413,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                 });
             });
         }
-        // 渲染LaTeX/KaTeX数学公式 End
-        
+
         <?php if ($this->options->imageLazyloadStatus == 'yes'): ?>
         // 图片懒加载
         $('img.lazyload').lazyload();
