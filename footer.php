@@ -100,19 +100,26 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         $highlightThemeCss.attr('href', themeMode === 'dark' ? highlightDarkThemeCss : highlightLightThemeCss);
     }
 
+    // 设置主题模式
+    function setBodyThemeMode(themeMode) {
+        $body.attr('theme-mode', themeMode);
+        $highlightThemeCss.attr('href', themeMode === 'dark' ? highlightDarkThemeCss : highlightLightThemeCss);
+    }
+    
     // 初始化主题模式
     function initThemeMode() {
         const savedThemeMode = localStorage.getItem('theme-mode') || '<?php echo $this->options->defaultThemeMode ?>';
         $themeModeSelect.val(savedThemeMode);
-
+        // 确定最终应用的主题模式
+        let finalMode;
         if (savedThemeMode === 'auto') {
             isAutoThemeMode = true;
-            const initialThemeMode = systemThemeModeMedia.matches ? 'dark' : 'light';
-            setBodyThemeMode(initialThemeMode);
+            finalMode = systemThemeModeMedia.matches ? 'dark' : 'light';
         } else {
             isAutoThemeMode = false;
-            setBodyThemeMode(savedThemeMode);
+            finalMode = savedThemeMode;
         }
+        setBodyThemeMode(finalMode);
     }
 
     // 切换主题模式
