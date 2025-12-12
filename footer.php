@@ -99,12 +99,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         $body.attr('theme-mode', themeMode);
         $highlightThemeCss.attr('href', themeMode === 'dark' ? highlightDarkThemeCss : highlightLightThemeCss);
     }
-
-    // 设置主题模式
-    function setBodyThemeMode(themeMode) {
-        $body.attr('theme-mode', themeMode);
-        $highlightThemeCss.attr('href', themeMode === 'dark' ? highlightDarkThemeCss : highlightLightThemeCss);
-    }
     
     // 初始化主题模式
     function initThemeMode() {
