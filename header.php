@@ -37,6 +37,25 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     <?php $this->header(); ?>
 </head>
 <body theme-mode="">
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('theme-mode');
+                var defaultMode = '<?php echo $this->options->defaultThemeMode ?>';
+                var mode = saved || defaultMode;
+                if (mode === 'auto') {
+                    var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    mode = isDark ? 'dark' : 'light';
+                }
+                if (mode === 'light' || mode === 'dark' || mode === 'read') {
+                    document.body.setAttribute('theme-mode', mode);
+                }
+            } catch (e) {
+                // 忽略错误
+            }
+        })();
+    </script>
+    
 <header id="header" class="clearfix">
     <div class="container-md">
         <div class="row">
