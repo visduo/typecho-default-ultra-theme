@@ -40,11 +40,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     <script>
         (function() {
             try {
-                var saved = localStorage.getItem('theme-mode');
-                var defaultMode = '<?php echo $this->options->defaultThemeMode ?>';
-                var mode = saved || defaultMode;
+                const saved = localStorage.getItem('theme-mode');
+                const defaultMode = '<?php echo $this->options->defaultThemeMode ?>';
+                let mode = saved || defaultMode;
                 if (mode === 'auto') {
-                    var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                     mode = isDark ? 'dark' : 'light';
                 }
                 if (mode === 'light' || mode === 'dark' || mode === 'read') {
@@ -55,7 +55,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             }
         })();
     </script>
-    
+
 <header id="header" class="clearfix">
     <div class="container-md">
         <div class="row">

@@ -99,11 +99,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         $body.attr('theme-mode', themeMode);
         $highlightThemeCss.attr('href', themeMode === 'dark' ? highlightDarkThemeCss : highlightLightThemeCss);
     }
-    
+
     // 初始化主题模式
     function initThemeMode() {
         const savedThemeMode = localStorage.getItem('theme-mode') || '<?php echo $this->options->defaultThemeMode ?>';
         $themeModeSelect.val(savedThemeMode);
+        // 调整主题加载逻辑
         // 确定最终应用的主题模式
         let finalMode;
         if (savedThemeMode === 'auto') {

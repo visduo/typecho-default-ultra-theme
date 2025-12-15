@@ -271,6 +271,25 @@ function themeConfig($form) {
         '开启后，文章中的所有外链将自动在新窗口打开'
     );
     
+    $statementStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'statementStatus',
+        [
+            'yes'   => '是',
+            'no'    => '否'
+        ],
+        'no',
+        '是否显示文章声明',
+        '开启后，文章底部将显示文章声明内容'
+    );
+    
+    $statementText = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'statementText',
+        null,
+        null,
+        '文章声明内容',
+        '指定文章底部显示的文章声明内容'
+    );
+    
     $commentSettings = new Typecho_Widget_Helper_Form_Element_Checkbox(
         'commentSettings',
         null,
@@ -386,6 +405,8 @@ function themeConfig($form) {
     $form->addInput($randMinPostView);
     $form->addInput($randMaxPostView);
     $form->addInput($elinkTargetBlankStatus);
+    $form->addInput($statementStatus);
+    $form->addInput($statementText);
     $form->addInput($hr);
     
     $form->addInput($commentSettings);
