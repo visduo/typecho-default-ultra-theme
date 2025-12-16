@@ -370,6 +370,17 @@ function themeConfig($form) {
         '开启后，将在网页右下角显示返回顶部按钮'
     );
     
+    $playbackMinitoolStatus = new Typecho_Widget_Helper_Form_Element_Radio(
+        'playbackMinitoolStatus',
+        [
+            'yes'   => '是',
+            'no'    => '否'
+        ],
+        'no',
+        '是否启用文章放映模式按钮',
+        '开启后，将在网页右下角显示文章放映模式按钮。该功能需要配合 playback 插件使用，请确保已安装 playback 插件'
+    );
+    
     $form->addInput($message);
     
     $form->addInput($basicSettings);
@@ -419,6 +430,7 @@ function themeConfig($form) {
     $form->addInput($tocDefaultExpandedStatus);
     $form->addInput($themeModeMinitoolStatus);
     $form->addInput($topMinitoolStatus);
+    $form->addInput($playbackMinitoolStatus);
     $form->addInput($hr);
 }
 

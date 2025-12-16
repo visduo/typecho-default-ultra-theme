@@ -9,6 +9,14 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 ?>
 </div></div></div>
 <div class="minitool-group">
+    <?php if (class_exists('playback_Plugin') && $this->options->playbackMinitoolStatus == 'yes'): ?>
+        <button class="vertical-btn playback-minitool" id="enterPlayback">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-collection-play" viewBox="0 0 16 16">
+                <path d="M2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3m2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1m2.765 5.576A.5.5 0 0 0 6 7v5a.5.5 0 0 0 .765.424l4-2.5a.5.5 0 0 0 0-.848z"/>
+                <path d="M1.5 14.5A1.5 1.5 0 0 1 0 13V6a1.5 1.5 0 0 1 1.5-1.5h13A1.5 1.5 0 0 1 16 6v7a1.5 1.5 0 0 1-1.5 1.5zm13-1a.5.5 0 0 0 .5-.5V6a.5.5 0 0 0-.5-.5h-13A.5.5 0 0 0 1 6v7a.5.5 0 0 0 .5.5z"/>
+            </svg>
+        </button>
+    <?php endif; ?>
     <?php if ($this->options->tocMinitoolStatus == 'yes'): ?>
         <button class="vertical-btn toc-minitool">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
@@ -433,6 +441,18 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         if ($('.toc-minitool').length && $('.post-content').length) {
             $(window).on('scroll', { passive: true }, highlightToc);
             $(window).on('resize', { passive: true }, highlightToc);
+        }
+        <?php endif; ?>
+
+        <?php if (class_exists('playback_Plugin') && $this->options->playbackMinitoolStatus == 'yes'): ?>
+        // 初始化放映模式按钮
+        const $postContent = $('.post-content');
+        const $enterPlayback = $('#enterPlayback');
+        // 文章内容不存在
+        if ($postContent.length === 0) {
+            $enterPlayback.hide();
+        } else {
+            $enterPlayback.show();
         }
         <?php endif; ?>
 

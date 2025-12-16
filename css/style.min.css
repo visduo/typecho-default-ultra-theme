@@ -704,7 +704,7 @@ button:hover,input[type=submit]:hover {
     box-shadow: -4px 0 6px -1px rgba(0, 0, 0, 0.1);
     transform: translateX(100%);
     transition: transform 400ms ease-in-out;
-    z-index: 40;
+    z-index: 100;
     padding: 24px;
     box-sizing: border-box;
     overflow-y: auto
@@ -918,4 +918,15 @@ pre {
 #nprogress .spinner-icon {
     border-top-color: var(--link-color)!important;
     border-left-color: var(--link-color)!important
+}
+
+/* ------------------
+ * 放映模式样式
+ * --------------- */
+.playback .post-content img {
+    max-height: 80vh !important
+}
+
+.playback .post-content pre {
+    max-height: 100% !important
 }
