@@ -3,7 +3,7 @@
  * 底栏区
  *
  * @author 多仔
- * @link https://www.duozai.cn
+ * @link https://www.duox.dev
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 ?>
@@ -54,7 +54,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 <?php endif; ?>
 <footer id="footer">
     <?php $this->options->footerText(); ?><br>
-    Theme by <a href="https://www.duozai.cn/" target="_blank" style="color: var(--secondary-color);">duozai</a>
+    Theme by <a href="https://www.duox.dev/" target="_blank" style="color: var(--secondary-color);">duozai</a>
 </footer>
 <?php $this->options->analyticsCode(); ?>
 <script src="//static-lab.6os.net/jquery/3.6.0/jquery.min.js"></script>

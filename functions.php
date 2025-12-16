@@ -3,7 +3,7 @@
  * 自定义函数
  *
  * @author 多仔
- * @link https://www.duozai.cn
+ * @link https://www.duox.dev
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
@@ -17,7 +17,7 @@ function themeConfig($form) {
         'hr',
         null,
         null,
-        '主题使用说明与注意事项：<a href="https://www.duozai.cn/post/65.html" target="_blank">https://www.duozai.cn/post/65.html</a>'
+        '主题使用说明与注意事项：<a href="https://www.duox.dev/post/65.html" target="_blank">https://www.duox.dev/post/65.html</a>'
     );
     
     $hr = new Typecho_Widget_Helper_Form_Element_Checkbox(

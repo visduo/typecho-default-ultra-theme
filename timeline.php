@@ -4,7 +4,7 @@
  *
  * @package custom
  * @author 多仔
- * @link https://www.duozai.cn
+ * @link https://www.duox.dev
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $this->need('header.php');
