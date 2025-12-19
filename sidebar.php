@@ -30,7 +30,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     <?php if (!empty($this->options->sidebarBlock) && in_array('ShowRandPosts', $this->options->sidebarBlock)): ?>
         <?php $this->widget('Widget_Post_rand@rand')->to($rand); ?>
         <section class="widget">
-            <h3 class="widget-title">随机推荐<?php echo $this->options->postsListSize ?></h3>
+            <h3 class="widget-title">随机推荐</h3>
             <ul class="widget-list">
                 <?php while ($rand->next()): ?>
                     <li><a href="<?php $rand->permalink(); ?>"><?php $rand->title(); ?></a></li>
