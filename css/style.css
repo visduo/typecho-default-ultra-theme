@@ -1,8 +1,8 @@
 /* ------------------
  * 全局样式
  * --------------- */
-@import url("//chinese-fonts-cdn.netlify.app/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css");
-@import url("//chinese-fonts-cdn.netlify.app/packages/syst/dist/SourceHanSerifCN/result.css");
+@import url("//static-lab.6os.net/MapleMono-NF-CN/7.900/result.css");
+@import url("//static-lab.6os.net/DreamHanSerifCN/3.02/W8/result.css");
 @import url("//static-lab.6os.net/noto-color-emoji/1/result.css");
 
 :root {
@@ -12,8 +12,8 @@
     --secondary-color: #999999;
     --border-color: #EEEEEE;
     --muted-color: #F5F5F5;
-    --body-font-famliy: "Source Han Serif CN VF","Noto Color Emoji","Helvetica Neue",Helvetica,Arial,sans-serif;
-    --code-font-famliy: "Maple Mono CN","Noto Color Emoji","Helvetica Neue",Helvetica,Arial,sans-serif
+    --body-font-famliy: "Dream Han Serif CN W8","Noto Color Emoji","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --code-font-famliy: "Maple Mono NF CN","Noto Color Emoji","Helvetica Neue",Helvetica,Arial,sans-serif
 }
 
 [theme-mode="dark"] {
