@@ -517,7 +517,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         if (event.relatedTarget) {
             if (event.relatedTarget.tagName === 'FORM' && event.relatedTarget.id === 'comment-form') {
                 // 如果PJAX来源是评论表单，则显示提示信息
-                let message = (data.responseText.match(/<div class="container">\s*([\s\S]*?)\s*<\/div>/i) || [, ''])[1].trim();
+                let message = ''
+                if(data.responseText.includes('window.TypechoComment')) {
+                    message = '评论成功'
+                } else {
+                    message = (data.responseText.match(/<div class="container">\s*([\s\S]*?)\s*<\/div>/i) || [, ''])[1].trim();
+                }
                 if (message) {
                     alert(message);
                     $.pjax({
