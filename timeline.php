@@ -43,7 +43,7 @@ $this->need('header.php');
                             'year' => $year,
                             'month' => $month,
                             'day' => $day,
-                            'permalink' => $archive['permalink'],
+                            'permalink' => Typecho_Router::url('post', ['cid' => $archive['cid']]),
                             'title' => $archive['title']
                     );
                 }
