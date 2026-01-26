@@ -362,7 +362,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         function initElink() {
             $('.post-content a').each(function () {
                 // 排除内链
-                if (this.href.includes('<?php $this->options->siteUrl(); ?>')) {
+                if (this.href.includes('<?php $this->options->siteUrl(); ?>') || this.href.startsWith('/')) {
                     return;
                 }
 
@@ -473,7 +473,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
     <?php if ($this->options->pjaxStatus == 'yes'): ?>
     // PJAX实现
-    $(document).pjax('a[href^="<?php $this->options->siteUrl(); ?>"]:not(a[target="_blank"], a[no-pjax])', {
+    $(document).pjax('a[href^="<?php $this->options->siteUrl(); ?>"]:not(a[target="_blank"], a[no-pjax]),a[href^="/"]:not(a[target="_blank"], a[no-pjax])', {
         container: '#main',
         fragment: '#main',
         timeout: 7000
