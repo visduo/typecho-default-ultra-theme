@@ -25,10 +25,10 @@ $this->need('header.php');
                 $allPosts = array();
 
                 for ($i = 0; $i < count($archives); $i++) {
-                    $archive = Typecho_Widget::widget('Widget_Abstract_Contents')->push($archives[$i]);
-                    $year = date('Y', $archive['created']);
-                    $month = date('m', $archive['created']);
-                    $day = date('d', $archive['created']);
+                    $archive = Helper::widgetById('Contents', $archives[$i]['cid']);
+                    $year = date('Y', $archive->created);
+                    $month = date('m', $archive->created);
+                    $day = date('d', $archive->created);
 
                     if (!isset($postCounts[$year])) {
                         $postCounts[$year] = array('total' => 0);
@@ -43,8 +43,8 @@ $this->need('header.php');
                             'year' => $year,
                             'month' => $month,
                             'day' => $day,
-                            'permalink' => Typecho_Router::url('post', ['cid' => $archive['cid']]),
-                            'title' => $archive['title']
+                            'permalink' => $archive->permalink,
+                            'title' => $archive->title
                     );
                 }
 
