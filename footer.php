@@ -65,30 +65,30 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     Theme by <a href="https://www.duox.dev/" target="_blank" style="color: var(--secondary-color);">duozai</a>
 </footer>
 <?php $this->options->analyticsCode(); ?>
-<script src="//static-lab.6os.net/jquery/3.6.0/jquery.min.js"></script>
+<script src="//static-lab.07tb.com/jquery/3.6.0/jquery.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/katex@0.16.25/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
-<script src="//static-lab.6os.net/highlight/11.11.1/highlight.min.js"></script>
+<script src="//static-lab.07tb.com/highlight/11.11.1/highlight.min.js"></script>
 <link id="highlightThemeCss" rel="stylesheet" href="">
 <?php if ($this->options->pjaxStatus == 'yes'): ?>
-    <script src="//static-lab.6os.net/jquery-pjax/2.0.1/jquery.pjax.min.js"></script>
-    <script src="//static-lab.6os.net/nprogress/0.2.0/nprogress.min.js"></script>
-    <link rel="stylesheet" href="//static-lab.6os.net/nprogress/0.2.0/nprogress.min.css">
+    <script src="//static-lab.07tb.com/jquery-pjax/2.0.1/jquery.pjax.min.js"></script>
+    <script src="//static-lab.07tb.com/nprogress/0.2.0/nprogress.min.js"></script>
+    <link rel="stylesheet" href="//static-lab.07tb.com/nprogress/0.2.0/nprogress.min.css">
 <?php endif; ?>
 <?php if ($this->options->imageLightBoxStatus == 'yes'): ?>
-    <link rel="stylesheet" href="//static-lab.6os.net/fancybox/3.5.7/jquery.fancybox.min.css">
-    <script src="//static-lab.6os.net/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <link rel="stylesheet" href="//static-lab.07tb.com/fancybox/3.5.7/jquery.fancybox.min.css">
+    <script src="//static-lab.07tb.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 <?php endif; ?>
 <?php if ($this->options->imageLazyloadStatus == 'yes'): ?>
-    <script src="//static-lab.6os.net/jquery-lazyload/1.9.5/jquery.lazyload.min.js"></script>
+    <script src="//static-lab.07tb.com/jquery-lazyload/1.9.5/jquery.lazyload.min.js"></script>
 <?php endif; ?>
 <!-- 主题模式切换 -->
 <script>
     const $body = $('body');
     const $themeModeSelect = $('#themeMode');
     const $highlightThemeCss = $('#highlightThemeCss');
-    const highlightLightThemeCss = '//static-lab.6os.net/highlight/11.11.1/styles/atom-one-light.min.css';
-    const highlightDarkThemeCss = '//static-lab.6os.net/highlight/11.11.1/styles/atom-one-dark.min.css';
+    const highlightLightThemeCss = '//static-lab.07tb.com/highlight/11.11.1/styles/atom-one-light.min.css';
+    const highlightDarkThemeCss = '//static-lab.07tb.com/highlight/11.11.1/styles/atom-one-dark.min.css';
     const systemThemeModeMedia = window.matchMedia('(prefers-color-scheme: dark)');
 
     // 是否开启自动模式切换

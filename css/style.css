@@ -1,9 +1,9 @@
 /* ------------------
  * 全局样式
  * --------------- */
-@import url("//static-lab.6os.net/MapleMono-NF-CN/7.900/result.css");
-@import url("//static-lab.6os.net/DreamHanSerifCN/3.02/W8/result.css");
-@import url("//static-lab.6os.net/noto-color-emoji/1/result.css");
+@import url("//static-lab.07tb.com/MapleMono-NF-CN/7.900/result.css");
+@import url("//static-lab.07tb.com/DreamHanSerifCN/3.02/W8/result.css");
+@import url("//static-lab.07tb.com/noto-color-emoji/1/result.css");
 
 :root {
     --bg-color: #FFFFFF;
